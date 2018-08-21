@@ -1,0 +1,267 @@
+  
+
+[class^="icon-weather"],
+[class*=" icon-weather"] {
+  font-family: 'iconvault';
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+  font-size: 1.4em;
+  // width: 55px;
+  height: 19%;
+  display: inline-block;
+  line-height: 1px;
+  position: relative;
+  top: -3px;
+}
+
+@media only screen and (min-width: 479px) and (max-width: 678px){
+[class^="icon-weather"],
+[class*=" icon-weather"] {
+  font-family: 'iconvault';
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;}
+}
+
+/* -----BaseCloud----- */
+
+.basecloud, .basecloudFull, .no-base-icon{
+  font-size: 1.4em;
+  font-weight: normal;
+  width: 0;
+  height: 19%;
+  display: inline-block;
+  line-height: 1px;
+  position: relative;
+  top: 0;
+}
+.basecloudFull{
+  font-size: 1.35em;
+}
+  .no-base-icon:before{
+  font-family: 'iconvault';
+  font-size:1em;
+  content: ' ';
+  position:absolute;
+  color:rgb(204, 204, 204);
+  }
+
+  .basecloud:before  {
+  font-family: 'iconvault';
+  font-size:1em;
+  content: '\f105';
+  position:absolute;
+  color:rgb(204, 204, 204);
+  }
+
+  .basecloudFull:before  {
+  font-family: 'iconvault';
+  font-size:1em;
+  content: '\f106';
+  position:absolute;
+  color:rgb(204, 204, 204);
+  }
+  
+  
+  
+/* -----windyraincloud----- */
+
+  .windyraincloud:before  {
+  font-family: 'iconvault';
+  font-size:1em;
+  content: '\f111';
+  position:absolute;
+  color:rgb(204, 204, 204);
+  }
+  
+/* -----Windysnowcloud----- */
+
+  .windysnowcloud:before  {
+  font-family: 'iconvault';
+  font-size:1em;
+  content: '\f109';
+  position:absolute;
+  color:rgb(204, 204, 204);
+  }
+
+/* -----Basethundercloud----- */
+
+  .basethundercloud:before  {
+  font-family: 'iconvault';
+  font-size:1em;
+  content: '\f105';
+  position:absolute;
+  color:#000;
+
+  }
+
+
+/* -----Thunder----- */
+
+  .icon-weather-thunder::before  {
+  content: "\f114";
+  position:absolute;
+  color:rgb(255, 165, 0);
+  }
+
+/* -----Sunny----- */
+
+  .icon-weather-sunny::after {
+  content: "\f101";
+  color:rgb(255, 165, 0);
+  position: absolute;
+  }
+
+
+/* -----Drizzle----- */
+
+  .icon-weather-drizzle::before  {
+  content: "\f10a";
+  color: #82b2e4;
+  position: absolute;
+}
+
+/* -----Hail----- */
+
+  .icon-weather-hail::before {
+  content: "\f10f";
+  position:absolute;
+  color:rgb(204, 204, 204);}
+
+/* -----Showers----- */
+
+  .icon-weather-showers::before  {
+  content: "\f104";
+  position:absolute;
+  color:#82b2e4;
+}
+
+/* -----Rainy----- */
+
+  .icon-weather-rainy::before {
+  content: "\f107";
+  position:absolute;
+  color:#4681c3;
+  }
+
+/* -----Snowy----- */
+
+  .icon-weather-snowy::before  {
+  content: "\f10b";
+  position:absolute;
+  color:#acd3f3;
+  }
+
+/* -----Frosty----- */
+
+  .icon-weather-frosty::before {
+  content: "\f102";
+  position:absolute;
+  color:#85d8f7;
+  }
+
+/* -----Windy----- */
+
+  .icon-weather-windy::before  {
+  content: "\f115";
+  position:absolute;
+  color:rgb(204, 204, 204);
+  }
+
+/* -----WindyRain----- */
+
+  .icon-weather-windyrain::before {
+  content: "\f10e";
+  position:absolute;
+  color:#acd3f3;
+  }
+
+/* -----WindySnow----- */
+
+  .icon-weather-windysnow::before {
+  content: "\f103";
+  position:absolute;
+  color:#acd3f3;
+  }
+
+/* -----Sleet----- */
+
+  .icon-weather-sleet::before  {
+  content: "\f10c";
+  position:absolute;
+  color:#acd3f3;
+  }
+
+/* -----Moon----- */
+
+  .icon-weather-moon::after {
+  content: "\f10d";
+  color:rgb(255, 165, 0);
+  position: absolute;
+  }
+
+/* -----Night----- */
+
+  .icon-weather-night::after {
+  content: "\f100";
+  position:absolute;
+  color:rgb(255, 165, 0);
+  }
+
+
+/* -----Sun----- */
+
+  .icon-weather-sun::after {
+  content: "\f113";
+  color:rgb(255, 165, 0);
+  position: absolute;
+  }
+
+/* -----Cloud----- */
+
+  .icon-weather-cloud, .icon-weather-sun, .icon-weather-moon{
+      font-size: 1.4em;
+  font-weight: normal;
+  width: 0;
+  height: 19%;
+  display: inline-block;
+  line-height: 1px;
+  position: relative;
+  top: 0;
+  }
+
+  .icon-weather-cloud::after {
+  content: "\f106";
+  color:rgb(204, 204, 204);
+  position: absolute;
+  font-size: 1em;
+
+  }
+
+
+/* -----Sunrise----- */
+
+  .icon-weather-sunrise:before  {
+  content: '\f112';
+  color:rgb(255, 165, 0);
+  position: absolute;
+  }
+
+/* -----Sunset----- */
+
+  .icon-weather-sunset:before  {
+  content: '\f110';
+  color:#f96f23;
+  position: absolute;
+  }
+
+/* -----Mist----- */
+
+  .icon-weather-mist:before  {
+  content: '\f108';
+  color:rgb(204, 204, 204);
+  position: absolute;
+  }

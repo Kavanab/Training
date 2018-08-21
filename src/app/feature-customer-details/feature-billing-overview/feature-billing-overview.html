@@ -1,0 +1,41 @@
+<div class="nopayment-container" ng-if="NO_AGING_AND_INVOICE_HISTORY_DATA_FLAG === true">
+
+    <div ng-if="!IS_THIS_SUB_ACCOUNT_FLAG" class="noPayment-inner">
+        <div class="noPayment-icon">
+            <img src="/img/no-payment-info-icon.svg" />
+        </div>
+        <div class="payment-message">
+            Payment information is not available.
+        </div>
+        <div class="payment-message-small">
+            Accounts that have not generated their first invoice or have had no activity, will not show any billing history.
+        </div>
+
+    </div>
+    <div ng-if="IS_THIS_SUB_ACCOUNT_FLAG" class="noPayment-inner subAccount-container">
+        <div class="noPayment-icon">
+            <img src="/img/master-sub-icon.svg" />
+        </div>
+        <div class="payment-message">
+            This is a sub account.
+        </div>
+        <div class="payment-message-small">
+            It is billed to the master account
+            <a ng-href="{{MASTER_ACCOUNT_PATH}}" target="_blank">{{MASTER_ACCOUNT_NAME}}</a>
+        </div>
+
+    </div>
+</div>
+<div class="column-left payment-screen-layout" ng-if="NO_AGING_AND_INVOICE_HISTORY_DATA_FLAG === false">
+    <section class="tile-container billing-summary-container">
+        <billing-summary></billing-summary>
+    </section>
+    <section class="tile-container billing-details-container">
+        <billing-details></billing-details>
+    </section>
+</div>
+<div class="column-right">
+    <section class="tile-container">
+        <billing-cart></billing-cart>
+    </section>
+</div>

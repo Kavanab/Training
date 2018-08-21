@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="3171 404.201 240 291.799">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #767676;
+      }
+
+      .cls-2 {
+        fill: #e65853;
+        stroke: #fff;
+        stroke-width: 6px;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        stroke: none;
+      }
+
+      .cls-5 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <g id="Group_75" data-name="Group 75" transform="translate(1990)">
+    <g id="User_Icon" data-name="User Icon" transform="translate(1181 404.201)">
+      <circle id="Ellipse_1" data-name="Ellipse 1" class="cls-1" cx="67.294" cy="67.294" r="67.294" transform="translate(30.825)"/>
+      <path id="Path_6" data-name="Path 6" class="cls-1" d="M195.8,130.014V116.556A82.269,82.269,0,0,0,113.749,34.5H81.621C36.9,34.5,0,71.4,0,116.556v13.459Z" transform="translate(0 115.284)"/>
+    </g>
+    <g id="Group_16" data-name="Group 16" transform="translate(720 319)">
+      <g id="Ellipse_3" data-name="Ellipse 3" class="cls-2" transform="translate(580 256)">
+        <circle class="cls-4" cx="60.5" cy="60.5" r="60.5"/>
+        <circle class="cls-5" cx="60.5" cy="60.5" r="57.5"/>
+      </g>
+      <g id="Group_74" data-name="Group 74">
+        <rect id="Rectangle_62" data-name="Rectangle 62" class="cls-3" width="12" height="67" rx="6" transform="translate(660.376 289) rotate(45)"/>
+        <rect id="Rectangle_63" data-name="Rectangle 63" class="cls-3" width="12" height="67" rx="6" transform="translate(668.861 336.376) rotate(135)"/>
+      </g>
+    </g>
+  </g>
+</svg>

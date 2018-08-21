@@ -1,0 +1,147 @@
+
+.overlay-note-edit {
+  .overlay {
+    width: 38vw;
+    min-width: 380px;
+    max-width: 580px;
+    h1 {
+      font-family: "Foundry Sterling Book";
+      /* text-transform: uppercase; */
+      margin: 0;
+      color: $fore;
+      font-size: 1.57em;
+      text-align: center;
+      padding-top: 0;
+      padding-bottom: 14px;
+    }
+    .note-icon {
+        float: left;
+        background: url(/img/sprite-activity.svg);
+        width: 50px;
+        height: 50px;
+        background-position: 67% -72px;
+        background-size: 100%;
+    }
+    .close-overlay {
+        font-size: 2.5em;
+    }
+
+    textarea {
+      transition: all 0.20s ease;
+      font-size: 1em;
+      outline: none;
+      padding: 5px 1px 5px 8px;
+      margin: 8px 1px 5px 0px;
+      border: 1px solid #EEE;
+      resize: none;
+
+      &:focus {
+        // box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+        border: 1px solid #BBB;
+      }
+
+      &.notification {
+          box-shadow: 0 0 12px 0 rgba(122, 184, 0, 0.2);
+      }
+    }
+    .form-footer {
+      text-align: center;
+      .btn{
+          color: $white!important;
+      }
+      .data-notification {
+        color: $red;
+      }
+    }
+    .form-container {
+      display: flex;
+      flex-direction: row;
+      margin: 0 0 0 0;
+    }
+    .data-list {
+      flex-grow: 1;
+      display: flex;
+      flex-flow: column;
+      .data-row {
+      }
+    }
+    .data-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      margin: 0 0;
+      .data {
+        width: 100%;
+        font-family: "Foundry Sterling Book";
+        text-transform: capitalize;
+        padding: 5px;
+        margin: 7px 0px 7px 0px;
+        color: $mgray;
+      }
+      .data-input {
+        width: 100%;
+        height: 10em;
+      }
+      .data-notification {
+        width: 100%;
+        color: $red;
+        margin: -3px 0 -3px 0;
+      }
+    }
+
+  }
+}
+
+.overlay-note-edit-result {
+  .overlay {
+      width: 38vw;
+      min-width: 380px;
+      max-width: 580px;
+    h1 {
+      font-family: "Foundry Sterling Book";
+      /* text-transform: uppercase; */
+      margin: .6em 0 .6em 0;
+      color: $fore;
+      font-size: 1.7em;
+      text-align: center;
+    }
+
+    .data-list {
+      margin: 2em 1em 1em 1em;
+      padding: 1.3em 0 2.2em 0;
+      .check-mark-container {
+          text-align: center;
+          .check-mark {
+              height: 3.6em;
+          }
+      }
+      .data-row {
+        /* width: 100%; */
+        display: inline-block;
+      }
+    }
+    .data-container {
+      color: $mgray;
+      font-family: "Foundry Sterling Book";
+
+        .data-value {
+          width: 100%;
+          text-align: center;
+          /* padding: 0 15px; */
+        }
+    }
+    .data-notification {
+      color: $red;
+    }
+    .form-footer {
+      text-align: center;
+      .btn{
+          color: $white!important;
+      }
+      .data-notification {
+        color: $red;
+      }
+    }
+  }
+}

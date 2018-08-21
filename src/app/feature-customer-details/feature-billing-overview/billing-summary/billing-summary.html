@@ -1,0 +1,64 @@
+<div class="tile tile-contacts summary-tile" flowtype min-font="10" max-font="18" font-ratio="55">
+    <header>
+        <ul class="header-tabs">
+            <li class="active">
+                <a href="{{location.path()}}#tab-account-summary" data-toggle='tab-account-summary' class="tab_title tab-link">Account Summary</a>
+            </li>
+            <!-- Commented for now, we'll open for later releases -->
+            <!-- <li>
+                <a href="{{location.path()}}#tab-linked-accounts" data-toggle='tab-linked-accounts' class="tab_title tab-link">Linked Accounts</a>
+            </li> -->
+        </ul>
+        <span class="bottom-line"></span>
+    </header>
+    <section class="content tab-content clearfix">
+        <div class="tab-pane active" id="tab-account-summary">
+            <div class="summaryAmount">
+
+                <div ng-if="accountSummary.length === 0" class="loading_message">
+                    <div class="loading">Loading
+                        <span> .</span>
+                        <span> .</span>
+                        <span> .</span>
+                    </div>
+                    <!-- {{loading_account_summary}} -->
+                </div>
+
+                <div ng-if="accountSummary.length !== 0" class="one_amount" ng-repeat="item in accountSummary">
+                    <span class="dollar">
+
+                        <!-- 
+                            Example of `currencySplit` filter 
+
+                            $filter('currencySplit')(amount, symbol, location, maxAmount)
+                            {{ amount | currencySplit : symbol : location : maxAmount }}
+
+                            Where,
+
+                            amount - REQUIRED - [TYPE]: Numeric
+
+                            symbol - REQUIRED - [TYPE]: String
+                            possible values are 'dollar' or 'cents', default is 'dollar'
+                        
+                            location - OPTIONAL - [TYPE]: String
+                            possible values are 'timeline' or 'summary', default is 'timeline'
+                        
+                            maxAmount - OPTIONAL - [TYPE]: Numeric
+                            maximum amount in the range to check and drop cents in account summary pane
+
+                        -->
+
+                        <sup>{{item.symbol + ' $'}}</sup>
+                        <span class="amount-dollar">{{item.amount | currencySplit : 'dollar' }}</span>
+                        <sup>{{item.amount | currencySplit: 'cents' : 'summary': MAX_AGING_DATA }}</sup>
+                    </span>
+                    <span class="description">{{item.description}}</span>
+                </div>
+            </div>
+        </div>
+        <!-- Commented for now, we'll open for later releases -->
+        <!-- <div class="tab-pane" id="tab-linked-accounts">
+            <h3 class="dummy_title">I am inside Tab tab-linked-accounts</h3>
+        </div> -->
+    </section>
+</div>

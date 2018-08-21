@@ -1,0 +1,30 @@
+<div class="welcome" ng-controller="WelcomeScreenController">
+    <div ng-controller="TimeController">
+        <h1 ng-class="{undefined:'data-loading'}[timeOfDay]" ng-show='timeOfDay' flowtype min-font="40" max-font="80" font-ratio="28">Good {{timeOfDay}}<span ng-show='loginInfo.firstName'>, {{loginInfo.firstName}}.</span>
+        </h1>
+    </div>
+
+    <div class="preferences">
+        <a href="https://wm1.typeform.com/to/meuqv7" target="_blank">
+            <div class="button">
+                <span class="icon bubble"></span>
+                <span class="copy">Feedback</span>
+            </div>
+        </a>
+        <div class="button" ng-click="signInUser()">
+            <span class="icon" ng-class="signInButtonText == 'SIGN IN' ? 'sign-in' : 'sign-out'"></span>
+            <span class="copy">{{ signInButtonText }}</span>
+        </div>
+        <div class="button" ng-click="showUpdates()">
+            <span class="icon updates">
+                <div class="badge" ng-class="{pop: caagUpdateBadgeAnimate}" ng-show="!!caagUpdatesBadgeCount">{{caagUpdatesBadgeCount}}</div>
+            </span>
+            <span class="copy">Updates</span>
+        </div>
+        <!--     <ul class="icon-list">
+      <li><span class="glyphicon glyphicon-cog"></span><span class="label">Preferences</span> </li>
+      <li><a href="https://wm1.typeform.com/to/H3ZMzO" target="_blank"><span class="glyphicon glyphicon-list"></span><span class="label">Feedback</span> </a></li>
+      <li><span class="glyphicon glyphicon-time"></span><span class="label">History</span> </li>
+    </ul> -->
+    </div>
+</div>

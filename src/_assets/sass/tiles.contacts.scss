@@ -1,0 +1,26 @@
+.tile-contacts{
+  > header{
+    border: none;
+
+  }
+
+  .header-edit {
+     text-align: right;
+     position:absolute;
+     right: 0;
+     transition: color .1s ease-out;
+     a{
+       &:hover{
+         color: $mgray;
+       }
+     }
+  }
+}
+@media screen and (max-height: $breakpointLgheight) {
+    // .tab-content .tab-pane .data-list .data-row .data-container .data {
+    //     font-size: .8em;
+    // }
+    // .tab-content .tab-pane .data-list .data-row .data-container .data-label {
+    //     font-size: .8em;
+    // }
+}

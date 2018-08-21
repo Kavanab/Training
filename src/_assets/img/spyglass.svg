@@ -1,0 +1,15 @@
+<svg id="Group_3" data-name="Group 3" xmlns="http://www.w3.org/2000/svg" viewBox="307.06 190.985 12.854 12.93">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #999;
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <circle id="Ellipse_1" data-name="Ellipse 1" class="cls-1" cx="4.372" cy="4.372" r="4.372" transform="matrix(1, -0.015, 0.015, 1, 308.075, 192.131)"/>
+  <line id="Line_5" data-name="Line 5" class="cls-1" x2="3" y2="3" transform="translate(315.5 199.5)"/>
+</svg>

@@ -1,0 +1,26 @@
+<section class="overlay-container padding-2 overlay-contacts-edit-result" id="overlay-contacts-edit-result">
+    <div class="background"></div>
+    <div class="overlay" flowtype min-font="12" max-font="16" font-ratio="50">
+        <div class="close-overlay"></div>
+        <h1>Success</h1>
+
+			<div class="data-list">
+				<div class="data-row">
+					<div class="data-container">
+						<div class="data-label">
+							<img class="check-mark" ng-show="showSuccess" src="img/check-mark.svg">
+						</div>
+						<div class="data-value">
+							<div class="response-message">{{ contactEditResultMessage }}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+<!-- 	<div class="response-container">
+			<div class="response-message">{{ contactEditResultMessage }}</div>
+			<img class="check-mark" ng-show="showSuccess" src="img/check-mark.svg">
+		</div>
+-->
+    </div>
+</section>

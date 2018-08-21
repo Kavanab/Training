@@ -1,0 +1,87 @@
+<div class="tile tile-contacts" id="tile-contacts" flowtype min-font="10" max-font="18" font-ratio="45">
+    <header>
+        <ul class="header-tabs">
+            <li class="active">
+                <a href="{{location.path()}}#tab-service-contact" data-toggle='tab' class="tab-link">Service Address</a><span class="indicator"></span>
+            </li>
+            <li>
+                <a href="{{location.path()}}#tab-billing-contact" data-toggle='tab' class="tab-link">Billing Address</a><span class="indicator"></span>
+            </li>
+            <li>
+                <a href="{{location.path()}}#tab-online-info" data-toggle='tab' class="tab-link">Online Info</a><span class="indicator"></span>
+            </li>
+            <li class="header-edit">
+            	<a href="" ng-click="showContactsEdit()" >Edit </a>
+            </li>
+        </ul><span class="bottom-line"></span>
+
+    </header>
+    <section class="content tab-content clearfix">
+        <div class="tab-pane active" id="tab-service-contact">
+            <div class="data-list">
+                <div class="data-row name">
+                    <div class="data-container"><span class="data-label">Contact</span><span class="data">{{getField(custData, "serviceContactName") | lowercase}}</span></div>
+                </div>
+                <div class="data-row address">
+                    <div class="data-container"><span class="data-label">Address</span><span class="data">{{getField(custData, "serviceStreet") | capitalize}}, {{getField(custData, 'serviceCity') | lowercase}} {{getField(custData, 'serviceState')}}, {{getField(custData, 'serviceCountry')}} {{getField(custData, 'serviceZip')}}</span></div>
+                </div>
+                <div class="data-row cell" ng-show="getField(custData, 'serviceMobilePhone')">
+                    <div class="data-container"><span class="data-label">Cell</span><span class="data">{{getField(custData, 'serviceMobilePhone') | tel}}</span></div>
+                </div>
+                <div class="data-row office" ng-show="getField(custData, 'serviceOfficePhone')">
+                    <div class="data-container"><span class="data-label">Office</span><span class="data">{{getField(custData, 'serviceOfficePhone') | tel}}</span></div>
+                </div>
+                <div class="data-row fax" ng-show="getField(custData, 'serviceFax')">
+                    <div class="data-container"><span class="data-label">Fax</span><span class="data">{{getField(custData, 'serviceFax') | tel}}</span></div>
+                </div>
+                <div class="data-row email" ng-show="getField(custData, 'serviceEmail')">
+                    <div class="data-container"><span class="data-label">Email</span><span class="data-raw">{{getField(custData, 'serviceEmail')}}</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="tab-billing-contact">
+            <div class="data-list">
+                <div class="data-row company">
+                    <div class="data-container"><span class="data-label">Name</span><span class="data">{{getField(custData, "billingName") | lowercase}}</span></div>
+                </div>
+                <div class="data-row name">
+                    <div class="data-container"><span class="data-label">Contact</span><span class="data">{{getField(custData, "billingContactName") | lowercase}}</span></div>
+                </div>
+                <div class="data-row address">
+                    <div class="data-container"><span class="data-label">Address</span><span class="data">{{getField(custData, "billingStreet") | capitalize}}, {{getField(custData, 'billingCity') | lowercase}} {{getField(custData, 'billingState')}}, {{getField(custData, 'billingCountry')}} {{getField(custData, 'billingZip')}}</span></div>
+                </div>
+                <div class="data-row cell" ng-show="getField(custData, 'billingMobilePhone')">
+                    <div class="data-container"><span class="data-label">Cell</span><span class="data">{{getField(custData, 'billingMobilePhone') | tel}}</span></div>
+                </div>
+                <div class="data-row office" ng-show="getField(custData, 'billingOfficePhone')">
+                    <div class="data-container"><span class="data-label">Office</span><span class="data">{{getField(custData, 'billingOfficePhone') | tel}}</span></div>
+                </div>
+                <div class="data-row fax" ng-show="getField(custData, 'billingFax')">
+                    <div class="data-container"><span class="data-label">Fax</span><span class="data">{{getField(custData, 'billingFax') | tel}}</span></div>
+                </div>
+                <div class="data-row email" ng-show="getField(custData, 'billingEmail')">
+                    <div class="data-container"><span class="data-label">Email</span><span class="data-raw">{{getField(custData, 'billingEmail')}}</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane tab-online-info" id="tab-online-info">
+            <div class="data-list">
+                <!--                 <div class="data-row">
+                    <div class="data-container"><span class="data-label">Logon Status</span><span class="data">{{custProfile.logon_status}}&nbsp;</span></div>
+                </div> -->
+                <div class="data-row">
+                    <div class="data-container"><span class="data-label">Registration</span><span class="data">{{translateRegisteredCode(custProfile.registered_code)}}&nbsp;</span></div>
+                </div>
+                <div class="data-row">
+                    <div class="data-container"><span class="data-label">Email</span><span class="data">{{custProfile.email | lowercase }}&nbsp;</span></div>
+                </div>
+                <div class="data-row">
+                    <div class="data-container"><span class="data-label">Last Login</span><span class="data">{{custProfile.last_login_date | prettyTimeStamp: customerClock.zone.zoneName}}&nbsp;</span></div>
+                </div>
+                <div class="data-row">
+                    <div class="data-container"><span class="data-label">Autopay</span><span class="data">{{custProfile.auto_pay }}&nbsp;</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

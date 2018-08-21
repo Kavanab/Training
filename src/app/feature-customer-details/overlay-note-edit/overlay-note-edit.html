@@ -1,0 +1,46 @@
+<section class="overlay-container padding-3 overlay-note-edit" id="overlay-note-edit">
+    <div class="background"></div>
+    <div class="overlay" flowtype min-font="14" max-font="18" font-ratio="25">
+    	<!-- <div ng-class="showLoading"></div>
+    	<div ng-class="showLoader"></div>  -->
+        <div class="close-overlay"></div>
+
+        <div class="clearfix">
+            <!-- <div class="note-icon"></div> -->
+            <h1>Add MAS Note</h1>
+        </div>
+		<form name="formNoteEdit">
+
+			<div class="form-container">
+
+	            <div class="data-list">
+	                <div class="data-row name">
+	                    <div class="data-container">
+	                    	<textarea class="data-input" name="editComment" id="editComment" type="text"
+                                ng-class="{notification: noteDataMutable.showFormChangeWarning && formNoteEdit.editComment.$error.required}"
+	                    		ng-maxlength="255" ng-model="noteDataMutable.comment" required></textarea>
+	                    </div>
+	                    <div class="data-container">
+	                    	<span class="data-label"></span>
+                    		<div class="data-notification" ng-show="formNoteEdit.editComment.$error.maxlength && formNoteEdit.editComment.$dirty">
+								<p><i class="icon icon-warning-sign"></i>Comment cannot exceed 255 characters long.</p>
+							</div>
+                            <div class="data-notification" ng-show="noteDataMutable.showFormChangeWarning && formNoteEdit.editComment.$error.required">
+            	        		<p><i class="icon icon-warning-sign"></i>Please enter a comment.</p>
+            	        	</div>
+                            <div class="data-notification" ng-show="noteDataMutable.saveFailureFlag">
+                                <p><i class="icon icon-warning-sign"></i>Oops, something unexpected occured while trying to process your request.</p>
+                            </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+            </br>
+
+	        <div class="form-footer">
+	        	<input class="btn" type="button" value="Add" ng-disabled="noteDataMutable.processing"
+	        		ng-click="isNoteEditCommentValid();onNoteEditSubmit()" />
+	        </div>
+        </form>
+    </div>
+</section>

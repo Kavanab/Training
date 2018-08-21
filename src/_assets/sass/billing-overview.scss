@@ -1,0 +1,66 @@
+.customer-billing-overview {
+    .column-right {
+        display: none;
+    }
+    .column-left {
+        width: 100%;
+    }
+    .tile-contacts {
+        header {
+            background-color: #f1f1f1;
+            border-top-left-radius: 7px;
+            border-top-right-radius: 7px;
+            .header-tabs {
+                li {
+                    .tab_title {
+                        font-family: "Foundry Sterling Bold";
+                        border-radius: 4px;
+                        text-align: center;
+                        user-select: none;
+                        display: block;
+                        font-size: 0.85vw;
+                        line-height: 1.5;
+                        white-space: nowrap;
+                        letter-spacing: -0.5px;
+                        padding: 1px 10px;
+                        text-transform: uppercase;
+                        background-color: #ffffff;
+                        color: #c1c1c1;
+                    }
+                }
+                li.active {
+                    .tab_title {
+                        background-color: #3C8A2E;
+                        color: #f1f1f1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-height: 900px) {
+    .billing-summary-container {
+        flex: 0.34 !important;
+        min-height: 117px !important;
+    }
+    .timeline-inverted timeline-panel {
+        margin-top: 3vh !important;
+    }
+    .timeline:before {
+        border-bottom: 9.3vw solid #ffffff !important;
+    }
+    .link-newTab {
+        top: 17% !important;
+    }
+}
+
+//Ie Related
+@media screen and (-ms-high-contrast: active),
+(-ms-high-contrast: none) {}
+
+
+
+//No Payment page css
+
+

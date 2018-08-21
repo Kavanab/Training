@@ -1,0 +1,268 @@
+angular.module('searchApp')
+.filter('humanizeCaseSubCategoryCode', function() {
+    return function(subCd, cd, lob) {
+        cd = cd.toUpperCase();
+        subCd = subCd.toUpperCase();
+        lob = lob[0].toUpperCase();
+        var humanized = subCd;
+        var lookupCd = cd + "." + subCd + ".";
+        if (cd.toUpperCase() === "TKT" ) {
+            lookupCd = lookupCd + lob;
+        }
+        if (!!humanized) {
+
+            var caseSubCategoryCodes = {
+                'ADJ.ADJ.': 'ADJUSTMENT',
+                'ADJ.CAE.': 'CASH APPLICATION',
+                'ADJ.EDB.': 'SIEBEL MISAPPLIED DEBIT',
+                'ADJ.MCR.': 'MISAPPLIED CREDIT',
+                'ADJ.MDB.': 'MISAPPLIED DEBIT',
+                'ADJ.REF.': 'REFUND REQUEST',
+                'ADJ.RMC.': 'RMC ADJUSTMENT',
+                'BIL.BNT.': 'NOTE TO BILLING',
+                'BIL.FUT.': 'FUTURE REQUEST',
+                'BIL.INV.': 'INVOICE/TKT-REQUEST COPY',
+                'CMP.DCM.': 'DRIVER COMPLIMENT',
+                'CMP.NCM.': 'NON-DRIVER COMPLIMENT',
+                'CNC.BAD.': 'BAD DEBT',
+                'CNC.BCB.': 'BROKER CREDIT BALANCE REVIEW',
+                'CNC.BNK.': 'BANKRUPTCY',
+                'CNC.CRE.': 'CREDIT LIMIT ANALYSIS',
+                'CNC.DSP.': 'DISPUTE',
+                'CNC.LEG.': 'LEGAL',
+                'CNC.PPL.': 'PAYMENT PLAN',
+                'CNC.RST.': 'REMOVE RMC STATUS',
+                'CNC.STL.': 'SETTLEMENT',
+                'CNC.TXR.': 'TAX ROLL',
+                'CNC.3RD.': '3RD PARTY COLL CALL',
+                'CPL.CAD.': 'ABOUT DRIVER',
+                'CPL.CID.': 'CUST IDENT REPEAT PROB-NON MPU',
+                'CPL.CLT.': 'TRUCK APPEARANCE',
+                'CPL.CNT.': 'CONT WAS NOT DEL OR REMOVED',
+                'CPL.CPC.': 'CONTAINER CONDITION',
+                'CPL.DID.': 'REPEAT PBLM (NON MPU)DRIVER ID',
+                'CPL.FEE.': 'FEE COMPLAINT',
+                'CPL.GLK.': 'GATES & LOCKS',
+                'CPL.LID.': 'LIDS NOT CLOSED',
+                'CPL.MPC.': 'MISPLACED CONTAINER',
+                'CPL.NOC.': 'NO COMMUNICATION TO CUSTOMER',
+                'CPL.RPC.': 'REPEAT MPU',
+                'CPL.RPD.': 'REPEAT HOC',
+                'CPL.TIS.': 'TRASH SPILL-CONTAINER/STREET',
+                'CPL.TOD.': 'TIME OF SERVICE COMPLAINT',
+                'CPL.WRC.': 'WRONG SIZE CONTAINER DELIVERED',
+                'DRD.ANC.': 'ACQUISITION NEW CUSTOMER',
+                'DRD.CAD.': 'CONTRACT ANCILLARY DISPUTE',
+                'DRD.CAN.': 'CANCEL REQUEST',
+                'DRD.CCP.': 'CUSTOMER CLAIMS CREDIT PROMISE',
+                'DRD.CPD.': 'CONTRACT PRICE DISPUTE',
+                'DRD.FEE.': 'FEE DISPUTE',
+                'DRD.IRR.': 'INVOICE REVISION REQUEST',
+                'DRD.OCR.': 'OWNERSHIP CHNGE REQST(NOW/LOW)',
+                'DRD.OTD.': 'OVER TONNAGE DISPUTE',
+                'DRD.PCD.': 'PROPERTY/CONTAINER DAMAGE DISP',
+                'DRD.PID.': 'PRICE INCREASE DISPUTE',
+                'DRD.SNP.': 'SNAP SHOT DISPUTE',
+                'ENV.LIT.': 'LITTER',
+                'ENV.NOI.': 'NOISE',
+                'ENV.OEI.': 'OTHER ENVIRONMENTAL ISSUE',
+                'ENV.SPL.': 'SPILL/LEAK',
+                'INQ.ACH.': 'CUSTOMER CHANGING INFO ON ACCT',
+                'OPS.BUK.': 'BULK PICK-UP INQUIRY',
+                'OPS.DAY.': 'SERVICE DAY INQUIRY',
+                'OPS.IOP.': 'INQUIRY ABOUT OPERATIONS',
+                'OPS.OPS.': 'OPERATIONS NOTE',
+                'OPS.RTE.': 'ROUTE REQUEST',
+                'RED.BIL.': 'CODE RED BILLING MANAGER',
+                'RED.CEM.': 'CODE RED CUSTOMER SVC MANAGER',
+                'RED.OPS.': 'CODE RED OPERATIONS MANAGER',
+                'RED.SLS.': 'CODE RED SALES MANAGER',
+                'SAF.SEQ.': 'OPERATING VEHICLE UNSAFELY',
+                'SAL.CAN.': 'CANCEL REQUEST',
+                'SAL.CAN.R': 'CANCEL REQUEST',
+                'SAL.DEC.': 'DECREASE',
+                'SAL.FEE.': 'INQUIRY ON FEE/RATE',
+                'SAL.INC.': 'INCREASE',
+                'SAL.SAD.': 'SERVICE AGREEMENT DISPUTE',
+                'SAL.SLD.': 'SOLD - STRATEGIC PRODUCT',
+                'SAL.SNT.': 'SALES NOTE',
+                'SAL.SOP.': 'SALES OPPORTUNITY',
+                'SAL.WAS.': 'WASTE ASSESSMENT',
+                'SIT.NEW.': 'NEW CUSTOMER',
+                'STP.ECC.': 'FIRST COURTESY CALL',
+                'STP.EFC.': 'FOLLOW UP CALL',
+                'STP.ENW.': 'NEW SERVICE TICKETS',
+                'STP.EWE.': 'WELCOME PACKET PRC',
+                'STP.EWP.': 'WELCOME PACKET',
+                'STP.FCC.': 'FIRST COURTESY CALL',
+                'STP.FWC.': 'FOLLOW UP CALL',
+                'STP.IEN.': 'INITIAL DATA ENTRY',
+                'STP.PDE.': 'PROMISED DELIVERY DATE',
+                'STP.PFP.': 'PROMISED FIRST PICKUP',
+                'STP.WMP.': 'WELCOME PACKET',
+                'TKT.ADC.C': 'ADMINISTRATIVE (CHARGEABLE)',
+                'TKT.ADC.R': 'ADMINISTRATIVE (CHARGEABLE)',
+                'TKT.BLC.C': 'BULKY WASTE PICK-UP CHARGE',
+                'TKT.BLC.R': 'BULKY WASTE PICKUP-CHARGE',
+                'TKT.BLK.C': 'BULKY WASTE PICKUP-NO CHARGE',
+                'TKT.BLK.R': 'BULKY WASTE PICKUP-NO CHARGE',
+                'TKT.BRN.O': 'EMPTY/RELOCATE NEEDED',
+                'TKT.BTE.O': 'EMPTY/DID NOT RETURN',
+                'TKT.BTN.O': 'BRING TO YARD - NO RETURN',
+                'TKT.BTS.O': 'BRING TO YARD (S/O)',
+                'TKT.BTY.O': 'BRING TO YARD (E/R)',
+                'TKT.CMF.C': 'Cont Movemt Followup-N/C',
+                'TKT.CMF.R': 'Cont Movemt Followup-N/C',
+                'TKT.COU.C': 'COURTESY SRVC (NON-CHARGEABLE)',
+                'TKT.COU.R': 'COURTESY SRVC (NON-CHARGEABLE)',
+                'TKT.DCN.C': 'DELIVERY CHARGE NEW CUSTOMER',
+                'TKT.DCN.R': 'DELIVERY CHARGE NEW CUSTOMER',
+                'TKT.DEL.C': 'DELIVERY (NON-CHARGEABLE)',
+                'TKT.DEL.O': 'DELIVERY',
+                'TKT.DEL.R': 'DELIVERY (NON-CHARGEABLE)',
+                'TKT.DIS.C': 'DRIVER ID SWP (NON-CHARGEABLE)',
+                'TKT.DIS.R': 'DRIVER ID SWP (NON-CHARGEABLE)',
+                'TKT.DLC.C': 'DELIVERY (CHARGEABLE)',
+                'TKT.DLC.R': 'DELIVERY (CHARGEABLE)',
+                'TKT.DNE.O': 'DO NOT RETURN (EMPTY)',
+                'TKT.DNN.C': 'DELIVERY NONCHRG NEW CUSTOMER',
+                'TKT.DNN.R': 'DELIVERY NONCHRG NEW CUSTOMER',
+                'TKT.DNR.O': 'DO NOT RETURN',
+                'TKT.E/R.O': 'EMPTY AND RETURN',
+                'TKT.EDE.O': 'RE-DELIVER EMPTY',
+                'TKT.EMR.C': 'EMERGENCY RPR (NON-CHARGEABLE)',
+                'TKT.EMR.R': 'EMERGENCY RPR (NON-CHARGEABLE)',
+                'TKT.EMS.C': 'EMERGENCY SWP (NON-CHARGEABLE)',
+                'TKT.EMS.R': 'EMERGENCY SWP (NON-CHARGEABLE)',
+                'TKT.ERC.C': 'EMERGENCY REPAIR (CHARGEABLE)',
+                'TKT.ERC.R': 'EMERGENCY REPAIR (CHARGEABLE)',
+                'TKT.ERE.O': 'RELOCATE EMPTY',
+                'TKT.ESC.C': 'EMERGENCY SWAP (CHARGEABLE)',
+                'TKT.ESC.R': 'EMERGENCY SWAP (CHARGEABLE)',
+                'TKT.ETA.C': 'TIME OF SERVICE INQUIRY',
+                'TKT.ETA.R': 'TIME OF SERVICE INQUIRY',
+                'TKT.EWN.C': 'ELECTRONIC WASTE (NO CHARGE)',
+                'TKT.EWN.R': 'ELECTRONIC WASTE (NO CHARGE)',
+                'TKT.FDR.O': 'FFY/DID NOT RETURN',
+                'TKT.FFY.O': 'FULL FROM YARD (E/R)',
+                'TKT.FRN.O': 'FFY/RELOCATE NEEDED',
+                'TKT.FYN.O': 'FULL FROM YARD - NO RETURN',
+                'TKT.FYS.O': 'FULL FROM YARD (S/O)',
+                'TKT.HAZ.C': 'HAZARDOUS MATERIAL PICKUP',
+                'TKT.HAZ.R': 'HAZARDOUS MATERIAL PICKUP',
+                'TKT.HOC.C': 'HAUL OR CALL',
+                'TKT.HOC.R': 'HAUL OR CALL',
+                'TKT.LCC.C': 'LOST CNTR DELIVER (NON-CHARGE)',
+                'TKT.LCC.R': 'LOST CNTR DELIVER (NON-CHARGE)',
+                'TKT.LIV.O': 'LIVE LOAD',
+                'TKT.MCR.R': 'MUNICIPAL OR CITY REPORTING',
+                'TKT.MPU.C': 'MISSED PICKUP',
+                'TKT.MPU.R': 'MISSED PICKUP',
+                'TKT.NEW.C': 'NEW STOP/SERVICE CHANGE',
+                'TKT.NEW.R': 'NEW STOP/SERVICE CHANGE',
+                'TKT.NOT.C': 'NOTE TO DRIVER',
+                'TKT.NOT.R': 'NOTE TO DRIVER',
+                'TKT.ONC.C': 'ON CALL PICKUP (CHARGEABLE)',
+                'TKT.ONC.R': 'ON CALL PICKUP (CHARGEABLE)',
+                'TKT.RCN.C': 'HOC RECOVERY-NON CHARGEABLE',
+                'TKT.RCN.R': 'HOC RECOVERY-NON CHARGEABLE',
+                'TKT.RCV.C': 'HOC RECOVERY-CHARGEABLE',
+                'TKT.RCV.R': 'HOC RECOVERY-CHARGEABLE',
+                'TKT.REC.C': 'RESUME SERVICE (CHARGEABLE)',
+                'TKT.REC.R': 'RESUME SERVICE (CHARGEABLE)',
+                'TKT.REL.C': 'RELOCATE (NON-CHARGEABLE)',
+                'TKT.REL.O': 'RELOCATE',
+                'TKT.REL.R': 'RELOCATE (NON-CHARGEABLE)',
+                'TKT.REM.C': 'REMOVAL (NON-CHARGEABLE)',
+                'TKT.REM.R': 'REMOVAL (NON-CHARGEABLE)',
+                'TKT.RES.C': 'RESUME SERVICE',
+                'TKT.RES.R': 'RESUME SERVICE',
+                'TKT.RLC.C': 'RELOCATE (CHARGEABLE)',
+                'TKT.RLC.R': 'RELOCATE (CHARGEABLE)',
+                'TKT.RMC.C': 'REMOVAL (CHARGEABLE)',
+                'TKT.RMC.R': 'REMOVAL (CHARGEABLE)',
+                'TKT.RPB.C': 'REPAIR (CHARGEABLE)',
+                'TKT.RPB.R': 'REPAIR (CHARGEABLE)',
+                'TKT.RPR.C': 'REPAIR (NON-CHARGEABLE)',
+                'TKT.RPR.R': 'REPAIR (NON-CHARGEABLE)',
+                'TKT.S/O.O': 'SWITCH OUT',
+                'TKT.SCH.O': 'SCHEDULED PULL',
+                'TKT.SNC.C': 'OP SNAPSHOT (CHARGEABLE)',
+                'TKT.SNC.R': 'OP SNAPSHOT (CHARGEABLE)',
+                'TKT.SNP.C': 'OP SNAPSHOT (NON-CHARGEABLE)',
+                'TKT.SNP.R': 'OP SNAPSHOT (NON-CHARGEABLE)',
+                'TKT.SWC.C': 'SWAP (CHARGEABLE)',
+                'TKT.SWC.R': 'SWAP (CHARGEABLE)',
+                'TKT.SWP.C': 'SWAP (NON-CHARGEABLE)',
+                'TKT.SWP.R': 'SWAP (NON-CHARGEABLE)',
+                'TKT.TKT.C': 'AUTO TICKET',
+                'TKT.TKT.R': 'AUTO TICKET',
+                'TKT.TRP.O': 'TRIP CHARGE',
+                'TKT.WGC.C': 'WHITE GOODS PICKUP-CHARGE',
+                'TKT.WGC.R': 'WHITE GOODS PICKUP-CHARGE',
+                'TKT.WGD.C': 'WHITE GOODS PICKUP-NO CHARGE',
+                'TKT.WGD.R': 'WHITE GOODS PICKUP-NO CHARGE',
+                'TKT.XPU.C': 'EXTRA PICKUP (CHARGEABLE)',
+                'TKT.XPU.R': 'EXTRA PICKUP (CHARGEABLE)',
+                'TKT.ZAD.O': 'ADMINISTRATIVE ACTIVITY',
+                'TKT.ZRP.O': 'REPAIRS',
+                'UNR.JDP.': 'JD POWER SURVEY FOLLOW-UP',
+                'UNR.UCS.': 'UNRESOLVED CUSTOMER SVS ISSUE',
+                'UNR.USL.': 'UNRESOLVED SALES ISSUE'
+
+            };
+
+            try {
+                humanized = caseSubCategoryCodes[lookupCd];
+            } catch (e) {
+                // doing nothing
+            }
+        }
+        if ( humanized === undefined ) {
+            humanized = subCd;
+        }
+        return humanized;
+    };
+})
+.filter('humanizeCaseCategoryCode', function() {
+    return function(code) {
+        code = code.toUpperCase();
+        var humanized = code;
+        if (!!humanized) {
+
+            var caseCategoryCodes = {
+                'ADJ': 'ADJUSTMENT REQUEST',
+                'BIL': 'BILLING',
+                'CMP': 'COMPLIMENT',
+                'CNC': 'RMC - CREDIT AND COLLECTIONS',
+                'CPL': 'COMPLAINT',
+                'DRD': 'DISPUTE RESOLUTION DEPARTMENT',
+                'ENV': 'ENVIRONMENTAL',
+                'INQ': 'INQUIRY',
+                'OPS': 'OPERATIONS NOTE',
+                'RCH': 'RESEARCH NEEDED',
+                'RED': 'CODE RED',
+                'SAF': 'SAFETY ISSUE',
+                'SAL': 'SALES',
+                'SIT': 'SITE SURVEY',
+                'STP': 'CUSTOMER SETUP',
+                'TKT': 'SERVICE TICKET',
+                'UNR': 'UNRESOLVED ISSUE',
+                'WBI': 'WM.COM BILLING INQUIRY',
+                'WCP': 'WM.COM',
+                'WOP': 'WM.COM OPERATIONS QUESTION',
+                'WSA': 'WM.COM SALES QUESTION'
+            };
+
+            try {
+                humanized = caseCategoryCodes[code];
+            } catch (e) {
+                // doing nothing
+            }
+        }
+        if ( humanized === undefined ) {
+            humanized = code;
+        }
+        return humanized;
+    };
+});

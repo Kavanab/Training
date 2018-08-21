@@ -1,0 +1,63 @@
+section.background {
+
+
+    transition: background-position-y 0s linear !important;
+    &.no-location {
+        background-image: URL('../img/bg/4.jpg') !important;
+        // background-position: top center;
+    }
+    &.morning {
+        background-image: URL('../img/bg/trees-morning-min.jpg');
+        background-position: top center;
+    }
+    &.afternoon {
+        background-image: URL('../img/bg/AZ/arizona-afternoon.jpg');
+        background-position: center center;
+    }
+    &.evening {
+        background-image: URL('../img/bg/CA/california-evening.jpg');
+        background-position: center center;
+    }
+    &.TX {
+        &.morning {
+            background-image: URL('../img/bg/TX/texas-morning.jpg');
+            background-position: center center;
+        }
+        &.afternoon {
+            background-image: URL('../img/bg/TX/texas-afternoon.jpg');
+            background-position: center center;
+        }
+        &.evening {
+            background-image: URL('../img/bg/TX/texas-evening.jpg');
+            background-position: center center;
+        }
+    }
+    &.AZ {
+        &.morning {
+            background-image: URL('../img/bg/AZ/arizona-morning.jpg');
+            background-position: center center;
+        }
+        &.afternoon {
+            background-image: URL('../img/bg/AZ/arizona-afternoon.jpg');
+            background-position: center center;
+        }
+        &.evening {
+            background-image: URL('../img/bg/AZ/arizona-evening.jpg');
+            background-position: center center;
+        }
+    }
+    &.CO {
+        &.morning {
+            background-image: URL('../img/bg/CO/colorado-morning.jpg');
+            background-position: center center;
+        }
+        &.afternoon {
+            background-image: URL('../img/bg/CO/colorado-afternoon.jpg');
+            background-position: center center;
+        }
+        &.evening {
+            background-image: URL('../img/bg/CO/colorado-evening.jpg');
+            background-position: center center;
+        }
+    }
+}

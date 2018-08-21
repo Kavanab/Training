@@ -1,0 +1,377 @@
+<div class="tile full activity-feed" ng-controller="ActivityFeedController as activity" flowtype min-font="10" max-font="18" font-ratio="55">
+    <header>
+        <span class="title">Activity</span>
+    </header>
+    <div class="controls">
+        <div class="all filter"><label><input type="checkbox" name="activity-filter-all" id="activity-filter-all" ng-click="setFilter('all')" ng-checked="activity.all.filter" /><span>All</span></label></div>
+        <div class="email filter" ng-class="{'loading': activity.emails.loading}"><label><input type="checkbox" name="activity-filter-email" id="activity-filter-email" ng-click="setFilter('emails')" ng-checked="activity.emails.filter"/><span>Emails</span></label></div>
+        <div class="notes filter" ng-class="{'loading': activity.notes.loading}"><label><input type="checkbox" name="activity-filter-notes" id="activity-filter-notes" ng-click="setFilter('notes')" ng-checked="activity.notes.filter"/><span>Notes</span></label></div>
+        <div class="inquiries filter" ng-class="{'loading': activity.inquiries.loading}"><label><input type="checkbox" name="activity-filter-inquiries" id="activity-filter-inquiries" ng-click="setFilter('inquiries')" ng-checked="activity.inquiries.filter"/><span>Inquiries</span></label></div>
+        <div class="services filter" ng-class="{'loading': activity.services.loading}"><label><input type="checkbox" name="activity-filter-services" id="activity-filter-services" ng-click="setFilter('services')" ng-checked="activity.services.filter"/><span>Service</span></label></div>
+        <div class="services filter" ng-class="{'loading': activity.tickets.loading}"><label><input type="checkbox" name="activity-filter-tickets" id="activity-filter-tickets" ng-click="setFilter('tickets')" ng-checked="activity.tickets.filter"/><span>Tickets</span></label></div>
+        <div class="cases filter" ng-class="{'loading': activity.cases.loading}"><label><input type="checkbox" name="activity-filter-cases" id="activity-filter-cases" ng-click="setFilter('cases')" ng-checked="activity.cases.filter"/><span>Cases</span></label></div>
+        <div class="btn-right">
+            <!-- <div class="btn-right-plus" ng-mouseover="showAddItemMenu()" ng-mouseleave="hideAddItemMenu()" ng-click="showAddItemMenu()"> -->
+            <div class="btn-right-plus" ng-click="toggleAddItemMenu()" ng-click="showAddItemMenu()">
+                <div class="btn-right-plus-icon" ng-class="{'btn-right-plus-icon-x': !!addToggle}">+
+                </div>
+            </div>
+            <!-- <div class="btn-right-plus-drop-menu tri-top-right" ng-show="!!addToggle" ng-click="showNoteEdit()" ng-mouseover="showAddItemMenu()" ng-mouseleave="hideAddItemMenu()"> -->
+            <div class="btn-right-plus-drop-menu tri-top-right" ng-show="!!addToggle" ng-click="showNoteEdit()">
+                <div id="addDropDownMenu" class="btn-right-plus-drop-menu-item">
+                    <a href="" ng-click="showNoteEdit()">
+                        <span class="btn-right-plus-drop-menu-item-icon">+</span>
+                        <span>MAS Note</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="content" on-scroll-to-bottom="populateMore();" on-scroll-to-bottom-offset="750" on-scroll-to-bottom-absolute="populateMore('queue')">
+        <!-- {{doCurrentFiltersHaveActivity()}} -->
+        <div class="no-results">
+            <span ng-show="noActivityFound().all && activity.all.filter && activityArrayLoadMoreCnt==0">No activity was found for this account for the past {{activityArrayLookbackMnthCnt}} months.<span ng-show="activityArrayLookbackMnthCnt < 24">  Click <a href="" ng-click="populateMore();">HERE</a> or scroll to retrieve more.</span></span>
+            <span ng-show="!activity.all.filter && !activity.emails.filter && !activity.notes.filter && !activity.inquiries.filter && !activity.services.filter && !activity.tickets.filter && !activity.cases.filter">Please select an activity filter.</span>
+            <span ng-show="doCurrentFiltersHaveActivity() && activityArrayLoadMoreCnt==0">No <span ng-repeat="filter in nothingForCurrentFilters()">
+            {{filter}}<span ng-if="(nothingForCurrentFilters().length > 2) && ($index <= nothingForCurrentFilters().length - 3)">, </span>
+            <span ng-if="(nothingForCurrentFilters().length > 1) && ($index === nothingForCurrentFilters().length - 2)"> or </span>
+            </span>
+            were found for this account for the past {{activityArrayLookbackMnthCnt}} months.<span ng-show="activityArrayLookbackMnthCnt < 24">  Click <a href="" ng-click="populateMore();">HERE</a> or scroll to retrieve more.</span></span>
+        </div>
+        <ul ng-hide="noActivityFound().all" ng-class="{ 'emails': activity.emails.filter, 'notes': activity.notes.filter, 'inquiries': activity.inquiries.filter, 'services': activity.services.filter, 'tickets': activity.tickets.filter, 'cases': activity.cases.filter, 'all': activity.all.filter}">
+            <li ng-repeat="item in activityArray | orderBy: ['-timeStamp', 'unsortedIndex']" ng-switch on="item.activityType" ng-class="{ 'expanded': (!!activityArrayExpanded[item.unsortedIndex].primary)}" class="unsorted-{{item.unsortedIndex}} {{item.activityType}} {{item.lastPlanIndicator}}" ng-hide="(lob === 'landfill') && (item.activityType === 'ticket')">
+                <aside ng-class="item.activityType" class="{{item.serviceCssIconClass}}  {{item.status | humanizeServiceStatus: lob:item.exception_reason_code:'forCSS'}}  {{item.status | humanizeOtherStatus: item.activityType : 'forCSS'}}" >
+                    <!-- <span class="size" ng-if="item.activityType === 'service'">71g</span> -->
+                </aside>
+                <div class="activity-content email" ng-switch-when="email">
+                    <div class="meta">{{item.email_info.type_description}}</div>
+                    <div class="message">{{item.email_info.body | characters:140: false}}
+                        <a href="#" class="read-more" ng-hide="activityArrayExpanded[item.unsortedIndex].primary" ng-click="toggleExpand(item.unsortedIndex, 'email', true)">More</a>
+                        <a href="#" class="read-less" ng-show="activityArrayExpanded[item.unsortedIndex].primary" ng-click="toggleExpand(item.unsortedIndex, 'email', false)">Less</a>
+                        <div class="email{{item.id}}" ng-show="activityArrayExpanded[item.unsortedIndex].primary"></div>
+                    </div>
+                    <div class="timestamp">
+                        <span class="relative toggle-timestamp">{{item.timeStamp | howLongAgo}}</span>
+                        <span class="descriptive toggle-timestamp">{{item.timeStamp | prettyTimeStamp: customerClock.zone.zoneName}}
+                        </span>
+                    </div>
+                </div>
+                <div class="activity-content inquiries" ng-switch-when="inquiry">
+                    <div class="meta">{{item.issues_info.case_type_description}}: {{item.issues_info.case_sub_type_description}}</div>
+                    <div class="message"><span class="name">{{item.issues_info.first_name}} {{item.issues_info.last_name}} said:</span>&nbsp;&nbsp;"{{item.issues_info.description | characters:activityArrayCharLimit[item.unsortedIndex]: false}}"
+                        <a href="#" class="read-more" ng-show="(item.issues_info.description.length > baseCharLimit) && (activityArrayCharLimit[item.unsortedIndex] === baseCharLimit)" ng-click="updateCharLimit(item.unsortedIndex, 10000)">More</a>
+                        <a href="#" class="read-less" ng-show="activityArrayCharLimit[item.unsortedIndex] > baseCharLimit" ng-click="updateCharLimit(item.unsortedIndex, baseCharLimit)">Less</a>
+                    </div>
+                    <div class="timestamp">
+                        <span class="relative toggle-timestamp">{{item.timeStamp | howLongAgo}}</span>
+                        <span class="descriptive toggle-timestamp">{{item.timeStamp | prettyTimeStamp: customerClock.zone.zoneName }}
+                        </span>
+                    </div>
+                </div>
+                <div class="activity-content note" ng-switch-when="note">
+                    <div class="meta">MAS Note<span class="meta-text"></div>
+                    <div class="message"> <span class="name" ng-hide="(item.audit_info.created_by === '')">{{item.audit_info.created_by}} said:&nbsp;&nbsp;</span>"{{item.note_info.comment | characters:activityArrayCharLimit[item.unsortedIndex]: false}}"
+                        <a href="#" class="read-more" ng-show="(item.note_info.comment.length > baseCharLimit) && (activityArrayCharLimit[item.unsortedIndex] === baseCharLimit)" ng-click="updateCharLimit(item.unsortedIndex, 10000)">More</a>
+                        <a href="#" class="read-less" ng-show="activityArrayCharLimit[item.unsortedIndex] > baseCharLimit" ng-click="updateCharLimit(item.unsortedIndex, baseCharLimit)">Less</a>
+                    </div>
+                    <div class="timestamp">
+                        <span class="relative toggle-timestamp">{{item.timeStamp | howLongAgo}}</span>
+                        <span class="descriptive toggle-timestamp">{{item.timeStamp | prettyTimeStamp: customerClock.zone.zoneName}}
+                        </span>
+                    </div>
+                </div>
+                <div class="activity-content ticket" ng-switch-when="ticket">
+
+                    <div class="meta">Ticket #{{item.id}} - {{item.status}}<span class="meta-text"> </span></div>
+                    <div class="message">{{item.load_description | lowercase}}
+                        <a href="#" class="read-more" ng-hide="activityArrayExpanded[item.unsortedIndex].primary" ng-click="toggleExpand(item.unsortedIndex, 'ticket', true); getTicket(item.unsortedIndex, item.id)">More</a>
+                        <a href="#" class="read-less" ng-show="activityArrayExpanded[item.unsortedIndex].primary" ng-click="toggleExpand(item.unsortedIndex, 'ticket', false)">Less</a>
+                        <!-- <pre>{{item | json}}</pre> -->
+
+                        <div class="ticket-details" ng-show="activityArrayExpanded[item.unsortedIndex].primary && item.details">
+                            <div class="expanded-data">
+                                <div class="data-row" ng-if="item.details.prettyServiceName">
+                                    <span class="data-label">Service: </span><span class="data">{{item.details.prettyServiceName}}</span>
+                                </div>
+                                <div class="data-row" ng-if="!!item.details.completed_description && item.details.completed_description.trim() !== ''">
+                                    <span class="data-label">Description: </span><span class="data">{{item.details.completed_description | lowercase}}</span>
+                                </div>
+                                <div class="data-row" ng-if="!!item.details.comments && item.details.comments.trim() !== ''">
+                                    <span class="data-label">Comments: </span><span class="data">{{item.details.comments}}</span>
+                                </div>
+                                <div class="data-row" ng-if="!!item.details.duration">
+                                    <span class="data-label">Duration: </span><span class="data">{{item.details.duration}}</span>
+                                </div>
+                                <div class="data-row" ng-if="!!item.details.requested_by && item.details.requested_by.trim() !== ''">
+                                    <span class="data-label">Requested By: </span><span class="data">{{item.details.requested_by}}</span>
+                                </div>
+                                <div class="data-row" ng-if="!!item.details.created_by && item.details.created_by.trim() !== ''">
+                                    <span class="data-label">Created By: </span><span class="data">{{item.details.created_by | lowercase}}</span>
+                                </div>
+                                <div class="data-row" ng-if="!!item.details.created_date_time.isValid() && item.details.created_date_time.trim() !== ''">
+                                    <span class="data-label">Created On: </span><span class="data">{{item.details.created_date_time | prettyTimeStamp}}</span>
+                                </div>
+                                <div class="data-row" ng-if="!!item.details.dispatch_date_time && item.details.dispatch_date_time.trim() !== ''">
+                                    <span class="data-label">Dispatch On: </span><span class="data">{{item.details.dispatch_date_time | prettyTimeStamp}}</span>
+                                </div>
+                                <div class="data-row" ng-if="!!item.details.closed_date_time.isValid()">
+                                    <span class="data-label">Completed On: </span><span class="data">{{item.details.closed_date_time | prettyTimeStamp}}</span>
+                                </div>
+                                <div class="data-row" ng-if="!!item.details.closed_by && item.details.closed_by.trim() !== ''">
+                                    <span class="data-label">Closed By: </span><span class="data">{{item.details.closed_by}}</span>
+                                </div>
+                                <div class="data-row" ng-if="!!item.details.comments && item.details.comments.trim() !== ''">
+                                    <span class="data-label">Comments: </span><span class="data">{{item.details.comments}}</span>
+                                </div>
+                                <div class="data-row" ng-if="!!item.details.generate_item && item.details.generate_item.details.trim() !== ''">
+                                    <span class="data-label">Generate Ticket: </span><span class="data">{{item.details.generate_ticket}}</span>
+                                </div>
+                                <div class="data-row" ng-if="!!item.details.complaint && item.details.complaint.trim() !== ''">
+                                    <span class="data-label">Complaint: </span><span class="data">{{item.details.complaint}}</span>
+                                </div>
+                                <div class="data-row" ng-if="!!item.details.wm_metadata.extended_cost">
+                                    <span class="data-label">Extended Cost: </span><span class="data">{{item.details.wm_metadata.extended_cost}}</span>
+                                </div>
+
+                            </div>
+                            <!-- <h3>Driver Info</h3>
+                            <div class="expanded-data" ng-repeat="ticket in item.details">
+                                <div class="data-row">
+                                    <span class="data-label">Driver: </span><span class="data">{{item.details.vehicle_info.driver_name}}</span>
+                                </div>
+                                <div class="data-row">
+                                    <span class="data-label">Vehicle: </span><span class="data">{{ticket.vehicle_info.number}}: {{ticket.vehicle_info.description}}</span>
+                                </div>
+                            </div>
+                            <h3>Billing</h3>
+                            <div class="expanded-data" ng-repeat="ticket in item.details">
+                                <div class="data-row">
+                                    <span class="data-label">Material Subtotal: </span><span class="data">{{ticket.material_subtotal | currency}}</span></div>
+                                <div class="data-row">
+                                    <span class="data-label">Surcharge: </span><span class="data">{{ticket.surcharge | currency}}</span>
+                                </div>
+                                <div class="data-row">
+                                    <span class="data-label">Tax: </span><span class="data">{{ticket.tax | currency}}</span>
+                                </div>
+                                <div class="data-row">
+                                    <span class="data-label">Total Billed: </span><span class="data">{{ticket.amount | currency}}</span>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="timestamp">
+                        <span class="relative toggle-timestamp">{{item.timeStamp | howLongAgo}}</span>
+                        <span class="descriptive toggle-timestamp">{{item.timeStamp | prettyTimeStamp: customerClock.zone.zoneName}}
+                        </span>
+                    </div>
+                </div>
+                <div class="activity-content case" ng-switch-when="case">
+
+                    <div class="meta-message-container">
+                        <div class="meta">Case #{{item.id}} - {{item.category_description}} - {{item.status}}<span class="meta-text"> </span></div>
+                        <div class="message">{{item.category_description | lowercase}} - {{item.sub_category_description | lowercase}} - {{item.description | lowercase}}
+                            <a href="#" class="read-more" ng-hide="activityArrayExpanded[item.unsortedIndex].primary" ng-click="toggleExpand(item.unsortedIndex, 'case', true); getCase(item.unsortedIndex, item.id)">More</a>
+                            <a href="#" class="read-less" ng-show="activityArrayExpanded[item.unsortedIndex].primary" ng-click="toggleExpand(item.unsortedIndex, 'case', false)">Less</a>
+
+                            <div class="loading" ng-show="activityArrayExpanded[item.unsortedIndex].primary && !item.details">Loading<span> .</span><span> .</span><span> .</span></div>
+
+                            <div class="case-details" ng-show="activityArrayExpanded[item.unsortedIndex].primary && item.details">
+                                <div class="expanded-data">
+                                    <div class="data-row" ng-if="item.details.prettyServiceName">
+                                        <span class="data-label">Service: </span><span class="data">{{item.details.prettyServiceName}}</span>
+                                    </div>
+                                    <!-- <div class="data-row" ng-if="!!item.details.description && item.details.description.trim() !== ''">
+                                        <span class="data-label">Description: </span><span class="data">{{item.details.description | lowercase}}</span>
+                                    </div> -->
+                                    <!-- <div class="data-row" ng-if="!!item.details.category && item.details.category.trim() !== ''">
+                                        <span class="data-label">Category: </span><span class="data">{{item.details.category}}</span>
+                                    </div>
+                                    <div class="data-row" ng-if="!!item.details.sub_category && item.details.sub_category.trim() !== ''">
+                                        <span class="data-label">Sub Category: </span><span class="data">{{item.details.sub_category}}</span>
+                                    </div> -->
+                                    <div class="data-row" ng-if="!!item.details.category && item.details.category.trim() !== ''">
+                                        <span class="data-label">Category: </span><span class="data">{{item.details.category}} - {{item.details.category_description | capitalize}}</span>
+                                    </div>
+                                    <div class="data-row" ng-if="!!item.details.sub_category && item.details.sub_category.trim() !== ''">
+                                        <span class="data-label">Sub Category: </span><span class="data">{{item.details.sub_category}} - {{item.details.sub_category_description | capitalize}}</span>
+                                    </div>
+                                    <div class="data-row" ng-if="!!item.details.duration">
+                                        <span class="data-label">Duration: </span><span class="data">{{item.details.duration}}</span>
+                                    </div>
+                                    <div class="data-row" ng-if="!!item.details.requested_date_time.isValid() && item.details.requested_date_time.trim() !== ''">
+                                        <span class="data-label">Requested On: </span><span class="data">{{item.details.requested_date_time | prettyTimeStamp: customerClock.zone.zoneName}}</span>
+                                    </div>
+                                    <div class="data-row" ng-if="!!item.details.due_date_time && item.details.due_date_time.trim() !== ''">
+                                        <span class="data-label">Due Date: </span><span class="data">{{item.details.due_date_time | prettyTimeStamp: customerClock.zone.zoneName}}</span>
+                                    </div>
+                                    <div class="data-row" ng-if="!!item.details.closed_date_time && item.details.closed_date_time.trim() !==''">
+                                        <span class="data-label">Completed On: </span><span class="data">{{item.details.closed_date_time | prettyTimeStamp: customerClock.zone.zoneName}}</span>
+                                    </div>
+                                    <div class="data-row" ng-if="!!item.details.assigned_to && item.details.assigned_to.trim() !== ''">
+                                        <span class="data-label">Assigned To: </span><span class="data">{{item.details.assigned_to}}</span>
+                                    </div>
+                                    <div class="data-row" ng-if="!!item.details.requestor.name && item.details.requestor.name.trim() !== ''">
+                                        <span class="data-label">Requested By: </span><span class="data">{{item.details.requestor.name}}</span>
+                                    </div>
+                                    <div class="data-row" ng-if="!!item.details.source && item.details.source.trim() !== 'null'">
+                                        <span class="data-label">Source: </span><span class="data">{{item.details.source | capitalize}}</span>
+                                    </div>
+                                    <div class="data-row" ng-if="!!item.details.adjustment_total_amount && item.details.adjustment_total_amount.trim() !== 'null'">
+                                        <span class="data-label">Adjust Total Amt: </span><span class="data">{{item.details.adjustment_total_amount | customCurrency}}</span>
+                                    </div>
+                                    <!-- <div class="data-row" ng-repeat="note in item.details.notes" ng-if="!!item.details.notes && item.details.notes.length > 0 && $index < 10">
+                                        <span class="data-label">Comment: </span><span class="data">{{note.comment}}</span>
+                                    </div> -->
+                                    <!-- <div class="data-row" ng-if="!!item.details.notes && item.details.notes.length > 0">
+                                        <span class="data-label">Comment: </span><span class="data">{{concatenateMASNotes(item.details.notes, 1)}}</span>
+                                    </div> -->
+                                    <div class="data-row" ng-if="!!item.details.notes && item.details.notes.length > 0">
+                                        <div class="data-label parent">Comment: </div>
+                                        <div class="data">
+                                            <div class="note-row" ng-repeat="note in item.details.notes | orderBy : 'created_date' : true" ng-if="$index < 10">
+                                                <div class="header">{{note.created_date | prettyTimeStamp2: customerClock.zone.zoneName}} by {{note.created_by | lowercase}}</div>
+                                                <div class="note">{{note.comment}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="data-row" ng-repeat="adjustment in item.details.adjustments | orderBy : 'date_time' : true" ng-if="!!item.details.adjustments && item.details.adjustments.length > 0 && $index < 10">
+                                        <div class="data-label parent">Adjustment: </div>
+                                        <div class="data">
+                                            <div class="expanded-data">
+                                                <div class="data-row" ng-if="!!adjustment.description && adjustment.description.trim() !== ''">
+                                                    <span class="data-label">Description: </span><span class="data">{{adjustment.description}}</span>
+                                                </div>
+                                                <div class="data-row" ng-if="!!adjustment.amount && adjustment.amount.trim() !== ''">
+                                                    <span class="data-label">Amount: </span><span class="data">{{adjustment.amount | customCurrency}}</span>
+                                                </div>
+                                                <div class="data-row" ng-if="!!adjustment.date_time && adjustment.date_time.trim() !== ''">
+                                                    <span class="data-label">Date: </span><span class="data">{{adjustment.date_time | prettyTimeStamp : '' : 'date'}}</span>
+                                                </div>
+                                                <div class="data-row" ng-if="!!adjustment.reason_code_description && adjustment.reason_code_description.trim() !== 'null'">
+                                                    <span class="data-label">Reason: </span><span class="data">{{adjustment.reason_code}} - {{adjustment.reason_code_description | capitalize}}</span>
+                                                </div>
+                                                <div class="data-row" ng-if="!!adjustment.transaction_description && adjustment.transaction_description.trim() !== 'null'">
+                                                    <span class="data-label">Transaction: </span><span class="data">{{adjustment.transaction_code}} - {{adjustment.transaction_description | capitalize}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="actions" ng-show="item.isClosable">
+                                <!-- <div class="actions" ng-show="true"> -->
+                                    <!-- This is button place -->
+                                    <input class="btn" type="button" value="Close Case" ng-click="showCaseCloseOverlay(item)" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="timestamp">
+                        <span class="relative toggle-timestamp">{{item.timeStamp | howLongAgo}}</span>
+                        <span class="descriptive toggle-timestamp">{{item.timeStamp | prettyTimeStamp: customerClock.zone.zoneName}}
+                        </span>
+                    </div>
+                </div>
+                <div class="activity-content service" ng-switch-when="service">
+                    <div class="meta">Service<span class="meta-text"></div>
+                    <div class="message">
+                        <img class="exception-notification" src="img/issue-notification.svg" alt="!" ng-if="!!item.exception_reason_code && (item.exception_reason_code !== '--')">
+                        <span class="count" ng-if="item.count > 1">({{item.count}}) </span>
+                        <span class="service-name-fallback">{{item.prettyEquipmentSize}} </span>
+                        <span class="service-name-fallback">{{item.prettyServiceName}}</span>
+                        <!-- <span class="service-name" ng-show="(item.serviceDetails)">{{item.serviceDetails.equipment | humanizeServiceEquipment_sizeOnly}} {{item.prettyServiceName}} </span> -->
+                        {{item.status | humanizeServiceStatus: lob:item.exception_reason_code }}
+                        <!-- {{item.humanDescription | humanizeServiceEquipment}} {{item.status | humanizeServiceStatus: lob:item.exception_reason_code}} -->
+                        <!-- <span class="debug-info">[{{item.wm_metadata.service_code}}] [{{item.humanDescription}}] [{{item.status}}]</span> -->
+                        <a href="#" class="read-more" ng-hide="activityArrayExpanded[item.unsortedIndex].primary" ng-click="toggleExpand(item.unsortedIndex, 'service', true)">More</a>
+                        <a href="#" class="read-less" ng-show="activityArrayExpanded[item.unsortedIndex].primary" ng-click="toggleExpand(item.unsortedIndex, 'service', false)">Less</a>
+                        <!-- <div class="service-details" ng-show="activityArrayExpanded[item.unsortedIndex].primary" ng-class="{'no-photo': ((item.exceptionData[0].image_location === '--') || !item.exceptionData), 'photo-expanded': activityArrayExpanded[item.unsortedIndex].exceptionPhoto}"> -->
+                        <div class="service-details" ng-show="activityArrayExpanded[item.unsortedIndex].primary" ng-class="{'no-photo': ((item.exceptionData[0].image_location === '--') || (!item.exceptionData[0].images[0]) || (!item.exceptionData[0]))}">
+                            <div class="overlay-background"></div>
+                            <div class="photo-container" ng-if="!!item.exceptionData[0].images[0]">
+                                <img ng-src="{{item.exceptionData[0].images[0].location}}" />
+
+                                <div class="image-hover" ng-click="handleExceptionPhotoClick(item.unsortedIndex)">
+                                    <div class="background"></div>
+                                    <div class="hover-icon"></div>
+                                    <div class="image-count" ng-if="getExceptionPhotoCount(item.unsortedIndex) > 1 && activityArrayExpanded[item.unsortedIndex].exceptionPhoto !== true">
+                                        <div class="image-count-sign">{{getExceptionPhotoCount(item.unsortedIndex)}} <span>images</span></div>
+                                    </div>
+                                </div>
+                                <figcaption>Taken by {{item.exceptionData[0].driver_name | nameLastFirstCorrection}} on {{item.exceptionData[0].images[0].date}}</figcaption>
+                                <img src="img/upload.svg" id="send-photo" ng-click="sendPhotoClick(item.unsortedIndex)">
+                            </div>
+                            <div class="exception-data">
+                                <div class="data-row exception-reason" ng-if="!!item.exception_reason_code && (item.exception_reason_code !== '--')">
+                                    <span class="data-label">Exception Reason</span><span class="data">{{item.exception_reason_code}}</span>
+                                </div>
+                                <div class="data-row driver-comments" ng-if="!!item.exceptionData[0].driver_comments && (item.exceptionData[0].driver_comments !== '--')">
+                                    <span class="data-label">Driver Comments</span><span class="data">{{item.exceptionData[0].driver_comments}}</span></div>
+                                <div class="data-row dispatch-comments" ng-if="!!item.exceptionData[0].dispatcher_comments && (item.exceptionData[0].dispatcher_comments !== '--')">
+                                    <span class="data-label">Dispatcher Comments</span><span class="data">{{item.exceptionData[0].dispatcher_comments}}</span>
+                                </div>
+                                <div class="data-row service-code">
+                                    <span class="data-label">Service Code</span><span class="data">{{item.wm_metadata.service_code}}</span>
+                                </div>
+                                <div class="data-row ticket-number" ng-if="!!item.ticket_number && (item.ticket_number !== '--')">
+                                    <span class="data-label">Ticket Number</span><span class="data" ng-click="getTicket(item.unsortedIndex, item.ticket_number)">{{item.ticket_number}}</span>
+                                </div>
+                                <div class="data-row planned-for">
+                                    <span class="data-label">Planned For</span><span class="data">{{item.planned_date}}</span>
+                                </div>
+                                <div class="data-row ordered-on">
+                                    <span class="data-label">Scheduled For</span><span class="data">{{item.ordered_date}}</span>
+                                </div>
+                                <!-- <div class="data-row route">
+                                    <span class="data-label">Route</span><span class="data">{{item.operations.route_id}}</span>
+                                </div> -->
+                                <div class="data-row status">
+                                    <span class="data-label">Status</span><span class="data">{{item.status}}</span>
+                                </div>
+                                <!-- <div class="data-row eta-exact" ng-if="!!item.eta.eta">
+                                    <span class="data-label">ETA</span><span class="data">{{item.eta.eta | prettyTimeStamp: customerClock.zone.zoneName: 'time'}}</span>
+                                </div> -->
+                                <div class="data-row eta-msg" ng-if="!!item.eta.prettyETAMsg">
+                                    <span class="data-label">ETA</span><span class="data eta-msg">{{item.eta.prettyETAMsg}}</span>
+                                </div>
+                            </div>
+                            <div class="ticket-data"></div>
+                            <!--                             <div class="stat exception-data" ng-if="!!item.exceptionData">
+                                <div ng-if="item.exception_reason_code !== '--'">Exception Reason: {{item.exceptionData[0].exception_code}}</div>
+                                <div><i>Driver {{item.exceptionData[0].driver_name | nameLastFirstCorrection}} said:</i> {{item.exceptionData[0].driver_comments}}</div>
+                                <div><i>Dispatch said:</i> {{item.exceptionData[0].dispatcher_comments}}</div>
+                                <div class=""><img ng-src="{{item.exceptionData[0].image_location}}" alt="Description" /></div>
+                                <div>Exception Code: {{item.exceptionData[0].exception_code}}</div>
+                            </div>
+                            <div class="stat">Service Code: {{item.wm_metadata.service_code}}</div>
+                            <div class="stat" ng-if="item.ticket_number !== '--'">Ticket Number: {{item.ticket_number}}</div>
+                            <div class="stat" ng-if="item.ticket_type !== '--'">Ticket Type: {{item.ticket_type}}</div>
+                            <div class="stat">Planned For: {{item.planned_date}}</div>
+                            <div class="stat">Scheduled On: {{item.ordered_date}}</div>
+                            <div class="stat">Route: {{item.operations[0].route_id}}</div>
+                            <div class="stat">Status: {{item.status}}</div> -->
+                        </div>
+                    </div>
+                    <div class="timestamp">
+                        <span class="relative toggle-timestamp">{{item.timeStamp | howLongAgo}}</span>
+                        <span class="descriptive toggle-timestamp" ng-if="item.status !== 'Planned' && item.status !== 'In Progress'">{{item.timeStamp | prettyTimeStamp: customerClock.zone.zoneName}}</span>
+                        <span class="descriptive toggle-timestamp" ng-if="item.status === 'Planned' || item.status === 'In Progress'">{{item.timeStamp | prettyTimeStamp: null: 'date'}}</span>
+                    </div>
+                </div>
+                <div class="planned-vs-completed-labels" ng-if="!!item.lastPlanIndicator">
+                    <div>COMING UP</div>
+                    <div>COMPLETED</div>
+                </div>
+            </li>
+        </ul>
+        <div class="loading-results">
+            <span ng-show="!noActivityFound().all && !doCurrentFiltersHaveActivity() && activityArrayLoadMoreStatus != 'loading' && activityArrayLoadMoreCnt == 0 &&
+                           (activity.all.filter || activity.emails.filter || activity.notes.filter || activity.inquiries.filter || activity.services.filter || activity.tickets.filter || activity.cases.filter)">Activity displayed for the past {{activityArrayLookbackMnthCnt}} months.<span ng-show="activityArrayLookbackMnthCnt < 24">  Click <a href="" ng-click="populateMore();">HERE</a> or scroll to retrieve more.</span></span>
+            <span ng-show="activityArrayLoadMoreCnt > 0">Loading
+                <span class="loading-results-progress" ng-show="activityArrayLoadMoreCnt > 0 && activityArrayLoadMoreCnt <= 6"> .</span>
+            <span class="loading-results-progress" ng-show="activityArrayLoadMoreCnt > 0 && activityArrayLoadMoreCnt < 5"> .</span>
+            <span class="loading-results-progress" ng-show="activityArrayLoadMoreCnt > 0 && activityArrayLoadMoreCnt < 2"> .</span>
+            </span>
+        </div>
+    </section>
+</div>

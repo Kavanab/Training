@@ -1,0 +1,72 @@
+.overview-view {
+    flex-grow: 20;
+    position: relative;
+    display: none;
+    &.active{
+        display: inherit;
+    }
+    .column-left,
+    .column-right {
+        width: 50%;
+        height: 100%;
+        position: absolute;
+        display: flex;
+        flex-flow: column;
+        .tile-container {
+            flex: 1;
+            width: 100%;
+            position: relative;
+            margin-top: 1.5vw;
+            &:last-child {
+                margin-bottom: 1.5vw;
+            }
+            .tile {
+                background-color: white;
+                border-radius: 7px;
+                left: 3%;
+                width: 95%;
+                position: absolute;
+                height: 100%;
+                top: 0;
+            }
+        }
+    }
+    .column-right {
+        right: 0;
+        width: 55%;
+        .tile-container {
+            .tile {
+                left: auto;
+                right: 3%;
+            }
+        }
+    }
+    .column-left {
+        left: 0;
+        width: 45%;
+    }
+    @media screen and (max-height: $breakpointLgheight) {
+        
+    }
+    @media screen and (max-height: $overviewVerticalBreakpoint) {
+        .column-left {
+            // width: 50%;
+            .tile-container {
+                &:nth-child(2) {
+                    margin-bottom: 1.5vw;
+                }
+                &:nth-child(3) {
+                    display: none;
+                }
+            }
+        }
+        .column-right {
+            // width: 50%;
+            .tile-container {
+                // &:first-child {
+                //     display: block;
+                // }
+            }
+        }
+    }
+}

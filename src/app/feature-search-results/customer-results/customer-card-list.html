@@ -1,0 +1,52 @@
+<ul class="search-results customer-results" flowtype min-font="10" max-font="18" font-ratio="95">
+    <li ng-repeat="hits in $parent.responseData" class="customer-card-container">
+        <div class="customer-card">
+            <header class="card-header">
+                <ul>
+                    <li>
+                        <span class="data meta-tags {{ getField(hits,'lineOfBusiness') | lowercase}}">{{ getField(hits,'lineOfBusiness') }}</span>
+                        <span class="data meta-tags {{getField(hits, 'status') | lowercase }}" ng-show="getField(hits, 'status') === 'CANCELLED'">{{ getField(hits, "status")}}</span>
+                        <span class="data name" ng-show="($root.ESqueryTypeAfterQuery === 'billing')">{{ getField(hits,'billingName') | lowercase }}</span>
+                        <span class="data name" ng-show="($root.ESqueryTypeAfterQuery === 'service')">{{ getField(hits,'serviceName') | lowercase }}</span>
+                        <span ng-show="($root.ESqueryTypeAfterQuery === 'billing') && ( getField(hits,'serviceName') !== getField(hits,'billingName') )" class="data billed-to"> Service for: {{ getField(hits,'serviceName') | lowercase }}</span>
+                    </li>
+                    <li>
+                        <a class="icon-next-hit-area" ng-click="viewCustomerCard(hits)"><span class="icon-next-arrow icon-wm"></span></a>
+                        <!--ng-click="viewCustomerCard('/customer/'+cust.id)"-->
+                    </li>
+                </ul>
+            </header>
+            <!-- /header -->
+            <section class="card-body">
+                <ul>
+                    <li>
+                        <span class="label">Address</span>
+                        <span class="data service-address" ng-show="$root.ESqueryTypeAfterQuery === 'service'">{{ getField(hits,'serviceAddress') | capitalize }}</span>
+                        <span class="data billing-address" ng-show="$root.ESqueryTypeAfterQuery === 'billing'">{{ getField(hits,'billingAddress') | capitalize }}</span>
+                    </li>
+                    <li class="two-up">
+                        <span class="label">Phone</span>
+                        <span class="data service-phone" ng-show="$root.ESqueryTypeAfterQuery === 'service'">{{ getField(hits, 'serviceOfficePhone') == ' ' ? '&nbsp;' :  getField(hits, 'serviceOfficePhone') | tel }} </span>
+                        <span class="data billing-phone" ng-show="$root.ESqueryTypeAfterQuery === 'billing'">{{ getField(hits, 'billingOfficePhone') == ' ' ? '&nbsp;' :  getField(hits, 'billingOfficePhone') | tel }} </span>
+                    </li>
+                    <li class="two-up">
+                        <span class="label">Email</span>
+                        <span class="data service-email" ng-show="$root.ESqueryTypeAfterQuery === 'service'">{{ getField(hits, 'serviceEmail') == ' ' ? '&nbsp;' : getField(hits, 'serviceEmail') }} </span>
+                        <span class="data billing-email" ng-show="$root.ESqueryTypeAfterQuery === 'billing'">{{ getField(hits, 'billingEmail') == ' ' ? '&nbsp;' : getField(hits, 'billingEmail') }} </span>
+                    </li>
+                    <li class="two-up">
+                        <span class="label">Customer ID</span>
+                        <span class="data ezpayid">{{ getField(hits,'ezPayId') }} </span>
+                    </li>
+                    <li class="two-up">
+                        <span class="label">MAS Account</span>
+                        <span class="data mas-account">{{ getField(hits,'MASaccountNumber') }} </span>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>

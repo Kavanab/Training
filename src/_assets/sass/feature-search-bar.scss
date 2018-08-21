@@ -1,0 +1,428 @@
+.feature-search-bar {
+    position: relative;
+    background-color: white;
+    z-index: 5;
+    //height: 157px;
+    height: 8vw;
+    min-height: 96px;
+    max-height: 157px;
+    width: 100%;
+    section.logo {
+        border-right: 1px solid $lgray;
+        width: 9%;
+        height: 100%;
+        display: inline-block;
+        position: relative;
+        vertical-align: top;
+        .wm-logo {
+            position: relative;
+            margin: 0 auto;
+            display: block;
+            width: 50%;
+            height: 100%;
+        }
+    }
+    .service-billing-toggle {
+        text-align: center;
+        font-family: "Foundry Sterling Bold";
+        text-transform: uppercase;
+        font-size: 1.8rem;
+        width: 13%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        color: $lgray;
+        &.service {
+            .service {
+                border-color: $greenr;
+                transition: 0.3s linear;
+                color: white;
+            }
+        }
+        &.billing {
+            .billing {
+                border-color: $greenr;
+                transition: 0.3s linear;
+                color: white;
+            }
+        }
+        .service,
+        .billing {
+            display: inline-block;
+            width: 50%;
+            border-bottom: 2px solid $lgray;
+            cursor: pointer;
+        }
+    }
+    section.search-container {
+        width: 90%; //calc(100% - 255px - 525px);
+        height: 100%;
+        display: inline-block;
+        position: relative;
+        vertical-align: top;
+        &.listening{
+            overflow: hidden;
+        }
+        .search-dropdown {
+            // background: url('/img/svg/search.svg') no-repeat;
+            // background-position: 15px 15px;
+            // background-size: 35%;
+            width: 7%;
+            max-width: 130px;
+            height: 100%;
+            top: 0;
+            margin-left: 1.5%;
+            position: absolute;
+            z-index: 1;
+            display: flex;
+            .hot-area {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+                z-index: 120;
+            }
+            .icon-search {
+                // background: url('/img/sprite-icons.svg') no-repeat;
+                // background-position: 11% 50%;
+                // background-size: 1066%;
+                color: $greenr;
+                font-size: 1.8em;
+                z-index: 2;
+                margin-top: auto;
+                margin-bottom: auto;
+                margin-left: auto;
+                margin-right: 10px;
+                position: relative;
+                cursor: pointer;
+                height: 1em;
+            }
+            .icon-d-arrow {
+                color: $greenr;
+                z-index: 2;
+                margin-top: auto;
+                margin-bottom: auto;
+                margin-left: 0;
+                margin-right: auto;
+                position: relative;
+                cursor: pointer;
+                height: 1em;
+            }
+            .vertical-container {
+                border-radius: 6px;
+                background-color: rgba(255, 255, 255, 1);
+                padding-top: 1.25vw;
+                margin-top: 1.25vw;
+                height: 128%;
+                min-height: 130px;
+                width: 100%;
+                position: absolute;
+                left: 0;
+                opacity: 1;
+                transition: transform .1s linear, opacity .1s linear, background-color .1s linear, border .1s linear;
+                ;
+                border-radius: 6px;
+                border: 1px solid $lgray;
+                // background-color: rgba(245, 245, 245, 1);
+                .choices {
+                    margin-top: 100%;
+                    padding-left: .7vw;
+                    padding-bottom: 10px;
+                    width: 100%;
+                    opacity: 1;
+                    transition: transform .1s linear, opacity .1s linear, border .1s linear, background-color .1s linear;
+                    border-radius: 6px;
+                    border-top-left-radius: 0;
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    margin-top: 0;
+                    li {
+                        list-style-type: none;
+                        z-index: 130;
+                        position: relative;
+                        left: 0px;
+                        cursor: pointer !important;
+                        line-height: 1.5em;
+                        margin-top: 5%;
+                        .icon-wm-font {
+                            color: $lgray;
+                            vertical-align: middele;
+                            font-size: 1.3em;
+                            position: relative;
+                            top: 1px;
+                            &[class*="-on"] {
+                                color: $greenr;
+                            }
+                        }
+                        label {
+                            font-family: "Foundry Sterling Book";
+                            font-weight: normal;
+                            margin: 0;
+                            padding-left: .5vw;
+                            cursor: pointer !important;
+                            vertical-align: text-bottom;
+                        }
+                    }
+                }
+            }
+            &.closed {
+                transition: transform .1s linear .3s, opacity .1s linear .3s, border .1s linear .3s, background-color .1s linear .3s;
+                .arrow {
+                    transform: rotate(0deg);
+                }
+                .choices {
+                    opacity: 0;
+                    // height: 0;
+                    transition: transform .1s linear .3s, opacity .1s linear .3s, background-color .1s linear .3s;
+                    background-color: rgba(255, 255, 255, 0);
+                    li {
+                        left: -1000px;
+                        transition: left 0s linear .3s;
+                        overflow: hidden;
+                    }
+                }
+                .vertical-container {
+                    opacity: 0;
+                    // height: 0;
+                    transition: transform .1s linear .3s, opacity .1s linear .3s, border .1s linear .3s, background-color .1s linear .3s;
+                    // background-color: rgba(245, 245, 245, 0);
+                }
+            }
+            .arrow {
+                background: url('/img/sprite-icons.svg') 65% 50% no-repeat;
+                background-size: 1100%;
+                width: 23%;
+                height: 100%;
+                position: absolute;
+                top: 0px;
+                right: 6%;
+                transform: rotate(180deg);
+            }
+        }
+        @-webkit-keyframes rotateThis {
+            0% {
+                -webkit-transform: scale(1);
+            }
+            50% {
+                -webkit-transform: scale(1.1);
+            }
+            100% {
+                -webkit-transform: scale(1);
+            }
+        }
+        @-webkit-keyframes growOut {
+            0% {
+                -webkit-transform: scale(.5);
+                opacity: 1;
+            }
+            100% {
+                -webkit-transform: scale(2.2);
+                opacity: 0;
+                border-width: 5px;
+            }
+        }
+        @-webkit-keyframes micGlow {
+            0% {
+                background-color: rgba(0, 128, 0, 1);
+                -webkit-transform: scale(1);
+            }
+            50% {
+                background-color: rgba(0, 128, 0, .9);
+                -webkit-transform: scale(1.1);
+            }
+            100% {
+                -webkit-transform: scale(1);
+            }
+        }
+        @-webkit-keyframes inputTrapDoorOut {
+            0% {
+                top: 0%;
+                opacity: 1;
+            }
+            70% {
+                opacity: 0;
+            }
+            100% {
+                top: 75%;
+                opacity: 0;
+            }
+        }
+        @-webkit-keyframes inputTrapDoorIn {
+            0% {
+                top: -65%;
+                opacity: 0;
+            }
+            30%{
+                opacity: 0;
+            }
+            100% {
+                top: 0%;
+                opacity: 1;
+            }
+        }
+        .icon-clear-search,
+        .mic-container {
+            top: 35%;
+            right: 2%;
+            opacity: 0.1;
+            width: 3%;
+            height: 25%;
+            z-index: 11;
+            float: right;
+            position: relative;
+            &:hover {
+                opacity: 1;
+                cursor: pointer;
+            }
+        }
+        [class*="doAnimation"] {
+            -webkit-animation-name: growOut;
+            -webkit-animation-duration: .7s;
+            -webkit-animation-iteration-count: 1;
+            -webkit-animation-timing-function: ease-out;
+        }
+        .mic-container {
+            width: 2vw;
+            height: 2vw;
+            opacity: 1;
+            top: 31%;
+            text-align: center;
+            transition: box-shadow .2s linear;
+            position: relative;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            [class*="ring-"] {
+                width: 100%;
+                height: 100%;
+                border: 1px solid green;
+                border-radius: 100%;
+                position: absolute;
+                left: 0;
+                top: 0;
+                opacity: 0;
+            }
+            .icon-voice {
+                // width: 100%;
+                // height: 100%;
+                // position: absolute;
+                // top: 0;
+                // left: 0;
+                // background-position: 50%;
+                // border-radius: 100%;
+                // background-size: 34%;
+                position: relative;
+                color: $lgray;
+                height: 100%;
+                vertical-align: bottom;
+                display: flex;
+                justify-content: center;
+                flex-flow: column;
+                transition: color .2s ease-out;
+                font-size: .8em;
+            }
+            .ring-bg {
+                opacity: 1;
+                background-color: rgb(0, 128, 0);
+                width: 100%;
+                height: 100%;
+                margin-top: auto;
+                margin-bottom: auto;
+                margin-left: auto;
+                margin-right: auto;
+                display: inline-block;
+                transition: all .3s ease-out;
+                border: 1.1vw solid white;
+            }
+            &.ng-hide {
+                display: none;
+            }
+            &.listening {
+                // opacity: .5;
+                .ring-bg {
+                    border: 0 solid white;
+                    -webkit-animation-name: micGlow;
+                    -webkit-animation-duration: 1s;
+                    -webkit-animation-iteration-count: 50;
+                    -webkit-animation-timing-function: ease-in-out;
+                }
+                .icon-voice {
+                    color: white !important;
+                }
+                .ring-init {
+                    -webkit-animation-name: growOut;
+                    -webkit-animation-duration: .3s;
+                    -webkit-animation-delay: .3s;
+                    -webkit-animation-iteration-count: 1;
+                    -webkit-animation-timing-function: ease-out;
+                }
+            }
+            &:hover {
+                // -webkit-animation-name: growOut;
+                // -webkit-animation-duration: .7s;
+                // -webkit-animation-iteration-count: 1;
+                // -webkit-animation-timing-function: ease-out;
+                .icon-voice {
+                    color: $gray;
+                }
+                .ring-bg {
+                    // border: 0 solid white;
+                }
+            }
+        }
+        .results-count {
+            position: relative;
+            top: 41%;
+            right: 3vw;
+            opacity: 0.4;
+            height: 25%;
+            z-index: 11;
+            font-family: "Foundry Sterling Book";
+            font-size: .4em;
+            float: right;
+            // text-transform: uppercase;
+            // color: $mgray;
+            .count {
+                letter-spacing: -1px;
+            }
+        }
+    }
+    .input-primary-customer-search {
+        width: 100%;
+        height: 100%;
+        padding: 0 7% 0 9.5%;
+        top: 0%;
+        transition: top .3s linear;
+        @include media('>2300px') {
+            padding: 0 7% 0 8%;
+        }
+        // font-size: 42px;
+        // font-size: 1.2em;
+        // line-height: 1.3333333;
+        outline: none;
+        border: none !important;
+        color: black;
+        display: inline-block;
+        font-family: "Foundry Sterling Light";
+        &::-webkit-input-placeholder {
+            color: #999;
+            // text-transform: lowercase;
+        }
+        // transition: all .3s ease-in-out;
+        position: absolute;
+        &.listening{
+            -webkit-animation: inputTrapDoorOut .4s ease-out, inputTrapDoorIn .3s .4s ease-out;
+            // -webkit-animation-name: ;
+            // -webkit-animation-duration: .2s;
+            // -webkit-animation-iteration-count: 1;
+            // -webkit-animation-timing-function: ease-out;
+
+            // -webkit-animation-name: inputTrapDoorIn;
+            // -webkit-animation-delay: .2s;
+            // -webkit-animation-duration: .2s;
+            // -webkit-animation-iteration-count: 1;
+            // -webkit-animation-timing-function: ease-in;
+        }
+    }
+}

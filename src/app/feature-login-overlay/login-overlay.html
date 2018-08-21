@@ -1,0 +1,41 @@
+<div class="login-overlay" ng-class="{'show': $root.showLoginOverlay}">
+    <div class="background"></div>
+    <section class="content">
+        <span class="close" ng-click="closeLoginOverlay()"></span>
+        <div class="login-container">
+            <aside>
+                <h1>Unlock new features.</h1>
+                <ul class="feature-list">
+                    <li><img class="icon-bullet" src="img/photo2x.png"> Email missed pickup photos</li>
+                    <li><img class="icon-bullet" src="img/profile2x.png"> App Personalization</li>
+                    <li>
+                    <img class="icon-bullet" src="img/check-circle2x.png"> Everyone Has Sign In Access
+                    </li>
+                </ul>
+            </aside>
+            <div class="divider"></div>
+            <div class="login-panel">
+                <form ng-submit="handleLoginForm()">
+                    <input type="text" placeholder="WM Network ID" ng-model="loginForm.username">
+                    <div class="input-wrapper">
+                        <input type="{{passwordInputType}}" placeholder="Password" ng-model="loginForm.password">
+                        <img ng-click="eyeballClick()" class="eyeball" ng-src="{{eyeballFile}}">
+                        <!-- <div class="eyeball">
+                            <object type="image/svg+xml" data="img/eyeball-closed.svg" id="eyeball-object" data-ng-click="togglePasswordVisibility()">
+                                <img ng-click="togglePasswordVisibility()" class="eyeball" src="img/view2x.png">
+                            </object>
+                        </div> -->
+                    </div>
+                    <div ng-class="{ 'animated-shake': animateLoginError }" ng-show="showLoginError" class="login-error animated-shake text-center">
+                      Invalid Credentials
+                    </div>
+                    <input type="submit" value="Sign In" id="login-button">
+                </form>
+                <div>
+                    <!-- <p class="login-issues">Problems logging in? Call (888) 459-8257</p> -->
+                </div>
+            </div>
+        </div>
+        <div class="decline" ng-click="closeLoginOverlay()">No thanks, I don't want these new features.</div>
+    </section>
+</div>

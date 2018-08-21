@@ -1,0 +1,15 @@
+<section class="overlay-container padding-2 slide-up" id="overlay-pdf-invoice">
+    <div class="background"></div>
+    <div class="link-newTab">
+        <a class="overlay_view_invoice_anchor" href="{{loadedPDFInvoice}}" target="_blank">Open in new window</a>
+    </div>
+    <div class="overlay" flowtype min-font="14" max-font="18" font-ratio="25" height="550px">
+        <div class="close-overlay"></div>
+
+        <div class="clearfix">
+            <embed id="pdf-embed" type="application/pdf" src="{{loadedPDFInvoice}}" ng-if="!iframePdfDisplay"></embed>
+            <iframe id="pdf-embed" src="{{loadedPDFInvoice}}" ng-if="iframePdfDisplay"></iframe>
+        </div>
+
+    </div>
+</section>

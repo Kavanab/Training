@@ -1,0 +1,70 @@
+
+<section class="overlay-container padding-3 overlay-contact-email-invoice" id="overlay-contact-email-invoice">
+    <div class="background"></div>
+    <div class="overlay" flowtype min-font="14" max-font="18" font-ratio="25" style = "width: 40%; margin-top: 35px;">
+    	<!-- <div ng-class="showLoading"></div>
+    	<div ng-class="showLoader"></div>  -->
+        <div class="close-overlay"></div>
+        <div class="canvas" ng-if="caseCloseProcessSteps.Loading"></div>
+        <div class="loader" ng-if="caseCloseProcessSteps.Loading"></div>
+        <div class="canvas" ng-show="loadingMessage"></div>
+        <div class="loader" ng-show="loadingMessage"></div>
+        <div class="message-container" ng-show="successMessagebool ">
+          <div class="message">
+            <img class="check-mark" src="img/check-mark.svg">
+            <div class="message-major">Mail Sent</div>
+            <div class="message-minor">It may take a few minutes for the mail to be delivered.</div>
+          </div>
+        </div>
+        <div class="message-container" ng-show="errorMessagebool">
+          <div class="message">
+           <img class="check-mark error-mark" src="img/error-icon.svg">
+           <div class="message-major">Error</div>
+           <div class="message-minor">Error occured when calling Send Email API, please come back later.</div>
+          </div>
+       </div>
+    <form name="myInvoiceForm">
+       <div id = "invoice-template" >
+        <div class="clearfix">
+            <!-- <div class="note-icon"></div> -->
+
+            <h2 class="text-center caption-text">Send Invoice</h2>
+        </div>
+
+        <div>
+        <div role="tabpanel" class="tab-pane active" id="tab-email-invoice">
+
+          <div class="email_row" id= "multiselectDropdowns">
+            <label class = "send-label">Send to</label>
+            <div class="email-select-wrapper align-with-button"  ng-class="{'list-showing': sendEmailmodal.isListShowing}">
+              <div class="input-wrapper">
+                <input ng-model="sendEmailmodal.toEmail"  ng-keydown="myEmailChange($event)"
+                  ng-keyup="toEmailInvoiceInputOnKeyup($event)"
+                  type="email" ng-pattern='/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'  required>
+                <span class="down-arrow-background"></span>
+                <span ng-show = "sendderEmails.length > 0" ng-click="inputEmailArrowClick()"  ng-class="{'flip': sendEmailmodal.inputArrowIsFlipped}" class="down-arrow-email"></span>
+              </div>
+              <div class="multiselect"  ng-show = "sendderEmails.length > 0" >
+                <ul class = "multiselect-ulist">
+                  <li  class = "multiselect-li-list" ng-click="toSendEmailItemClick(option.email)"   ng-repeat="option in sendderEmails">{{ option.email }}</li>
+                </ul>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+       <div class="emailsend" >
+        <div class="btn-spacer"></div>
+        <button ng-disabled=" (sendEmailmodal.toEmail) ?  false : true" ng-click="emailInvoicePDF(emailEvent)" id="send-emailsubmit" type="submit">Send</button>
+       </div>
+     </div>
+ </form>
+
+    </div>
+</section>

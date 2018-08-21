@@ -1,0 +1,270 @@
+<section class="overlay-container padding-2 overlay-case-close" id="overlay-case-close">
+    <div class="background"></div>
+    <div class="overlay" flowtype min-font="12" max-font="16" font-ratio="50">
+
+        <div class="close-overlay"></div>
+        <!-- <aside class="case-open"></aside> -->
+        <h1>
+            <span class="case-open"></span>Close Case</h1>
+        <!-- <div class="title-container">
+            <div class="title">
+                <aside class="case-open">
+                    <h1>Close Cases</h1>
+                </aside>
+            </div>
+        </div> -->
+
+        <div class="canvas" ng-if="caseCloseProcessSteps.Loading"></div>
+        <div class="loader" ng-if="caseCloseProcessSteps.Loading"></div>
+
+        <div class="canvas" ng-show="caseCloseProcessSteps.Confirm"></div>
+        <div class="message-container" ng-if="caseCloseProcessSteps.Confirm">
+            <div class="message">
+                <img class="check-mark" src="img/check-mark.svg">
+                <div class="message-major">Case Closed</div>
+                <div class="message-minor">It may take a few minutes for the change to be reflected in CAAG.</div>
+            </div>
+        </div>
+
+        <div class="canvas" ng-show="caseCloseProcessSteps.CompletionCodeError"></div>
+        <div class="message-container" ng-if="caseCloseProcessSteps.CompletionCodeError">
+            <div class="message">
+                <img class="check-mark" src="img/check-mark.svg">
+                <div class="message-major">Error</div>
+                <div class="message-minor">Error occur when calling completion codes API, please come back later.</div>
+            </div>
+        </div>
+
+        <div class="canvas" ng-show="caseCloseProcessSteps.Error"></div>
+        <div class="message-container" ng-if="caseCloseProcessSteps.Error">
+            <div class="message">
+                <img class="check-mark error-mark" src="img/error-icon.svg">
+                <div class="message-major">Error</div>
+                <div class="message-minor">Error occur when calling case close API, please come back later.</div>
+            </div>
+        </div>
+        <div class="canvas" ng-show="caseCloseProcessSteps.PermissionDeniedError"></div>
+        <div class="message-container" ng-if="caseCloseProcessSteps.PermissionDeniedError">
+            <div class="message-permission">
+                <img class="check-mark error-mark" src="img/permission-error-icon.svg">
+                <div class="message-major">Permission denied.</div>
+                <div class="message-minor">You do not have permission to do this</div>
+                <div class="message-minor">Request permission using the<a class="samCss" href="http://sam.wm.com/" target="_blank">System Access Manager</a></div>
+            </div>
+
+        </div>
+        <section class="content-container">
+
+            <!-- <div>{{caseCloseMutalbe.category_cd}}</div>
+            <div>{{caseCloseMutalbe.sub_category_cd}}</div>
+            <div>{{caseCloseMutalbe.status}}</div> -->
+
+            <form name="caseCloseForm">
+                <div class="form-container">
+                    <div class="form-column">
+                        <div class="data-list">
+                            <!-- <div class="data-row status" ng-show="caseCloseMutalbe.status_rqd">
+                                <div class="data-container">
+    		                    	<span class="data-label">Status</span>
+                                    <span class="data">{{caseCloseMutalbe.status}}</span>
+    		                    </div>
+                            </div> -->
+                            <div class="data-row status_reason_code" ng-show="caseCloseMutalbe.status_reason_code_rqd && caseCloseMutalbe.status_reason_code_options.length>1" >
+                                <div class="data-container" >
+                                    <!-- <span class="data-label">Status Reason Code</span> -->
+                                    <!-- <input class="data-input" name="statusReasonCode" type="text" ng-model-options="{ updateOn: 'blur' }"
+    		                    		ng-maxlength="150" ng-keydown=""
+    		                    		ng-model="caseCloseMutalbe.status_reason_code"> -->
+                                    <!-- <select class="data-input" name="statusReasonCode" ng-model-options="{ updateOn: 'blur' }"
+                                        ng-init="caseCloseMutalbe.status_reason_code = caseCloseMutalbe.status_reason_code || caseCloseMutalbe.status_reason_code_options[0].code"
+    		                    		ng-keydown="" ng-options="x.code as x.description for x in caseCloseMutalbe.status_reason_code_options"
+    		                    		ng-model="caseCloseMutalbe.status_reason_code"></select> -->
+
+                                    <!-- <ui-select ng-disabled="disabled" ng-model="caseCloseMutalbe.status_reason_code_id.selected" ng-change="onCaseCloseCompletionCodeChange($select)">
+                            		    <ui-select-match placeholder="Select a reason code">{{$select.selected.description}}</ui-select-match>
+                            		    <ui-select-choices repeat="option in caseCloseMutalbe.status_reason_code_options | filter: $select.search" >
+                                		    <div ng-if="option.isTag" ng-bind-html="option.description + ' <small>(New)</small>' | highlight: $select.search"></div>
+                                		    <div ng-if="!option.isTag" ng-bind-html="option.description | highlight: $select.search"></div>
+                            		    </ui-select-choices>
+                        		    </ui-select> -->
+                                    <ui-select class="data-input" name="statusReasonCode" id="statusReasonCode" required ng-class="{'warning-required': caseCloseForm.statusReasonCode.$error.required && caseCloseForm.statusReasonCode.$dirty}" ng-disabled="disabled" ng-model="caseCloseMutalbe.status_reason_code.selected"
+                                        ng-change="onCaseCloseCompletionCodeChange($select)" >
+                                        <ui-select-match placeholder="Select a reason code">{{$select.selected.description}}</ui-select-match>
+                                        <ui-select-choices repeat="option in caseCloseMutalbe.status_reason_code_options | filter: $select.search">
+                                            <div ng-if="option.isTag" ng-bind-html="option.description + ' <small>(New)</small>' | highlight: $select.search"></div>
+                                            <div ng-if="!option.isTag" ng-bind-html="option.description | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <!-- <div class="notification" ng-class="{'warning-required': caseCloseForm.statusReasonCode.$error.required && caseCloseForm.statusReasonCode.$dirty}">Required</div> -->
+                            </div>
+                            <div class="data-row operations_route_id" ng-show="caseCloseMutalbe.operations_rqd && caseCloseMutalbe.route_rqd">
+                                <div class="data-container">
+                                    <ui-select ng-disabled="disabled" ng-model="caseCloseMutalbe.operations_route_id.selected" ng-change="caseCloseOnRouteChange($select)" class="data-input">
+                                        <ui-select-match placeholder="Select a route">{{$select.selected.displayLabel}}</ui-select-match>
+                                        <ui-select-choices repeat="route in caseCloseMutalbe.operations_routes_list | filter: $select.search" refresh="caseCloseRrefreshRouteResults($select)" refresh-delay="0" scroll-to-bottom="caseCloseAddMoreRouteItems($select, $event, 'bottom')" scroll-to-bottom-offset="50"
+                                            scroll-to-top="caseCloseAddMoreRouteItems($select, $event, 'top')" scroll-to-top-offset="50">
+                                            <div ng-if="route.isTag" ng-bind-html="route.name + ' <small>(New)</small>' | highlight: $select.search"></div>
+                                            <div ng-if="!route.isTag" ng-bind-html="route.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+
+                            <div class="data-row operations_driver_id" ng-show="caseCloseMutalbe.operations_rqd">
+                                <div class="data-container">
+                                    <ui-select ng-disabled="disabled" ng-model="caseCloseMutalbe.operations_driver_name.selected" ng-change="caseCloseOnDriverChange($select)" class="data-input" ng-class="{'driver_warning': caseCloseMutalbe.operations_driver_dropdown_warning}" uis-open-close="onDriverDropdownOpenClose(isOpen)">
+                                        <ui-select-match placeholder="Select a driver">{{$select.selected.displayLabel}}</ui-select-match>
+                                        <ui-select-choices repeat="driver in caseCloseMutalbe.operations_drivers_list | filter: $select.search" refresh="caseCloseRefreshDriverResults($select)" refresh-delay="0" scroll-to-bottom="caseCloseAddMoreDriverItems($select, $event, 'bottom')" scroll-to-bottom-offset="50"
+                                            scroll-to-top="caseCloseAddMoreDriverItems($select, $event, 'top')" scroll-to-top-offset="50">
+                                            <div ng-if="driver.isTag" ng-bind-html="driver.name + ' <small>(New)</small>' | highlight: $select.search"></div>
+                                            <div ng-if="!driver.isTag" ng-bind-html="driver.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+
+                            <div class="data-row complaint" ng-show="caseCloseMutalbe.complaint_rqd">
+                                <div class="data-container">
+                                    <input class="data-input" name="complaint" id="complaint" type="text" ng-change="validateCaseClose120CharMax('complaint')" ng-class="{'warning-required': caseCloseForm.complaint.$error.required && caseCloseForm.complaint.$dirty}" placeholder="Complaint"
+                                        ng-model="caseCloseMutalbe.complaint" required>
+                                    <div class="notification count" ng-class="{'max-cnt-violation': caseCloseMutalbe.complaint_max_count_violation_120}">{{caseCloseMutalbe.complaint_cnt}}</div>
+                                    <div class="notification" ng-class="{'warning-required': caseCloseForm.complaint.$error.required && caseCloseForm.complaint.$dirty}">Required</div>
+                                </div>
+                            </div>
+
+                            <div class="data-row issue" ng-show="caseCloseMutalbe.issue_rqd">
+                                <div class="data-container">
+                                    <input class="data-input" name="issue" id="issue" type="text" ng-change="validateCaseClose120CharMax('issue')" ng-class="{'warning-required': caseCloseForm.issue.$error.required && caseCloseForm.issue.$dirty}" placeholder="Issue" ng-model="caseCloseMutalbe.issue"
+                                        required>
+                                    <div class="notification count" ng-class="{'max-cnt-violation': caseCloseMutalbe.issue_max_count_violation_120}">{{caseCloseMutalbe.issue_cnt}}</div>
+                                    <div class="notification" ng-class="{'warning-required': caseCloseForm.issue.$error.required && caseCloseForm.issue.$dirty}">Required</div>
+                                </div>
+                            </div>
+
+                            <div class="data-row corrective_action" ng-show="caseCloseMutalbe.corrective_action_rqd">
+                                <div class="data-container">
+                                    <input class="data-input" name="correctiveAction" id="correctiveAction" type="text" ng-change="validateCaseClose120CharMax('corrective_action')" ng-class="{'warning-required': caseCloseForm.correctiveAction.$error.required && caseCloseForm.correctiveAction.$dirty}"
+                                        placeholder="Corrective Action" ng-model="caseCloseMutalbe.corrective_action" required>
+                                    <div class="notification count" ng-class="{'max-cnt-violation': caseCloseMutalbe.corrective_action_max_count_violation_120}">{{caseCloseMutalbe.corrective_action_cnt}}</div>
+                                    <div class="notification" ng-class="{'warning-required': caseCloseForm.correctiveAction.$error.required && caseCloseForm.correctiveAction.$dirty}">Required</div>
+                                </div>
+                            </div>
+
+                            <div class="data-row preventive_action" ng-show="caseCloseMutalbe.preventive_action_rqd">
+                                <div class="data-container">
+                                    <input class="data-input" name="preventiveAction" id="preventiveAction" type="text" ng-change="validateCaseClose120CharMax('preventive_action')" ng-class="{'warning-required': caseCloseForm.preventiveAction.$error.required && caseCloseForm.preventiveAction.$dirty}"
+                                        placeholder="Preventive Action" ng-model="caseCloseMutalbe.preventive_action" required>
+                                    <div class="notification count" ng-class="{'max-cnt-violation': caseCloseMutalbe.preventive_action_max_count_violation_120}">{{caseCloseMutalbe.preventive_action_cnt}}</div>
+                                    <div class="notification" ng-class="{'warning-required': caseCloseForm.preventiveAction.$error.required && caseCloseForm.preventiveAction.$dirty}">Required</div>
+                                </div>
+                            </div>
+
+                            <div class="data-row resolution" ng-show="caseCloseMutalbe.resolution_rqd">
+                                <div class="data-container">
+                                    <input class="data-input" name="resolution" id="resolution" type="text" ng-change="validateCaseClose120CharMax('resolution')" ng-class="{'warning-required': caseCloseForm.resolution.$error.required && caseCloseForm.resolution.$dirty}" placeholder="Resolution"
+                                        ng-model="caseCloseMutalbe.resolution" required>
+                                    <div class="notification count" ng-class="{'max-cnt-violation': caseCloseMutalbe.resolution_max_count_violation_120}">{{caseCloseMutalbe.resolution_cnt}}</div>
+                                    <div class="notification" ng-class="{'warning-required': caseCloseForm.resolution.$error.required && caseCloseForm.resolution.$dirty}">Required</div>
+                                </div>
+                            </div>
+
+                            <div class="data-row container_details" ng-show="caseCloseMutalbe.container_rqd">
+                                <div class="data-container">
+                                    <input class="data-input" name="containerDetails" id="containerDetails" type="text" ng-change="validateCaseClose120CharMax('container')" ng-class="{'warning-required': caseCloseForm.containerDetails.$error.required && caseCloseForm.containerDetails.$dirty}"
+                                        placeholder="Container Details" ng-model="caseCloseMutalbe.container" required>
+                                    <div class="notification count" ng-class="{'max-cnt-violation': caseCloseMutalbe.container_max_count_violation_120}">{{caseCloseMutalbe.container_cnt}}</div>
+                                    <div class="notification" ng-class="{'warning-required': caseCloseForm.containerDetails.$error.required && caseCloseForm.containerDetails.$dirty}">Required</div>
+                                </div>
+                            </div>
+
+                            <div class="data-row action_taken" ng-show="caseCloseMutalbe.action_taken_rqd">
+                                <div class="data-container">
+                                    <input class="data-input" name="actionTaken" id="actionTaken" type="text" ng-change="validateCaseClose120CharMax('action_taken')" ng-class="{'warning-required': caseCloseForm.actionTaken.$error.required && caseCloseForm.actionTaken.$dirty}" placeholder="Action Taken"
+                                        ng-model="caseCloseMutalbe.action_taken" required>
+                                    <div class="notification count" ng-class="{'max-cnt-violation': caseCloseMutalbe.action_taken_max_count_violation_120}">{{caseCloseMutalbe.action_taken_cnt}}</div>
+                                    <div class="notification" ng-class="{'warning-required': caseCloseForm.actionTaken.$error.required && caseCloseForm.actionTaken.$dirty}">Required</div>
+                                </div>
+                            </div>
+
+                            <div class="data-row notes" ng-show="caseCloseMutalbe.notes_rqd">
+                                <div class="data-container">
+                                    <!-- <span class="data-label">Notes</span> -->
+                                    <textarea class="data-input" name="notes" id="notes" ng-change="validateCaseClose255CharMax('notes_comment')" placeholder="Enter notes" rows="3" ng-model="caseCloseMutalbe.notes_comment"></textarea>
+                                    <div class="notification count" ng-class="{'max-cnt-violation': caseCloseMutalbe.notes_comment_max_count_violation_255}">{{caseCloseMutalbe.notes_comment_cnt}}</div>
+                                </div>
+                                <!-- <div class="data-container" ng-show="caseCloseMutalbe.notes_comment_max_count_violation_255">
+    	                    		<div class="data-notification">
+    									<p><i class="icon icon-warning-sign"></i>Notes should be less than 255 character long</p>
+    								</div>
+    		                    </div> -->
+                                <div class="data-container">
+                                    <!-- <span class="data-label"></span> -->
+                                    <div class="data-input">
+                                        <label class="switch-container left">
+											<label class="switch">
+												<input type="checkbox" ng-change="onCaseCloseSwitchChange('notes_is_internal')" ng-model="caseCloseMutalbe.notes_is_internal"
+												    ng-true-value="'Y'" ng-false-value="'N'" ng-checked="caseCloseMutalbe.notes_is_internal=='Y'">
+												<span class="slider round"></span>
+											</label>
+                                        <span class="switch-label">{{caseCloseMutalbe.notes_is_internal_dspl}}</span>
+                                        </label>
+                                        <label class="switch-container right">
+											<label class="switch">
+												<input type="checkbox" ng-change="onCaseCloseSwitchChange('notes_populate_customer_comment')" ng-model="caseCloseMutalbe.notes_populate_customer_comment"
+												    ng-true-value="'Y'" ng-false-value="'N'" ng-checked="caseCloseMutalbe.notes_populate_customer_comment=='Y'" checked>
+												<span class="slider round"></span>
+											</label>
+                                        <span class="switch-label">{{caseCloseMutalbe.notes_populate_customer_comment_dspl}}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="data-row date_resolved" ng-show="caseCloseMutalbe.date_resolved_rqd">
+                                <div class="data-container">
+                                    <label class="date-label">Date Resolved:</label>
+                                    <!-- <span class="date-resolved-label">Date Resolved</span> -->
+                                    <!-- <input class="data-input dateResolved" name="dateResolved" id="dateResolved" type="text"
+                                        ng-flatpickr fp-opts="flatpickrOpts"
+                                        placeholder="yyyy-MM-dd" min="1900-01-01" max="2999-12-31"
+    		                    		ng-pattern="/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/"
+    		                    		ng-model="caseCloseMutalbe.date_resolved"> -->
+
+                                    <!-- <datepicker date-format="MM/dd/yyyy" date-max-limit="{{caseCloseMutalbe.date_resolved_max}}" date-min-limit="{{caseCloseMutalbe.date_resolved_min}}">
+                                    	    <input class="data-input dateResolved" name="dateResolved" id="dateResolved" type="text"
+                                                ng-pattern="/([1-9]|1[012])/([1-9]|[12][0-9]|3[01])/((19|20)\d\d)/"
+                                                ng-model="caseCloseMutalbe.date_resolved" ng-model-options="{ updateOn: 'blur' }" />
+                                    	</datepicker> -->
+                                    <datepicker date-format="MM/dd/yyyy" date-max-limit="{{caseCloseMutalbe.date_resolved_max}}" date-min-limit="{{caseCloseMutalbe.date_resolved_min}}">
+                                        <input class="data-input dateResolved" name="dateResolved" id="dateResolved" type="text" text-mask="dateResolvedTextMaskConfig" ng-change="onCaseCloseDateResolvedChanged()" ng-class="{'date-invalid': caseCloseMutalbe.date_resolved_invalid}" ng-model="caseCloseMutalbe.date_resolved"
+                                        />
+                                    </datepicker>
+                                </div>
+                                <!-- <div class="data-container" ng-show="caseCloseForm.dateResolved.$error.pattern">
+    		                    	<span class="data-label"></span>
+    		                    	<div class="data-notification">
+    									<p><i class="icon icon-warning-sign"></i>Please enter a date with format M/D/YYYY.</p>
+    								</div>
+    		                    </div> -->
+                            </div>
+
+                        </div>
+                        <!-- end of data-list -->
+                    </div>
+                    <!-- end of form-column -->
+                </div>
+                <!-- end of form-container -->
+                <div class="form-footer">
+                    <!-- <input class="btn" type="button" value="Submit" ng-click="caseCloseForm.$valid && onCaseCloseSubmit()" /> -->
+                    <input class="btn" type="button" value="Close" ng-click="onCaseCloseSubmit()" ng-class="{'disabled': caseCloseMutalbe.close_button_disabled}" ng-disabled="caseCloseMutalbe.close_button_disabled" />
+                    <!-- <div class="data-notification" ng-show="caseCloseForm.showFormChangeWarning && caseCloseForm.$valid">
+                        <p><i class="icon icon-warning-sign"></i>Please fill in all fields</p>
+                    </div> -->
+                </div>
+            </form>
+
+        </section>
+
+    </div>
+</section>

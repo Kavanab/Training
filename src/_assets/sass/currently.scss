@@ -1,0 +1,127 @@
+.weather-summary {
+    vertical-align: top;
+    text-align: center;
+    // min-width: 273px;
+    letter-spacing: -3px;
+    font-family: "Foundry Sterling Demi";
+    font-size: 5.5rem;
+    height: 100%;
+    weather {
+        position: relative;
+        top: -3px;
+        left: -1.5vw;
+    }
+    &:before {
+        // content: '\0000a0'; //prevent span from collapsing
+    }
+    .glyphicon {
+        margin-left: 10px;
+        color: #CCC;
+    }
+    .temperature {
+        position: relative;
+        left: -1.5vw;
+        cursor: pointer;
+        .uom {
+            position: absolute;
+            font-size: .37em;
+            font-family: "Foundry Sterling Bold";
+            right: 1.2em;
+            bottom: .4em;
+            &.c {
+                right: 1.1em!important;
+            }
+        }
+    }
+    .location {
+        display: block;
+        white-space: nowrap;
+        text-transform: capitalize;
+        font-family: "Foundry Sterling Book";
+        letter-spacing: -1px;
+        position: relative;
+        top: -7px;
+        font-size: 2rem;
+    }
+}
+
+section.currently {
+    color: #444;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    // top: 35px;
+    height: 100%;
+    // width: 24%;
+    right: 0;
+    top: 0;
+    text-align: right;
+    z-index: 10;
+    // line-height: 1em;
+    letter-spacing: -3px;
+    font-family: "Foundry Sterling Demi";
+    float: right;
+    font-size: 5.5rem;
+    text-align: center;
+    &.customer-details {}
+    ul {
+        height: 100%;
+        padding: 0;
+        li {
+            list-style: none;
+            display: inline-block;
+            border-left: 1px solid $lgray;
+            height: 100%;
+            padding: 8% 2vw;
+            // width: 50%;
+            .subtext {
+                font-family: "Foundry Sterling Book";
+                letter-spacing: -1px;
+                position: relative;
+                top: -7px;
+                font-size: 2rem;
+            }
+            &.clock {
+                // display: inline-block;
+                // float: left;
+                // min-width: 250px;
+                // width: 50%;
+                .time {
+                    text-transform: uppercase;
+                }
+                .date {
+                    display: block;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $breakpointXLwidth) {
+    section.currently {
+        font-size: 4.7rem;
+        ul li {
+            .subtext {
+                font-size: 1.8rem;
+            }
+        }
+        .weather-summary {
+            font-size: 4.7rem;
+        }
+    }
+}
+
+@media screen and (max-width: $breakpointLgwidth) {
+    section.currently {
+        font-size: 4rem;
+        ul li {
+            .subtext {
+                font-size: 1.6rem;
+            }
+        }
+        .weather-summary {
+            font-size: 4rem;
+        }
+    }
+}

@@ -1,0 +1,429 @@
+.billing-details-container {
+    header {
+        .bottom-line {
+            background-color: #ffffff;
+        }
+    }
+    .tab-content {
+        margin: 0px 10px 10px 10px;
+        .payment_infinite_scroll {
+            .load_more_info {
+                padding: 1vw 0 0 1.4vw;
+                font-size: 0.96vw;
+                color: #999999;
+                background-color: white;
+                display: flex;
+                .here_btn {
+                    margin-left: 5px;
+                    margin-right: 5px;
+                    color: green;
+                    cursor: pointer;
+                    font-weight: bold;
+                }
+            }
+            .loading_message {
+                .loading {
+                    padding: 1vw 0 0 1.4vw;
+                    font-size: 0.96vw;
+                    color: #999999;
+                    background-color: white;
+                }
+            }
+            .timeline-heading-container {
+                display: flex;
+                flex-direction: row;
+                .timeline-invoices-icon {
+                    background-image: url(/img/Invoice-Icon.svg);
+                    background-repeat: no-repeat;
+                    width: 2.5vw;
+                    height: 2.5vw;
+                }
+                .invoice-wrapper {
+                    flex-grow: 8;
+                    flex-direction: column;
+                    padding-left: 1vw;
+                    font-size: 0.94vw;
+                    .invoice-date-timestamp {
+                        display: flex;
+                        flex-direction: row;
+                        .card-date {
+                            font-family: "Foundry Sterling Bold";
+                            letter-spacing: -0.3px;
+                        }
+                        .invoice-timestamp {
+                            display: flex;
+                            margin-left: auto;
+                            align-items: center;
+                        }
+                    }
+                    .card-description {
+                        display: flex;
+                        flex-direction: row;
+                        padding-top: 0.3vw;
+                        .payment-status-label {
+                            display: flex;
+                            flex-direction: row;
+                            .payment-status-left {
+                                padding-right: 0.2vw;
+                                text-transform: uppercase;
+                                color: #999999;
+                                font-size: 0.96vw;
+                                display: flex;
+                                .l-partial {
+                                    background: linear-gradient(90deg, #BDE2B5 50%, #E4E4E4 50%);
+                                    width: 0.7vw;
+                                    height: 0.7vw;
+                                    border-radius: 50%;
+                                    margin-right: 0.4vw;
+                                    position: relative;
+                                    top: 0.2vw;
+                                }
+                                .l-unpaid {
+                                    background-color: #E4E4E4;
+                                    width: 0.7vw;
+                                    height: 0.7vw;
+                                    border-radius: 50%;
+                                    margin-right: 0.4vw;
+                                    position: relative;
+                                    top: 0.2vw;
+                                }
+                                .l-paid {
+                                    background-color: #BDE2B5;
+                                    width: 0.7vw;
+                                    height: 0.7vw;
+                                    border-radius: 50%;
+                                    margin-right: 0.4vw;
+                                    position: relative;
+                                    top: 0.2vw;
+                                }
+                                .l-30days {
+                                    background-color: #FFE200;
+                                    width: 0.7vw;
+                                    height: 0.7vw;
+                                    border-radius: 50%;
+                                    margin-right: 0.4vw;
+                                    position: relative;
+                                    top: 0.2vw;
+                                }
+                                .l-60days {
+                                    background-color: #FF8900;
+                                    width: 0.7vw;
+                                    height: .7vw;
+                                    border-radius: 50%;
+                                    margin-right: 0.4vw;
+                                    position: relative;
+                                    top: 0.2vw;
+                                }
+                                .l-90days {
+                                    background-color: #FF0000;
+                                    width: 0.7vw;
+                                    height: 0.7vw;
+                                    border-radius: 50%;
+                                    margin-right: 0.4vw;
+                                    position: relative;
+                                    top: 0.2vw;
+                                }
+                                .l-120days {
+                                    background-color: #A20303;
+                                    width: 0.7vw;
+                                    height: 0.7vw;
+                                    border-radius: 50%;
+                                    margin-right: 0.4vw;
+                                    position: relative;
+                                    top: 0.2vw;
+                                }
+                                .status-label {
+                                    padding-right: 0.4vw;
+                                    font-size: 0.8em;
+                                }
+                            }
+                            .payment-status-right {
+                                padding-right: 0.4vw;
+                                text-transform: uppercase;
+                                color: #999999;
+                                font-size: 0.96vw;
+                                display: flex;
+                                .l-partial {
+                                    background: linear-gradient(90deg, #BDE2B5 50%, #E4E4E4 50%);
+                                    width: 0.7vw;
+                                    height: 0.7vw;
+                                    border-radius: 50%;
+                                    margin-right: 0.4vw;
+                                    position: relative;
+                                    top: 0.2vw;
+                                }
+                                .l-unpaid {
+                                    background-color: #E4E4E4;
+                                    width: 0.7vw;
+                                    height: 0.7vw;
+                                    border-radius: 50%;
+                                    margin-right: 0.4vw;
+                                    position: relative;
+                                    top: 0.2vw;
+                                }
+                                .l-paid {
+                                    background-color: #BDE2B5;
+                                    width: 0.7vw;
+                                    height: 0.7vw;
+                                    border-radius: 50%;
+                                    margin-right: 0.4vw;
+                                    position: relative;
+                                    top: 0.2vw;
+                                }
+                                .l-30days {
+                                    background-color: #FFE200;
+                                    width: 0.7vw;
+                                    height: 0.7vw;
+                                    border-radius: 50%;
+                                    margin-right: 0.4vw;
+                                    position: relative;
+                                    top: 0.2vw;
+                                }
+                                .l-60days {
+                                    background-color: #FF8900;
+                                    width: 0.7vw;
+                                    height: 0.7vw;
+                                    border-radius: 50%;
+                                    margin-right: 0.4vw;
+                                    position: relative;
+                                    top: 0.2vw;
+                                }
+                                .l-90days {
+                                    background-color: #FF0000;
+                                    width: 0.7vw;
+                                    height: 0.7vw;
+                                    border-radius: 50%;
+                                    margin-right: 0.4vw;
+                                    position: relative;
+                                    top: 0.2vw;
+                                }
+                                .l-120days {
+                                    background-color: #A20303;
+                                    width: 0.7vw;
+                                    height: 0.7vw;
+                                    border-radius: 50%;
+                                    margin-right: 0.4vw;
+                                    position: relative;
+                                    top: 0.2vw;
+                                }
+                                .status-label {
+                                    padding-right: 0.4vw;
+                                    font-size: 0.8em;
+                                }
+                            }
+                        }
+                    }
+                    .more-container {
+                        display: flex;
+                        flex-direction: row;
+                        padding-top: 0.3vw;
+                        padding-left: 0.2vw;
+                        .more-less {
+                            text-transform: uppercase;
+                            color: #3C8A2E;
+                            font-family: "Foundry Sterling Bold";
+                            display: flex;
+                            font-size: .8em;
+                            white-space: nowrap;
+                            cursor: pointer;
+                            padding-left: 0.1vw;
+                            padding-top: 0.1vw;
+                            height: 0;
+                        }
+                        .table-timestamp {
+                            display: flex;
+                            flex-grow: 2;
+                            padding-left: 7.5vw;
+                            flex-direction: column;
+                            position: relative;
+                            .more-loading-position {
+                                position: absolute;
+                                left: -1.3vw;
+                                top: 15px;
+                                color: #999999;
+                            }
+                            .invoice-information {
+                                display: flex;
+                                flex-direction: row;
+                                padding-top: 0.4vw;
+                                .col1 {
+                                    padding-right: 1vw;
+                                    display: flex;
+                                    flex-direction: column;
+                                    width: 33.3%;
+                                    .invoice-num {
+                                        border-bottom: 1px solid #e7e7e7;
+                                        line-height: 2vw;
+                                        display: flex;
+                                        span:first-child {
+                                            font-family: "Foundry Sterling Bold";
+                                            color: #000000;
+                                        }
+                                        span:last-child {
+                                            margin-left: auto;
+                                        }
+                                    }
+                                }
+                                .col2 {
+                                    padding-left: 1vw;
+                                    padding-right: 1vw;
+                                    display: flex;
+                                    flex-direction: column;
+                                    width: 33.3%;
+                                    .invoice-num {
+                                        border-bottom: 1px solid #e7e7e7;
+                                        line-height: 2vw;
+                                        display: flex;
+                                        span {
+                                            cursor: pointer;
+                                            img {
+                                                cursor: pointer;
+                                            }
+                                        }
+                                        .border-bottom-add {
+                                            border-bottom: 1px dashed #000000;
+                                            height: 1.7vw;
+                                        }
+                                        span:first-child {
+                                            font-family: "Foundry Sterling Bold";
+                                            color: #000000;
+                                        }
+                                        span:last-child {
+                                            margin-left: auto;
+                                        }
+                                    }
+                                }
+                                .col3 {
+                                    padding-left: 1vw;
+                                    padding-right: 1vw;
+                                    display: flex;
+                                    flex-direction: column;
+                                    width: 33.3%;
+                                    .invoice-num {
+                                        border-bottom: 1px solid #e7e7e7;
+                                        line-height: 2vw;
+                                        display: flex;
+                                        span:first-child {
+                                            font-family: "Foundry Sterling Bold";
+                                            color: #000000;
+                                        }
+                                        span:last-child {
+                                            margin-left: auto;
+                                            color: green;
+                                            img {
+                                                width: 1vw;
+                                                height: 1vw;
+                                                cursor: pointer;
+                                                margin-top: 0.5vw;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .recurring-table {
+                                h3 {
+                                    background-image: url(/img/sync-alt-solid.svg);
+                                    background-repeat: no-repeat;
+                                    padding-left: 1.3vw;
+                                    background-size: 1vw;
+                                    background-position-y: 0.1vw;
+                                    font-family: "Foundry Sterling Bold";
+                                }
+                                table {
+                                    thead {
+                                        tr {
+                                            th {
+                                                border-bottom: 2px solid #ffffff;
+                                                padding: 3px 5px;
+                                            }
+                                        }
+                                    }
+                                    tbody {
+                                        tr {
+                                            td {
+                                                border-bottom: 2px solid #ffffff;
+                                                padding: 3px 5px;
+                                            }
+                                            .no_lineitems_message{
+                                                text-align: center;
+                                                font-weight: bold;
+                                                color: #3C8A2E;
+                                                font-size: 2.5vh;
+                                                padding: 1vw;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .onetime-table {
+                                h3 {
+                                    font-family: "Foundry Sterling Bold";
+                                    span {
+                                        position: relative;
+                                        top: -0.15vw;
+                                        background-color: #000000;
+                                    }
+                                }
+                                table {
+                                    thead {
+                                        tr {
+                                            th {
+                                                border-bottom: 2px solid #ffffff;
+                                                padding: 3px 5px;
+                                            }
+                                        }
+                                    }
+                                    tbody {
+                                        tr {
+                                            td {
+                                                border-bottom: 2px solid #ffffff;
+                                                padding: 3px 5px;
+                                            }
+                                            .no_lineitems_message{
+                                                text-align: center;
+                                                font-weight: bold;
+                                                color: #3C8A2E;
+                                                font-size: 2.5vh;
+                                                padding: 1vw;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .dollar {
+                                font-size: 2vw;
+                                font-family: "Foundry Sterling Bold";
+                                margin-left: auto;
+                                position: relative;
+                                top: -1.4vw;
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: flex-end;
+                                sup {
+                                    top: -.4em !important;
+                                }
+                                .timeline-dollar {
+                                    font-size: 2.5vw;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } //chrome scrollbar
+        .payment_infinite_scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .payment_infinite_scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .payment_infinite_scroll::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        .payment_infinite_scroll::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    }
+}

@@ -1,0 +1,98 @@
+<div class="system-msg error-msg system-msgc" ng-show='displayErrorMsg'>
+    <div class="system-inner-msg">
+        <p><i class="fa fa-check"></i>No route is scheduled for this account today.
+        </p>
+        <p class="message-scheduled" ng-show='nextSchedule'> The next service is scheduled for {{nextService}}.</p>
+        <a href="javascript:" class="close-filter-msg"><i
+                   class="fa fa-remove"></i></a>
+    </div>
+</div>
+<!-- ends message -->
+<div class="truck-on-map">
+    <div class="truck-on-map-container">
+        <div id="truck-on-map-parent" ng-class="mapopen == 1 ? 'map-and-details-50' : mapopen == 2 ? 'map-and-details-100' : 'map-and-details-0'">
+            <div id="truck-on-map-id">
+
+            </div>
+            <div class="map-shadow">
+
+            </div>
+        </div>
+        <!-- ends map -->
+        <div class="arrows-main">
+            <div class="arrows-up-down">
+                <img src="../../img/up-carrot.svg" class="up-arrow" ng-click="uparrowopen()" ng-hide="detailtableopen == 2" />
+                <img src="../../img/down-carrot.svg" class="down-arrow" ng-click="downarrowopen()" ng-hide="mapopen == 2" />
+            </div>
+            <!-- ends arrows-up-down -->
+        </div>
+        <!-- ends arrows-main -->
+        <div ng-class="detailtableopen == 1 ? 'map-and-details-50' : detailtableopen == 2 ? 'map-and-details-100' : 'map-and-details-0'">
+            <div class="table_show container-fluid" ng-show="openNCloseTableToggle">
+                <div class="route-title">
+
+                    <!-- ng-click= "currentStop(customerListCompleted[customerListCompleted.length-1].sequence);" -->
+                    <h4>Route {{currentRouteNumber}} is {{routeStatus}}</h4>
+                    <h6>Current stop: <span ng-click="highlightRowZoomMap(currentStop.sequence ,currentStop.customer_info.eZpayId);">{{currentStop.sequence}}</span> | {{currentCustomer[0].customer_info.name}} stop: <span ng-click="highlightRowZoomMap(currentCustomer[0].sequence , currentCustomer[0].customer_info.eZpayId);">{{currentCustomer[0].sequence}}</span>                        | Total stops: {{stops[stops.length-1].sequence}}</h6>
+                </div>
+                <div class="table-slideopen">
+                    <div class="filter_input">
+                        <input class="form-control" type="text" ng-model="globalSearch" ng-change="evaluateChange(this)" />
+                        <!-- <input class="form-control" type="text" ng-model="filter.$" /> -->
+                        <div class="search-icon" ng-hide="globalSearch.length > 0">
+                            <img src="../../img/spyglass.svg" />
+                        </div>
+                        <div class="remove-icon" ng-show="globalSearch.length > 0" ng-click="clearGlobalSearch()">
+                            <img src="../../img/x.svg" />
+                        </div>
+                    </div>
+                    <!-- ends filter_input -->
+                    <table class="table table-scroll" id="route-information" ng-table="usersTable" show-filter="true">
+
+                        <tbody class="route-head">
+                            <tr id="rowclick{{details.sequence}}" ng-repeat="details in $data" class="row_hig {{highlightRowNum == details.sequence && currentStopSelected ? 'row_hig1' : ''}}" ng-class="lastSelectedRow == details.sequence ? 'row_hig1' : ''" ng-click="rowClickHigh(details.sequence ,details.customer_info.eZpayId)">
+                                <!-- <tr ng-repeat="details in stops" class="row_hig {{currentCustomer[0].sequence == details.sequence && currentStopSelected ? 'row_hig1' : ''}}" ng-class="row_{{details.sequence}}"> -->
+
+                                <td>
+                                    <img src="/img/marker.svg" class="marker_highlighter" ng-show="{{currentCustomer[0].sequence == details.sequence}}">
+                                    <img src="/img/truck-left.svg" class="truck-right" ng-show="{{currentStop.sequence == details.sequence}}">
+                                </td>
+
+                                <td data-title="'Stop #'" sortable="'sequence'">{{details.sequence}}</td>
+                                <td data-title="'Customer'" sortable="'customer_info.name'" ng-attr-title="{{getCustomerAddress(details.customer_info.eZpayId)}}">
+                                    <a class="color_green" ng-click="getCustomerOverview(details)" target="_self">{{details.customer_info.name}}</a>
+                                </td>
+                                <!-- <td data-title="'Customer ID'" sortable="'customer_info.eZpayId'" ng-attr-title="{{oneRow.masUnique}}" id="highlightMarker"><a class="color_green" ng-click="getCustomerOverview(details)" ng-mouseover="onMouseoverCustomer(details, 'show_out_link_icon_ezpayid')" ng-mouseleave="onMouseleaveCustomer(details, 'show_out_link_icon_ezpayid')" target="_self">{{details.customer_info.eZpayId}}<span class="out-link" ng-show="details.customer_info.show_out_link_icon_ezpayid" /></a></td> -->
+                                <td data-title="'Customer ID'" sortable="'customer_info.eZpayId'" ng-attr-title="{{oneRow.masUnique}}" id="highlightMarker">{{details.customer_info.eZpayId}}</td>
+                                <td data-title="'Service Code'" sortable="'service_info.code'">{{details.service_info.code}}</td>
+                                <td data-title="'Service Unique #'" sortable="'service_info.id'" class="serviceuid">{{details.service_info.id}}</td>
+                                <td data-title="'Ticket #'" sortable="'ticket_number'">{{details.ticket_number}}</td>
+                                <td data-title="'Ticket Type'" sortable="'ticket_type'">{{details.ticket_type}}</td>
+                                <td data-title="'Load Type'" sortable="'load_type'">{{details.load_type}}</td>
+                                <td data-title="'Exception Code'" sortable="'exception_code'">{{details.exception_code}}</td>
+                                <td data-title="'Service Completion Time'" sortable="'service_time'">{{details.service_time}}</td>
+                                <td data-title="'Status'" ng-if="details.status == 'Confirmed Positive' && details.exception_code == '--' ">
+                                    <label id="radio-1" onclick="return false;"></label>
+                                </td>
+                                <td data-title="'Status'" ng-if=" details.status != 'Confirmed Positive' && details.status != 'Confirmed Negative'">
+                                    <label id="radio-2" onclick="return false;"></label>
+                                </td>
+                                <td data-title="'Status'" ng-if="details.status == 'Confirmed Positive' && details.exception_code != '--' ">
+                                    <label id="radio-3" onclick="return false;"></label>
+                                </td>
+                                <td data-title="'Status'" ng-if="details.status == 'Confirmed Negative' && details.exception_code != '--' ">
+                                    <label id="radio-4" onclick="return false;"></label>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <!-- ends detail-table -->
+    </div>
+    <!-- ends truck-on-map-container -->
+</div>
+<!-- ends truck-on-map -->

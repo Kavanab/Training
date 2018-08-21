@@ -1,0 +1,139 @@
+$overlayAnimationSpeed: 0.5s;
+.overlay-container {
+    z-index: -1;
+    opacity: 0;
+    transition: opacity ($overlayAnimationSpeed - 0.1) linear ($overlayAnimationSpeed - 0.1), z-index ($overlayAnimationSpeed - 0.1) linear ($overlayAnimationSpeed - 0.1);
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
+    h2.additional-charges{
+        margin-top: 30px;
+    }
+    &.padding-1 {
+        .overlay {
+            padding: 1vw;
+        }
+    }
+    &.padding-2 {
+        .overlay {
+            padding: 2vw;
+            .close-overlay {
+                top: 1vw;
+                right: 1vw;
+            }
+        }
+    }
+    &.padding-3 {
+        .overlay {
+            padding: 2vw 2.8vw;
+            .close-overlay {
+                top: .2em;
+                right: .2em;
+            }
+        }
+    }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    &.slide-up {
+        .overlay {
+          margin-left: auto;
+          margin-right: auto;
+          width: 50%;
+          background-color: white;
+          border-radius: 8px 8px 0 0;
+          height: 80%;
+          bottom: 0;
+          position: absolute;
+          left: 25%;
+          opacity: 1;
+          transform: translateY(100%);
+          transition: transform 0.2s linear;
+          min-width: 700px;
+            > ul {
+                >li {}
+            }
+        }
+    }
+    .overlay {
+      width: 70vw;
+      background-color: white;
+      height: auto;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0;
+      transition: opacity 0.2s linear;
+      position: relative;
+      border-radius: 8px;
+      h1{
+        font-family: "Foundry Sterling Book";
+      }
+    }
+    .background {
+        opacity: .7;
+        background-color: #000;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .close-overlay {
+        color: $lgray;
+        font-family: "Foundry Sterling Light";
+        font-size: 3.6em;
+        position: absolute;
+        right: 0vw;
+        text-decoration: none;
+        top: 0vw;
+        transform: rotate(45deg);
+        transition: color 0.1s linear;
+        line-height: .6em;
+        cursor: pointer;
+        overflow: hidden;
+        &:hover {
+            color: $gray;
+        }
+    }
+    &.reveal {
+
+        z-index: 100;
+        opacity: 1;
+        transition: opacity $overlayAnimationSpeed linear, z-index $overlayAnimationSpeed linear;
+        .overlay{
+          opacity: 1;
+          transition: opacity $overlayAnimationSpeed ease-out $overlayAnimationSpeed;
+          z-index: 0;
+        }
+        &.slide-up{
+          .overlay {
+              transform: translateY(0%);
+              opacity: 1;
+              transition: transform $overlayAnimationSpeed ease-out $overlayAnimationSpeed;
+          }
+        }
+
+        &:hover {
+            color: #222;
+        }
+        .close-overlay:after {
+            content: '+';
+            /* ANSI X letter */
+        }
+    }
+    .tab-content {
+        .tab-pane {
+            .data-list {
+                .data-row {
+                    .data-container {
+                        .data-label {
+                            width: 200px
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

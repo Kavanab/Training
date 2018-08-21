@@ -1,0 +1,72 @@
+<div class="column-left">
+    <!-- <div ui-view="map" class="map-container "></div> -->
+    <!-- <div class="tile tile-payments" id="tile-payments">
+            <header>
+                <ul class="header-tabs">
+                    <li class="active">
+                        <a href="#tab-payment-info" data-toggle='tab' class="tab-link">Payment Info</a>
+                    </li>
+                    <li>
+                        <a href="#tab-online-info" data-toggle='tab' class="tab-link">Online Info</a>
+                    </li>
+                </ul>
+                <div class="tab-indicator-container" data-tab="tile-payments"><span class="tab-indicator"></span></div>
+                <span class="title"></span>
+                <aside class="ezpayid">CUSTOMER ID: {{getField(custData, "ezPayId")}}</aside>
+            </header>
+            <section class="content tab-content clearfix">
+                <div class="tab-pane active" id="tab-payment-info">
+                    <dl class="data-list clearfix payment">
+                        <dt>Last Payment</dt>
+                        <dd>&nbsp;</dd>
+                        <dt>Billing Cycle</dt>
+                        <dd>&nbsp;</dd>
+                        <dt>Price Group</dt>
+                        <dd>&nbsp;</dd>
+                        <dt>Credit Limit</dt>
+                        <dd>&nbsp;</dd>
+                        <dt>Delinquent</dt>
+                        <dd>&nbsp;</dd>
+                    </dl>
+                    <div class="balance-due">
+                        <span class="due-date">Balance due August 42</span>
+                        <span class="ammount">$85.20</span>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab-online-info">
+                    <dl class="data-list clearfix">
+                        <dt>Logon Status</dt>
+                        <dd>{{custProfile.logon_status}}&nbsp;</dd>
+                        <dt>Registered Code</dt>
+                        <dd>{{custProfile.registered_code }}&nbsp;</dd>
+                        <dt>Email</dt>
+                        <dd>{{custProfile.email | lowercase }}&nbsp;</dd>
+                        <dt>Last Login Date</dt>
+                        <dd>{{custProfile.last_login_date }}&nbsp;</dd>
+                        <dt>Autopay</dt>
+                        <dd>{{custProfile.auto_pay }}&nbsp;</dd>
+                    </dl>
+                </div>
+            </section>
+        </div> -->
+    <section class="tile-container">
+        <tile-contacts></tile-contacts>
+    </section>
+    <section class="tile-container">
+        <tile-services></tile-services>
+    </section>
+    <section class="tile-container">
+        <div class="tile tile-map" id="tile-map">
+              <ui-gmap-google-map center='map.center' zoom='map.zoom' options="map.options">
+                <ui-gmap-marker coords="marker.coords" options="marker.options" idkey="marker.id">
+                </ui-gmap-marker>
+            </ui-gmap-google-map>
+            <div class="map-overlay" ui-sref="app.customer.map"></div>
+        </div>
+    </section>
+</div>
+<div class="column-right">
+    <section class="tile-container">
+        <activity-feed></activity-feed>
+    </section>
+</div>

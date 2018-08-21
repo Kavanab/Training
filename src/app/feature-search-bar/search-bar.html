@@ -1,0 +1,68 @@
+<div class="feature-search-bar" ng-controller="TimeController">
+    <section id="logo" class="logo">
+        <svg class="wm-logo">
+            <image xlink:href="img/wm-logo.svg" height="100%" width="100%" />
+        </svg>
+    </section>
+    <section class="search-container" ng-class="{'listening': listening === true}">
+        <div class="search-dropdown closed" ng-class="{'closed': !searchDropdownOpen}" id="primary-search-dropdown" flowtype min-font="14" max-font="28" font-ratio="5">
+         <span class="icon-wm-font icon-search" ng-click="toggleSearchDropdown()"></span>
+            <span class="icon-wm-font icon-d-arrow" ng-click="toggleSearchDropdown()"></span>
+            <div class="vertical-container">
+               <ul class="choices" flowtype min-font="11" max-font="20" font-ratio="7">
+                <li ng-click="handleSearchDropdownChange('active')"><span class="icon-wm-font icon-radio-{{searchFilterState.active}}" ></span><label for="search-filter-active">Active</label>
+                </li>
+                <li ng-click="handleSearchDropdownChange('inactive')"><span class="icon-wm-font icon-radio-{{searchFilterState.inactive}}" ></span><label for="search-filter-inactive">Cancelled</label>
+                </li>
+                <li ng-click="handleSearchDropdownChange('all')"> <span class="icon-wm-font icon-radio-{{searchFilterState.all}}" ></span><label for="search-filter-all">All</label>
+                </li>
+            </ul>
+            </div>
+            
+            <!--             <div class="hot-area" ng-click="toggleSearchDropdown()"><span class="arrow"></span><span class="icon-wm icon-search"></span>
+            </div>
+            <ul class="choices" flowtype min-font="24" max-font="46" font-ratio="35">
+                <li><input type="radio" name="search-filter" id="search-filter-active" ng-click="handleSearchDropdownChange()" ng-model="searchDropdownSelection" value="active" class="pretty radio" /><label for="search-filter-active">Active</label>
+                </li>
+                <li><input type="radio" name="search-filter" id="search-filter-inactive" ng-click="handleSearchDropdownChange()" ng-model="searchDropdownSelection" value="inactive" class="pretty radio" /><label for="search-filter-inactive">Cancelled</label>
+                </li>
+                <li><input type="radio" name="search-filter" id="search-filter-all" ng-click="handleSearchDropdownChange()" ng-model="searchDropdownSelection" value="all" class="pretty radio" /><label for="search-filter-all">All</label>
+                </li>
+            </ul> -->
+        </div>
+
+        <input type="text" ng-model="inputSearch" ng-Trim=false ng-keyup="handleKeydown()" placeholder="{{listening ? placeholderTextListening: ''}}{{!listening ? placeholderText : ''}}" class="input-primary-customer-search" flowtype min-font="24" max-font="46" font-ratio="35" ng-class="{'listening': listening === true}" >
+        <section class="currently" ng-show="curTime">
+            <ul>
+                <li class="clock"><span class="time">{{curTime}}</span><span class="date subtext">{{curDate}}</span></li>
+                <li class="weather" ng-show="weather.temperature">
+                    <div class="weather-summary">
+                        <span class="temperature" ng-class="{undefined:'data-loading'}[weather.temperature]">{{weather.temperature | number:0}}&deg;</span>
+                        <weather></weather><span class="location subtext" ng-class="{undefined:'data-loading'}[city]">{{city}}, {{state}}</span>
+                    </div>
+                </li> 
+            </ul>
+        </section>
+        <span class="mic-container" ng-click='listenForSpeech()' ng-show="( ((inputSearch.length < 1) || (!inputSearch.length) || (listening === true)) && (!!speechRecognitionSupport))" ng-class="{'listening': listening === true}" flowtype min-font="8" max-font="40" font-ratio="1" >
+            <span class="ring-init"></span>
+            <span class="ring-1"></span>
+            <span class="ring-2"></span>
+            <span class="ring-3"></span>
+            <span class="ring-4"></span>
+            <span class="ring-5"></span>
+            <span class="ring-6"></span>
+            <span class="ring-7"></span>
+            <span class="ring-8"></span>
+            <span class="ring-9"></span>
+            <span class="ring-bg"></span>
+            <span class="icon-wm-font icon-voice" ></span>
+        </span>
+        <span class="icon-wm icon-clear-search" ng-click='clearInput()' ng-show="inputSearch.length > 0 && listening !== true" ></span>
+        <span class="results-count" ng-show="inputSearch.length > 0 "><span class="count">{{resultsCount | number}}</span> result<span ng-show="resultsCount > 1">s</span></span>
+    </section>
+    <!--
+  -->
+    <div class="service-billing-toggle {{$root.ESqueryType}}" ng-show="inputSearch.length > 0" flowtype min-font="12" max-font="20" font-ratio="15">
+        <span class="service" ng-click="switchESquery('service')">Service</span><span class="billing" ng-click="switchESquery('billing')">Billing</span>
+    </div>
+</div>

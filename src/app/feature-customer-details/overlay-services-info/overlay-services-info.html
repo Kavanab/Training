@@ -1,0 +1,346 @@
+<section class="overlay-container slide-up padding-2 overlay-services-info" id="overlay-services-info">
+    <div class="background"></div>
+    <div class="overlay" flowtype min-font="12" max-font="16" font-ratio="50">
+        <div class="close-overlay"></div>
+        <h1>Services Detail</h1>
+        <h2>Services</h2>
+        <ul class="accordian-list" >
+
+            <li ng-repeat="service in services.active.services" ng-class="{'shut': (service.id !==  clickedServiceID)}" ng-click="toggleAccordian($event)" class="service-container" id="service-{{service.id}}">
+                    <!-- {{service.isFee}} -->
+            <h2 class="fees-sub-heading">Additional Charges</h2>
+                <header>
+                            
+                    <h2 class="toggle-accordian" ng-click="toggleAccordian($event)">
+                    <span ng-click="toggleAccordian($event)" class="toggle-accordian">
+                    <span ng-show="!service.isFee">{{service.prettyEquipmentSize}} </span>{{service.prettyServiceName}}
+                    <span ng-if="service.enterprise_catalog.description.indexOf('xtra') >= 0"> - <span ng-if"service.auto_bill === 'N'"></span>Extra Pickup</span>
+                    </span>
+    
+
+                    </span></h2>
+                    <span class="toggle toggle-accordian"  ng-click="toggleAccordian($event)"></span>
+                    <ul class="header-tabs">
+                        <li class="active">
+                            <a href="{{location.path()}}#tab-services-overview-{{$index}}" data-toggle='tab' class="tab-link">Overview</a><span class="indicator"></span>
+                        </li>
+                        <li>
+                            <a href="{{location.path()}}#tab-services-catalog-{{$index}}" data-toggle='tab' class="tab-link">Catalog</a><span class="indicator"></span>
+                        </li>
+                        <li>
+                            <a href="{{location.path()}}#tab-services-material-{{$index}}" data-toggle='tab' class="tab-link">Material</a><span class="indicator"></span>
+                        </li>
+                        <li>
+                            <a href="{{location.path()}}#tab-services-equipment-{{$index}}" data-toggle='tab' class="tab-link">Equipment</a><span class="indicator"></span>
+                        </li>
+                        <li>
+                            <a href="{{location.path()}}#tab-services-pricing-{{$index}}" data-toggle='tab' class="tab-link">Pricing</a><span class="indicator"></span>
+                        </li>
+                        <li>
+                            <a href="{{location.path()}}#tab-services-metadata-{{$index}}" data-toggle='tab' class="tab-link">Metadata</a><span class="indicator"></span>
+                        </li>
+                        <li>
+                            <a href="{{location.path()}}#tab-services-operations-{{$index}}" data-toggle='tab' class="tab-link">Operations</a><span class="indicator"></span>
+                        </li>
+                    </ul><span class="bottom-line"></span>
+                </header>
+                <section class="content tab-content" >
+                    <div class="tab-pane active" id="tab-services-overview-{{$index}}">
+                        <div class="data-list">
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Status</span><span class="data">{{service.status}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Occurs</span><span class="data">{{service.occurs}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Taxable</span><span class="data">{{service.taxable}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Auto Bill</span><span class="data">{{service.auto_bill}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Type Code</span><span class="data">{{service.type_code}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Special Handling</span><span class="data">{{service.special_handling_description}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab-services-catalog-{{$index}}">
+                        <div class="data-list">
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">ID</span><span class="data">{{service.enterprise_catalog.id}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Name</span><span class="data">{{service.enterprise_catalog.name}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Description</span><span class="data">{{service.enterprise_catalog.description}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Category</span><span class="data">{{service.enterprise_catalog.category}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Sub Category</span><span class="data">{{service.enterprise_catalog.sub_category}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Line of Business</span><span class="data">{{service.enterprise_catalog.line_of_business}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab-services-material-{{$index}}">
+                        <div class="data-list">
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Name</span><span class="data">{{service.material.name}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">ID</span><span class="data">{{service.material.id}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Code</span><span class="data">{{service.material.code}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Special Handling</span><span class="data">{{service.material.special_handling}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Manifest</span><span class="data">{{service.material.manifest}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab-services-equipment-{{$index}}">
+                        <div class="data-list">
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Name</span><span class="data">{{service.equipment.name}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">ID</span><span class="data">{{service.equipment.id}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Description</span><span class="data">{{service.equipment.description}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Volume</span><span class="data">{{service.equipment.volume}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Count</span><span class="data">{{service.equipment.count}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">UOM</span><span class="data">{{service.equipment.uom}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab-services-pricing-{{$index}}">
+                        <div class="data-list">
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Extended Cost</span><span class="data">{{service.pricing.extended_cost_amount | currency}} {{service.pricing.currency_code}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Disposal Rate</span><span class="data">{{service.pricing.disposal_rate_amount | currency}} {{service.pricing.currency_code}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Disposal Type</span><span class="data">{{service.pricing.disposal_rate_type}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">UOM</span><span class="data">{{service.pricing.uom}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab-services-metadata-{{$index}}">
+                        <div class="data-list">
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Service Code</span><span class="data">{{service.wm_metadata.service_code}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Service Cycle Code</span><span class="data">{{service.wm_metadata.service_cycle_code}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab-services-operations-{{$index}}">
+                        <div class="data-list" ng-repeat="operation in service.operations | orderBy: 'route_id'">
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Route ID</span><span class="data">{{operation.route_id}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Day of Service</span><span class="data">{{operation.day_of_week | capitalize}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Notes</span><span class="data">{{operation.notes}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </li>
+        </ul>
+
+        <h2 ng-show="services.active.fees.length > 0" class="additional-charges">Additional Charges</h2>
+        <ul class="accordian-list">
+
+            <li ng-repeat="service in services.active.fees" ng-class="{'shut': (service.id !==  clickedServiceID)}" ng-click="toggleAccordian($event)" class="service-container" id="service-{{service.id}}">
+                    <!-- {{service.isFee}} -->
+            <h2 class="fees-sub-heading">Additional Charges</h2>
+                <header>
+                            
+                    <h2 class="toggle-accordian" ng-click="toggleAccordian($event)">
+                    <span ng-click="toggleAccordian($event)" class="toggle-accordian">
+                    <span ng-show="!service.isFee">{{service.prettyEquipmentSize}} </span>{{service.prettyServiceName}}
+                    <span ng-if="service.enterprise_catalog.description.indexOf('xtra') >= 0"> - <span ng-if"service.auto_bill === 'N'"></span>Extra Pickup</span>
+                    </span>
+    
+
+                    </span></h2>
+                    <span class="toggle toggle-accordian"  ng-click="toggleAccordian($event)"></span>
+                    <ul class="header-tabs">
+                        <li class="active">
+                            <a href="{{location.path()}}#tab-overview-{{$index}}" data-toggle='tab' class="tab-link">Overview</a><span class="indicator"></span>
+                        </li>
+                        <li>
+                            <a href="{{location.path()}}#tab-catalog-{{$index}}" data-toggle='tab' class="tab-link">Catalog</a><span class="indicator"></span>
+                        </li>
+                        <li>
+                            <a href="{{location.path()}}#tab-material-{{$index}}" data-toggle='tab' class="tab-link">Material</a><span class="indicator"></span>
+                        </li>
+                        <li>
+                            <a href="{{location.path()}}#tab-equipment-{{$index}}" data-toggle='tab' class="tab-link">Equipment</a><span class="indicator"></span>
+                        </li>
+                        <li>
+                            <a href="{{location.path()}}#tab-pricing-{{$index}}" data-toggle='tab' class="tab-link">Pricing</a><span class="indicator"></span>
+                        </li>
+                        <li>
+                            <a href="{{location.path()}}#tab-metadata-{{$index}}" data-toggle='tab' class="tab-link">Metadata</a><span class="indicator"></span>
+                        </li>
+                        <li>
+                            <a href="{{location.path()}}#tab-operations-{{$index}}" data-toggle='tab' class="tab-link">Operations</a><span class="indicator"></span>
+                        </li>
+                    </ul><span class="bottom-line"></span>
+                </header>
+                <section class="content tab-content" >
+                    <div class="tab-pane active" id="tab-overview-{{$index}}">
+                        <div class="data-list">
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Status</span><span class="data">{{service.status}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Occurs</span><span class="data">{{service.occurs}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Taxable</span><span class="data">{{service.taxable}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Auto Bill</span><span class="data">{{service.auto_bill}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Type Code</span><span class="data">{{service.type_code}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Special Handling</span><span class="data">{{service.special_handling_description}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab-catalog-{{$index}}">
+                        <div class="data-list">
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">ID</span><span class="data">{{service.enterprise_catalog.id}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Name</span><span class="data">{{service.enterprise_catalog.name}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Description</span><span class="data">{{service.enterprise_catalog.description}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Category</span><span class="data">{{service.enterprise_catalog.category}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Sub Category</span><span class="data">{{service.enterprise_catalog.sub_category}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Line of Business</span><span class="data">{{service.enterprise_catalog.line_of_business}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab-material-{{$index}}">
+                        <div class="data-list">
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Name</span><span class="data">{{service.material.name}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">ID</span><span class="data">{{service.material.id}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Code</span><span class="data">{{service.material.code}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Special Handling</span><span class="data">{{service.material.special_handling}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Manifest</span><span class="data">{{service.material.manifest}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab-equipment-{{$index}}">
+                        <div class="data-list">
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Name</span><span class="data">{{service.equipment.name}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">ID</span><span class="data">{{service.equipment.id}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Description</span><span class="data">{{service.equipment.description}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Volume</span><span class="data">{{service.equipment.volume}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Count</span><span class="data">{{service.equipment.count}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">UOM</span><span class="data">{{service.equipment.uom}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab-pricing-{{$index}}">
+                        <div class="data-list">
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Extended Cost</span><span class="data">{{service.pricing.extended_cost_amount | currency}} {{service.pricing.currency_code}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Disposal Rate</span><span class="data">{{service.pricing.disposal_rate_amount | currency}} {{service.pricing.currency_code}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Disposal Type</span><span class="data">{{service.pricing.disposal_rate_type}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">UOM</span><span class="data">{{service.pricing.uom}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab-metadata-{{$index}}">
+                        <div class="data-list">
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Service Code</span><span class="data">{{service.wm_metadata.service_code}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Service Cycle Code</span><span class="data">{{service.wm_metadata.service_cycle_code}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab-operations-{{$index}}">
+                        <div class="data-list" ng-repeat="operation in service.operations | orderBy: 'route_id'">
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Route ID</span><span class="data">{{operation.route_id}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Day of Service</span><span class="data">{{operation.day_of_week | capitalize}}</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-container"><span class="data-label">Notes</span><span class="data">{{operation.notes}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </li>
+        </ul>
+    </div>
+</section>

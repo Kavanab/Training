@@ -1,0 +1,48 @@
+.billing-summary-container {
+    flex: 0.25 !important;
+    min-height: 156px !important;
+    header{
+        .bottom-line{
+            background-color: #ffffff;
+        }
+    }
+    .tab-content {
+        .tab-pane.active {
+            display: flex;
+            justify-content: center;
+            .summaryAmount {
+                display: flex;
+                .loading {
+                    padding: 1vw 0 0 2vw;
+                    font-size: 0.96vw;
+                    color: #999999;
+                    position: absolute;
+                    top: 0px;
+                }
+                .one_amount {
+                    flex: 1;
+                    justify-content: center;
+                    text-align: center;
+                    padding: 5px;
+                    .description {
+                        display: block;
+                        font-size: 0.7vw;
+                        font-family: "Foundry Sterling Bold";
+                        padding-left: 1vw;
+                    }
+                    .dollar {
+                        font-size: 1.2vw;
+                        font-family: "Foundry Sterling Bold";
+                        .amount-dollar {
+                            font-size: 2.2vw;
+                        }
+                        sup {
+                            top: -0.9em !important;
+                            padding-left: 6px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

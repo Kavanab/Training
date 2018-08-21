@@ -1,0 +1,442 @@
+/* make keyframes that tell the start state and the end state of our object */
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    opacity: 1;
+    // make things invisible upon start
+}
+
+[ui-view="search"] {
+    // opacity: 0;
+    transition: all .3s linear;
+}
+
+[ui-view="search"].ng-enter {
+    // opacity: 0;
+}
+
+[ui-view="search"].ng-enter-active {
+    // opacity: 1;
+}
+
+[ui-view="search"].ng-leave {
+    // opacity: 1;
+    opacity: 0;
+}
+
+[ui-view="search"].ng-leave-active {
+    // opacity: 1;
+}
+
+.no-search-results {
+    &.show-it {
+        opacity: 1;
+        z-index: 2;
+    }
+    z-index: 1;
+    transition: opacity .3s ease-in;
+    opacity: 0;
+    font-size: 2.5em;
+    text-align: center;
+    margin-top: 8%;
+    position: relative;
+    a {
+        color: $greenr;
+        text-decoration: none;
+    }
+}
+
+body.viewing-customer {
+    position: fixed;
+    .search-results-container {
+        transform: translateX(-30%);
+        opacity: 0.6;
+    }
+}
+
+.search-results-container {
+    // transform: translateX(0);
+    transition: .3s ease-out;
+    opacity: 1;
+    &.do-search-result-transitions {
+        .search-results {
+            li {
+                transition: all .2s linear;
+            }
+        }
+    }
+    &.visible-search-results {
+        $resultsDelay: .02s;
+        .search-results {
+            li {
+                opacity: 1;
+                &:nth-child(1) {
+                    transition-delay: $resultsDelay*1;
+                }
+                &:nth-child(2) {
+                    transition-delay: $resultsDelay*2;
+                }
+                &:nth-child(3) {
+                    transition-delay: $resultsDelay*3;
+                }
+                &:nth-child(4) {
+                    transition-delay: $resultsDelay*4;
+                }
+                &:nth-child(5) {
+                    transition-delay: $resultsDelay*5;
+                }
+                &:nth-child(6) {
+                    transition-delay: $resultsDelay*6;
+                }
+                &:nth-child(7) {
+                    transition-delay: $resultsDelay*7;
+                }
+                &:nth-child(8) {
+                    transition-delay: $resultsDelay*8;
+                }
+                &:nth-child(9) {
+                    transition-delay: $resultsDelay*9;
+                }
+                &:nth-child(10) {
+                    transition-delay: $resultsDelay*10
+                }
+                &:nth-child(11) {
+                    transition-delay: $resultsDelay*11;
+                }
+                &:nth-child(12) {
+                    transition-delay: $resultsDelay*12;
+                }
+            }
+        }
+    }
+}
+
+//ul
+.search-results {
+    $borderradius: 12px;
+    color: $fore;
+    margin: 50px 25px 20px 25px;
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    justify-content: flex-start;
+    justify-content: -webkit-flex-start;
+    padding: 0;
+    list-style-type: none;
+    .customer-card-container {
+        opacity: 0;
+        flex: 0 1 33%;
+        &:empty {
+            height: 0;
+            border: none;
+        }
+        .customer-card {
+            // max-width: 700px;
+            // min-width: 300px;
+            box-sizing: border-box;
+            // display: inline-block;
+            background-color: $egg;
+            border-radius: $borderradius;
+            position: relative;
+            margin: 25px;
+            > a {
+                text-decoration: none;
+                color: #333;
+            }
+            // &:hover,
+            // {
+            //     &:not(.selected) {
+            //         .card-header, .card-body {
+            //             border: 7px solid $lime;
+            //             transition: border .1s ease-out;
+            //         }
+            //         .card-header {
+            //             border-bottom: none;
+            //         }
+            //         .card-body {
+            //             border-top: none;
+            //         }
+            //     }
+            // }
+            // .glyphicon {
+            //     float: left;
+            // }
+            // &.selected {
+            //     .card-header,
+            //     .card-body {
+            //         border: 7px solid $lime;
+            //         transition: border .1s ease-out;
+            //     }
+            //     .card-header {
+            //         border-bottom: none;
+            //     }
+            //     .card-body {
+            //         border-top: none;
+            //     }
+            // }
+            .card-header {
+                border: 7px solid white;
+                border-bottom: none;
+                transition: border .1s ease-out;
+                background-color: white;
+                padding: 13px 20px 20px;
+                border-top-left-radius: $borderradius;
+                border-top-right-radius: $borderradius;
+                position: relative;
+                ul {
+                    padding: 0;
+                    li {
+                        display: inline-block;
+                        margin: 0;
+                        padding: 0;
+                        background-color: transparent;
+                        white-space: nowrap;
+                        .icon-next-hit-area {
+                            cursor: pointer;
+                            position: absolute;
+                            right: -7px;
+                            height: 105%;
+                            width: 25%;
+                            top: -7px;
+                            border-top-right-radius: 12px;
+                        }
+                        a {
+                            &:hover {
+                                .icon-next-arrow {
+                                    opacity: 1;
+                                    // transition: all .1s ease-in;
+                                }
+                            }
+                            .icon-next-arrow {
+                                float: right;
+                                transition: all .1s ease-out;
+                                opacity: 0.4;
+                                position: absolute;
+                                background-position: 0px;
+                                background-image: url("/img/svg/drop-arrow.svg");
+                                width: 40px;
+                                height: 20px;
+                                transform: rotate(270deg);
+                                top: 40%;
+                                right: 30px;
+                            }
+                        }
+                        &:nth-child(1) {
+                            width: 75%;
+                        }
+                        &:nth-child(2) {
+                            width: 23%;
+                        }
+                    }
+                }
+                .data {
+                    &.meta-tags {
+                        width: 100px;
+                        height: auto;
+                        background-color: $lime;
+                        color: white;
+                        font-family: "Foundry Sterling Bold";
+                        font-size: .6em;
+                        line-height: 2em;
+                        padding: 4px 8px;
+                        letter-spacing: -0.3px;
+                        border: 1px solid $lime;
+                        border-radius: 3px;
+                        margin-right: 10px;
+                        &.commercial {
+                            background-color: $mgray;
+                            border-color: $mgray;
+                        }
+                        &.rolloff {
+                            background-color: $soylent;
+                            border-color: $soylent;
+                        }
+                        &.landfill {
+                            background-color: $fec;
+                            border-color: $fec;
+                        }
+                        &.cancelled {
+                            background-color: white;
+                            border-color: $darkred;
+                            color: $darkred;
+                        }
+                    }
+                    &.name {
+                        display: block;
+                        font-size: 2em;
+                        font-family: "Foundry Sterling Light";
+                        // color: $greenr;
+                        text-transform: capitalize;
+                        // .status{
+                        //     display: inline-block;
+                        //     width: 11px;
+                        //     height: 11px;
+                        //     border-radius: 100%;
+                        //     margin-right: 8px;
+                        //     background-color: $red;
+                        //     margin-bottom: 2px;
+                        // }
+                    }
+                    &.billed-to {
+                        text-transform: capitalize;
+                        color: $gray;
+                        font-family: "Foundry Sterling Book Italic";
+                    }
+                }
+            }
+            .card-body {
+                border: 7px solid $egg;
+                border-top: none;
+                transition: border .1s ease-out;
+                padding: 0 20px 20px 20px;
+                border-bottom-left-radius: $borderradius;
+                border-bottom-right-radius: $borderradius;
+                ul {
+                    padding: 0;
+                    li {
+                        list-style-type: none;
+                        padding-top: 20px;
+                        &.two-up {
+                            width: 49%;
+                            display: inline-block;
+                        }
+                    }
+                }
+                .data {
+                    // font-size: 18px;
+                    letter-spacing: -0.5px;
+                    &.empty-value {
+                        &:after {
+                            content: 'N/A';
+                        }
+                    }
+                    &.email {
+                        text-transform: lowercase;
+                    }
+                    &.phone {
+                        letter-spacing: -1px;
+                    }
+                    &.ezpayid {
+                        letter-spacing: -1px;
+                    }
+                    &.mas-account {
+                        letter-spacing: -1px;
+                    }
+                    &.service-address {
+                        text-transform: capitalize;
+                    }
+                }
+                .label {
+                    color: $fore;
+                    display: block;
+                    text-align: left;
+                    font-size: .7em;
+                    line-height: 1.5em;
+                    text-transform: uppercase;
+                    padding: 0;
+                    font-family: "Foundry Sterling Bold";
+                }
+            }
+        }
+    }
+}
+
+.results-container {
+    color: white;
+    // font-size: 24px;
+    // &.animate {
+    //     opacity: 1;
+    //     -webkit-animation: fadeIn ease-in 1;
+    //     /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+    //     -moz-animation: fadeIn ease-in 1;
+    //     animation: fadeIn ease-in 1;
+    //     -webkit-animation-fill-mode: forwards; // this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)
+    //     -moz-animation-fill-mode: forwards;
+    //     animation-fill-mode: forwards;
+    //     -webkit-animation-duration: 0.1s;
+    //     -moz-animation-duration: 0.1s;
+    //     animation-duration: 0.1s;
+    //     //  @for $i from 1 through 20 {
+    //     //    &:nth-child(#{$i}) {
+    //     //     -webkit-animation-delay: (0.1s * $i);
+    //     //     -moz-animation-delay: (0.1s * $i);
+    //     //     animation-delay: (0.1s * $i);
+    //     //   }
+    //     // }
+    // }
+    h2 {
+        position: absolute;
+        top: 3px;
+        right: 100px;
+        color: #C1C1C1;
+        letter-spacing: .08em;
+        img {
+            float: right;
+            margin-left: 30px;
+        }
+    }
+}
+
+@media screen and (max-width: $breakpointXXLwidth) {
+    .search-results .customer-card-container .customer-card .card-header .data.name {
+        font-size: 1.5em;
+    }
+}
+
+@media screen and (max-width: $breakpointXLwidth) {
+    .search-results .customer-card-container .customer-card .card-header .data.name {
+        // font-size: 25px;
+    }
+}
+
+@media screen and (max-width: $breakpointLgwidth) {
+    .search-results .customer-card-container .customer-card .card-header .data.name {
+        // font-size: 20px;
+        font-family: "Foundry Sterling Book";
+    }
+}
+
+@media screen and (max-width: 1550px) {
+    .search-results .customer-card-container .customer-card .card-header .data.name {
+        // font-size: 30px;
+        font-family: "Foundry Sterling Light";
+    }
+}
+
+@include media("width>=2200px") {
+    .search-results {
+        .customer-card-container {
+            flex: 0 1 25%;
+            .customer-card .card-header .data.name {
+                font-size: 1.7em;
+            }
+        }
+    }
+}

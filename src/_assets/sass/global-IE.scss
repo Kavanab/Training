@@ -1,0 +1,16 @@
+@media screen\0 {
+    .billing-summary-container {
+        flex: 0.009 !important;
+    }
+    .billing-details-container {
+        .timeline-invoices-icon {
+            // padding: 1.8vw;
+            // flex-grow: 0;
+        }
+    }
+    .overlay {
+        #pdf-embed {
+            border: 2px solid #ffffff;
+        }
+    }
+}

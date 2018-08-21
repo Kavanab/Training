@@ -1,0 +1,207 @@
+[
+    {
+        "date": "08/01/2018",
+        "update": [
+            {
+                "id": 1,
+                "description": "Various fixes and enhancements.",
+                "subList": [
+                    {
+                        "subListDescr": "Fixed Google Maps API issues."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "date": "06/13/2018",
+        "update": [
+            {
+                "id": 1,
+                "description": "Various fixes and enhancements.",
+                "subList": [
+                    {
+                        "subListDescr": "Fix HOC email triggering logic."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "date": "06/11/2018",
+        "update": [
+            {
+                "id": 1,
+                "description": "You can now send HOC photos through email for Battle Against Contamination.",
+                "path": "/img/updates/HOC.gif"
+            }
+        ]
+    },
+    {
+        "date": "05/03/2018",
+        "update": [
+            {
+                "id": 1,
+                "description": "You can now close some cases directly from CAAG.",
+                "path": "/img/updates/close-a-case.gif"
+            },
+            {
+                "id": 2,
+                "description": "New icons for open and closed cases.",
+                "path": "/img/updates/closed-open-cases.gif"
+            },
+            {
+                "id": 3,
+                "description": "New icons for open and resolved tickets.",
+                "path": "/img/updates/closed-open-tickets.gif"
+            },
+            {
+                "id": 4,
+                "description": "Various fixes and enhancements.",
+                "subList": [
+                    {
+                        "subListDescr": "Fixed issue of wrong service icons displayed at 80% zoom-in."
+                    },
+                    {
+                        "subListDescr": "CAAG internal enhancement to enable build for different environments."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "date": "04/09/2018",
+        "update": [
+            {
+                "id": 1,
+                "description": "Various fixes and enhancements.",
+                "subList": [
+                    {
+                        "subListDescr": "Changed CAAG ETA to match what on WM.com."
+                    },
+                    {
+                        "subListDescr": "Activity Feed: Fixed date of service hard to read issue."
+                    },
+                    {
+                        "subListDescr": "Fixed issue of no ETA calculated when a service is planned for a date other than today."
+                    },
+                    {
+                        "subListDescr": "Activity Feed: Planned services now sorted by the ordered_date currently labeled as 'scheduled for'."
+                    },
+                    {
+                        "subListDescr": "Map Preview: Fixed blank window issue."
+                    },
+                    {
+                        "subListDescr": "Fixed issue of container shifting at 2370px wide."
+                    },
+                    {
+                        "subListDescr": "Edit Contact Info: Allow email address case to change."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "date": "02/20/2018",
+        "update": [
+            {
+                "id": 1,
+                "description": "Any customer with services today will now display the service vehicle en route on a map.",
+                "path": "/img/updates/truck-on-map.gif"
+            },
+            {
+                "id": 2,
+                "description": "Click any stop marker for more information.",
+                "path": "/img/updates/truck-on-map-pop.gif"
+            }
+        ]
+    },
+    {
+        "date": "01/08/2018",
+        "update": [
+            {
+                "id": 1,
+                "description": "Check out what's new in CAAG with the ‘latest updates’ feature.",
+                "path": "/img/updates/new-features.gif"
+            },
+            {
+                "id": 2,
+                "description": "Toggle between Fahrenheit and Celsius by clicking on the temperature.",
+                "path": "/img/updates/f-to-c.gif"
+            },
+            {
+                "id": 3,
+                "description": "Various fixes and enhancements.",
+                "subList": [
+                    {
+                        "subListDescr": "Edit Contact Info: Fixed a bug where sometimes you can't get to the second screen."
+                    },
+                    {
+                        "subListDescr": "Activity Feed: Case summary now shows: Category - Subcategory - Subject."
+                    },
+                    {
+                        "subListDescr": "Activity Feed: Now showing residential services as negative when the HOC exception reason is ‘Not Out / Container Empty‘."
+                    },
+                    {
+                        "subListDescr": "Activity Feed: Changed service label from ‘Ordered By‘ to ‘Scheduled For‘ to better represent the meaning of that field."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "date": "11/15/2017",
+        "update": [
+            {
+                "id": 1,
+                "description": "More activity entries will now load once you reach the bottom of the feed.",
+                "path": "/img/updates/scrolling.gif"
+            }
+        ]
+    },
+    {
+        "date": "10/20/2017",
+        "update": [
+            {
+                "id": 1,
+                "description": "You can now add MAS Notes.",
+                "path": "/img/updates/mas-notes.gif"
+            }
+        ]
+    },
+    {
+        "date": "09/15/2017",
+        "update": [
+            {
+                "id": 1,
+                "description": "Cases make their debut on activity feed.",
+                "path": "/img/updates/cases.gif"
+            },
+            {
+                "id": 2,
+                "description": "Filters have a simpler, more streamlined look.",
+                "path": "/img/updates/filters.gif"
+            }
+        ]
+    },
+    {
+        "date": "08/01/2017",
+        "update": [
+            {
+                "id": 1,
+                "description": "An Estimated Time of Arrival for planned services is now displayed.",
+                "path": "/img/updates/eta.gif"
+            },
+            {
+                "id": 2,
+                "description": "New icons notify you if the container is still full or has been serviced.",
+                "path": "/img/updates/new-icons.gif"
+            },
+            {
+                "id": 3,
+                "description": "All service exceptions now sport a notification icon.",
+                "path": "/img/updates/exception.gif"
+            }
+        ]
+    }
+]

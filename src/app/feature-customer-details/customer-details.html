@@ -1,0 +1,71 @@
+<div class="caag-updates-bar" ng-show="!!caagUpdatesBadgeCount && !!showingUpdateBar" ng-click="caagDismissUpdatesBar('temp')">
+    <div class="updates-bar-content" ng-click="$event.stopPropagation();">
+        <span class="new" ng-click="showUpdates()">NEW!</span>
+        <span class="description" ng-click="showUpdates()">{{lastUnviewedUpdate}}</span>
+        <span class="view-detail-link" ng-click="showUpdates()">VIEW DETAILS</span>
+        <span class="up-caret" ng-click="caagDismissUpdatesBar('temp')">^</span>
+        <div class="dismiss-container">
+            <span class="dismiss-link" ng-click="caagDismissUpdatesBar('perm')">DISMISS</span>
+        </div>
+    </div>
+</div>
+<section class="customer-header">
+    <div class="identity">
+        <div class="identity-meta">
+            <span class="line-of-business {{ getField(custData, 'lineOfBusiness') | lowercase}}" ng-show="custData">{{getField(custData, "lineOfBusiness")}}</span>
+            <span class="status {{ getField(custData, 'status') | lowercase}}" ng-show="custData">{{ getField(custData, "statusHuman") | uppercase}}</span><span class="ezpayid" ng-show="custData"><span class="account-id-label">CUSTOMER ID:</span> {{getField(custData,
+            "ezPayId")}}
+            <span class="account-id-label">&nbsp;&nbsp;|&nbsp;&nbsp;</span><span class="account-id-label">MAS ACCOUNT:</span> {{getField(custData, "MASaccountNumber")}}</span>
+        </div>
+        <span class="name" ng-show="custData">{{getField(custData, "serviceName") | lowercase}}</span>
+    </div>
+    <section class="clock">
+        <span class="time">{{customerClock.time.curTime}} <span class="timezone">{{customerClock.zone.abbreviation}}</span></span><span class="date subtext">{{customerClock.time.curDate}}</span>
+    </section>
+    <section class="customer-weather">
+        <div class="weather-summary">
+            <span class="temperature" ng-class="{undefined:'data-loading'}[weather.temperature]" ng-show="weather.uom == 'F'" ng-click="weatherUoMToggle()">
+                {{weather.temperature | number:0}}&deg;
+                <span class="uom">{{weather.uom}}</span>
+            </span>
+            <span class="temperature" ng-class="{undefined:'data-loading'}[weather.temperatureC]" ng-show="weather.uom == 'C'" ng-click="weatherUoMToggle()">
+                {{weather.temperatureC | number:0}}&deg;
+                <span class="uom c">{{weather.uom}}</span>
+            </span>
+            <weather></weather><span class="location subtext" ng-class="{undefined:'data-loading'}[city]">{{city | lowercase}}, {{state | uppercase}}</span>
+        </div>
+    </section>
+</section>
+<nav class="customer-left-nav">
+    <div class="caag-updates-bar" ng-show="!!caagUpdatesBadgeCount && !!showingUpdateBar">&nbsp;</div>
+    <span class="notch"></span>
+    <a class="back left-nav-item" ng-click="doBackToSearch()"><span class="icon"></span></a>
+    <a class="overview left-nav-item" ui-sref="app.customer.overview" ui-sref-active="active"><span class="icon" ></span></a>
+    <a class="location left-nav-item" ui-sref="app.customer.map" ui-sref-active="active"><span class="icon" ></span></span></a>
+    <a class="location-new left-nav-item" ui-sref="app.customer.mapnew" ui-sref-active="active"> <span class="icon"></span></a>
+    <a class="billing-icon left-nav-item" ui-sref="app.customer.billing" ui-sref-active="active"> <span class="icon"></span></a>
+
+    <div class="exit-links">
+        <a ng-href="{{getCaagUrl(custData)}}" class="view-in-opus">OPUS</a>
+        <a ng-href="https://www.wm.com/myaccount/csrCustomerSearch.do?action=csrLanding&amp;ezpayid={{getField(custData, 'ezPayId')}}" class="view-in-csr">Agent Desktop</a>
+        <div class="credits"><a href="http://forecast.io">Powered by Forecast</a></div>
+    </div>
+</nav>
+<div ui-view="overview" class="overview-view" ng-class="{'active': $root.currentState === 'app.customer.overview'}"></div>
+<div ui-view="mapServiceAddress" class="service-address-map-view"></div>
+<div ui-view="truckOnMap" class="service-address-map-view-new"></div>
+<div ui-view="billingOverview" class="overview-view customer-billing-overview" ng-class="{'active': $root.currentState === 'app.customer.billing'}"></div>
+<overlay-services-info></overlay-services-info>
+<overlay-contacts-edit></overlay-contacts-edit>
+<overlay-contacts-edit-confirm></overlay-contacts-edit-confirm>
+<overlay-contacts-edit-reason></overlay-contacts-edit-reason>
+<overlay-contacts-edit-result></overlay-contacts-edit-result>
+<overlay-note-edit></overlay-note-edit>
+<overlay-contact-email-invoice></overlay-contact-email-invoice>
+<overlay-note-edit-result></overlay-note-edit-result>
+<overlay-activity-feed-exception-photo></overlay-activity-feed-exception-photo>
+<overlay-case-close></overlay-case-close>
+<!-- Placing these two directives in the right view-file -->
+<invoice-not-found></invoice-not-found>
+<overlay-pdf-invoice></overlay-pdf-invoice>
+<oops-no-email></oops-no-email>

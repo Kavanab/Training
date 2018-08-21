@@ -1,0 +1,93 @@
+<section class="overlay-container padding-2 overlay-contacts-edit-confirm" id="overlay-contacts-edit-confirm">
+    <div class="background"></div>
+    <div class="overlay" flowtype min-font="12" max-font="16" font-ratio="50">
+    	<!-- <div ng-class="showLoading"></div>
+    	<div ng-class="showLoader"></div>  -->
+        <div class="close-overlay"></div>
+        <h1>Confirm Address</h1>
+        
+        <form name="formContactsEditConfirm">
+        	<div class="form-container">
+        		<div class="form-column">
+        			<div class="data-list">
+        				<div class="data-row">
+        					<div class="data-container acknowledgement">
+        						<div class="data-value" ng-show="custDataMutable.billingAddressValidFlag">
+        							<p>We couldn't verify the address that you entered, but we did find one similar:</p>
+        						</div>
+        						<div class="data-value" ng-show="!custDataMutable.billingAddressValidFlag">
+        							<p>We couldn't verify the address that you entered and we didn't find any similar addresses in our system.</p>
+									<p>Are you sure you want to use this address?</p>
+        						</div>        						
+        					</div>
+        					
+        				</div>
+        				<div class="data-row">
+        					<div class="data-container content">
+	        					<div class="data-label">
+	        						You entered:
+	        					</div>
+	        					<div class="data-value">
+	        					    {{custDataMutable.billingAddress}}
+	        					</div>
+        					</div>
+        				</div>
+        				<div class="data-row" ng-show="custDataMutable.billingAddressValidFlag">
+        					<div class="data-container content">
+	        					<div class="data-label">
+	        						We corrected to:
+	        					</div>
+	        					<div class="data-value">
+	        					    {{custDataMutable.billingAddressClnsd}}
+	        					</div>
+        					</div>
+        				</div>        				
+        			</div>
+        		</div>
+        	</div>   
+        	
+       		</br></br>
+       		
+		    <div class="form-footer">
+		        <input class="btn-rev" type="button" value="USE ADDRESS I ENTERED"
+		        	ng-click="onContactEditConfirmNext(true)" />
+		        <input class="btn" type="button" value="BACK TO EDIT" ng-show="!custDataMutable.billingAddressValidFlag"
+		        	ng-click="onContactEditConfirmBack()" />
+		        <input class="btn" type="button" value="USE CORRECTED ADDRESS" ng-show="custDataMutable.billingAddressValidFlag"
+		        	ng-click="onContactEditConfirmNext(false)" />
+		    </div>
+		         
+        </form>
+        
+<!--    <p>We've standardized the billing address you entered. Please choose to accept or reject the change.</p>
+		<form name="formContactsEditConfirm">
+			<div class="form-container">
+				<div class="form-column">
+					<div class="data-list">
+						<label class="data-label">
+							<input type="radio" ng-model="custDataMutable.billingAddressOverwriteFlag" ng-value="true" ng-checked="custDataMutable.billingAddressOverwriteFlag">
+							Billing address as entered
+						</label>
+						<textarea rows="5" wrap="hard" disabled="true">{{custDataMutable.billingAddress}}</textarea>
+					</div>	
+				</div>
+				<div class="form-column">
+					<div class="data-list">
+						<label class="data-label">
+							<input type="radio" ng-model="custDataMutable.billingAddressOverwriteFlag" ng-value="false" ng-checked="!custDataMutable.billingAddressOverwriteFlag">
+							Standardized and cleansed billing address
+						</label>
+						<textarea rows="5" wrap="hard" disabled="true">{{custDataMutable.billingAddressClnsd}}</textarea>
+					</div>
+				</div>
+
+	        </div>
+	        </br></br>
+		    <div class="form-footer">
+		        <input class="btn" type="button" value="Next" ng-class="contactEditSaveButtonClass"
+		        	ng-click="onContactEditConfirmNext()" />
+		    </div>
+        </form> -->
+        
+    </div>
+</section>

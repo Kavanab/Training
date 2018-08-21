@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="3563 5040 30 30">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f7f7f7;
+        font-size: 23px;
+        font-family: FoundrySterling-Bold, Foundry Sterling;
+        font-weight: 700;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        stroke: #555;
+      }
+
+      .cls-3, .cls-5 {
+        fill: none;
+      }
+
+      .cls-3 {
+        stroke: #fff;
+        stroke-width: 3px;
+      }
+
+      .cls-4 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="Group_1107" data-name="Group 1107" transform="translate(2887 4684)">
+    <text id="_" data-name="$" class="cls-1" transform="translate(684 379)"><tspan x="0" y="0">$</tspan></text>
+    <g id="Rectangle_621" data-name="Rectangle 621" class="cls-2" transform="translate(677.693 376.585) rotate(-30)">
+      <rect class="cls-4" width="29" height="5"/>
+      <rect class="cls-5" x="0.5" y="0.5" width="28" height="4"/>
+    </g>
+    <g id="Ellipse_3" data-name="Ellipse 3" class="cls-3" transform="translate(676 356)">
+      <circle class="cls-4" cx="15" cy="15" r="15"/>
+      <circle class="cls-5" cx="15" cy="15" r="13.5"/>
+    </g>
+  </g>
+</svg>

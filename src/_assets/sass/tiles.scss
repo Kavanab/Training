@@ -1,0 +1,171 @@
+.tile {
+    // &.tile-payments {
+    //     .tab-indicator-container {
+    //         &[data-position='1'] {
+    //             .tab-indicator {
+    //                 width: 12%;
+    //             }
+    //         }
+    //         .tab-indicator {
+    //             width: 14%;
+    //         }
+    //     }
+    // }
+    // &.tile-contacts {
+    //     .tab-indicator-container {
+    //         &[data-position='1'] {
+    //             .tab-indicator {
+    //                 width: 17%;
+    //             }
+    //         }
+    //         .tab-indicator {
+    //             width: 17%;
+    //         }
+    //     }
+    // }
+    display: flex;
+    flex-flow: column;
+    header {
+        font-size: 1.1em;
+        padding: 0 1vw;
+        text-transform: uppercase;
+        font-family: "Foundry Sterling Bold";
+        letter-spacing: -0.5px;
+        position: relative;
+        line-height: 1em;
+        white-space: nowrap;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .bottom-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            display: block;
+            background-color: $feather;
+        }
+        @media screen and (-webkit-min-device-pixel-ratio: 0) {
+            //safari hack
+            min-height: 55px;
+            height: 55px;
+        }
+        .title {
+            color: $gray;
+        }
+        .header-action {
+            float: right;
+            a {
+                color: $lgray;
+                cursor: pointer;
+                text-decoration: none;
+                transition: color .1s ease-out;
+                &:hover{
+                  color: $mgray;
+                }
+            }
+            .count {
+                font-family: "Foundry Sterling Medium";
+                letter-spacing: -1px;
+            }
+        }
+        .icon-next-hit-area {
+            position: absolute;
+            right: 10px;
+            top: 7px;
+            zoom: 80%;
+            opacity: .6;
+            &:hover {
+                opacity: .8;
+            }
+        }
+        &.no-tabs {
+            padding-bottom: 20px;
+            padding-top: 20px;
+        }
+        aside {
+            font-family: "Foundry Sterling Book";
+            position: absolute;
+            right: 3%;
+            top: 33%;
+        }
+        // .tab-indicator-container {
+        //     width: 100%;
+        //     height: 4px;
+        //     position: absolute;
+        //     bottom: 0;
+        //     padding: 0 25px;
+        //     left: 0;
+        //     transition: all .2s ease-out;
+        //     transform: translateX(0%);
+        //     &[data-position='2'] {
+        //         transform: translateX(31%);
+        //     }
+        //     &[data-position='3'] {
+        //         transform: translateX(60%);
+        //     }
+        //     .tab-indicator {
+        //         width: 23%;
+        //         display: block;
+        //         background-color: $soylent;
+        //         height: 100%;
+        //     }
+        // }
+    }
+    > .content {
+        // min-height: 220px;
+        // padding-bottom: 10px;
+        position: relative;
+        border-radius: 0 0 8px 8px;
+        overflow: hidden;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        .no-tile-results {
+            padding: 1vw 0 0 1vw;
+            // width: 100%;
+            // flex-grow: 1;
+            color: $mgray;
+            background-color: white;
+            .dev-demo {
+                color: $lgray;
+                a {
+                    color: $lgray;
+                }
+            }
+            .general {}
+        }
+        .balance-due {
+            width: 50%;
+            border-left: 1px solid #c1c1c1;
+            height: 80%;
+            position: absolute;
+            right: 0;
+            top: 10%;
+            padding-top: .9em;
+            .due-date {
+                font-family: "Foundry Sterling Bold";
+                text-transform: uppercase;
+                color: $gray;
+                display: block;
+                text-align: center;
+            }
+            .ammount {
+                font-family: "Foundry Sterling Bold";
+                display: block;
+                text-align: center;
+                letter-spacing: -5px;
+                line-height: 1em;
+                color: $soylent;
+            }
+        }
+    }
+}
+
+@include media("height<1080px") {
+    .tile header {
+        min-height: 45px;
+        height: 45px;
+    }
+}

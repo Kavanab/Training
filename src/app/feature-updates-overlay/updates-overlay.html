@@ -1,0 +1,42 @@
+<div class="updates-overlay" ng-class="{'show': $root.showUpdatesOverlay}" flowtype min-font="10" max-font="18" font-ratio="75">
+    <div class="background" ng-click="closeUpdatesOverlay()"></div>
+    <section class="content" ng-show="!showingUpdateGraphic">
+        <span class="close" ng-click="closeUpdatesOverlay()"></span>
+        <div class="header">Updates</div>
+        <div class="updates-container">
+            <div class="release" ng-repeat="release in caagUpdatesArray" ng-class-even="'alt-row'">
+                <div>
+                    <div class="timestamp">
+                        <span class="descriptive">{{release.date | prettyTimeStamp: '' : 'medium-date'}}</span>
+                    <!--
+                    <div class="timestamp">
+                        <span class="relative toggle-timestamp">{{release.date | howLongAgo}} AGO</span>
+                        <span class="descriptive toggle-timestamp">{{release.date | prettyTimeStamp: '' : 'medium-date'}}</span>
+                    </div> -->
+                    <ol>
+                        <li class="update" ng-repeat="update in release.update">
+                            {{update.description}}
+                            <div class="button" ng-show="!!update.path" ng-click="showUpdateGraphic(release.date,update.id,update.path)" ng-mouseover="preloadUpdateGraphic(update.path)">
+                                <span class="icon play" ng-class="{'viewed': update.viewed}" ng-click="showUpdateGraphic(release.date,update.id,update.path)"></span>
+                            </div>
+                            <div class="button empty" ng-show="!update.path">
+                                <span class="icon play empty"></span>
+                            </div>
+                            <ul>
+                                <li class="sub-update" ng-repeat="subUpdate in update.subList">
+                                    {{subUpdate.subListDescr}}
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content-graphic" ng-class="{'show': showingUpdateGraphic}" ng-click="closeUpdatesOverlay()">
+        <!-- <span class="close" ng-click="closeUpdatesOverlay()"></span> -->
+        <div class="updates-graphic" ng-if="updateGraphicPath != ''">
+            <img src="{{updateGraphicPath}}">
+        </div>
+    </section>
+</div>

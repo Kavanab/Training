@@ -1,0 +1,35 @@
+.overlay-invoice-not-found{
+    .overlay {
+        width: 34vw !important;
+        text-align: center;
+        .invoicenotfound-container{
+            padding: 1vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .heading {
+                color: #434343;
+                font-family: "Foundry Sterling Bold";
+                font-size: 6vh;
+            }
+            .content{
+                display: block;
+                font-family: "Foundry Sterling Book";
+                color: #434343;
+                font-size: 2vh;
+            }
+            .footer {
+                padding-top: 3vh;
+                input[type="button"] {
+                    text-transform: none;
+                    padding-left: 3em;
+                    padding-right: 3em;
+                    color: #ffffff;
+                    font-family: "Foundry Sterling Book";
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}

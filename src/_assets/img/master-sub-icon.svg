@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 29">
+  <defs>
+    <style>
+      .cls-1, .cls-4 {
+        fill: none;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #fff;
+        stroke-width: 2px;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="Group_1115" data-name="Group 1115" transform="translate(-668 -360)">
+    <g id="Rectangle_684" data-name="Rectangle 684" class="cls-1" transform="translate(677 360)">
+      <rect class="cls-3" width="15" height="15"/>
+      <rect class="cls-4" x="1" y="1" width="13" height="13"/>
+    </g>
+    <g id="Rectangle_685" data-name="Rectangle 685" class="cls-2" transform="translate(680 380)">
+      <rect class="cls-3" width="9" height="9"/>
+      <rect class="cls-4" x="1" y="1" width="7" height="7"/>
+    </g>
+    <g id="Rectangle_688" data-name="Rectangle 688" class="cls-2" transform="translate(668 380)">
+      <rect class="cls-3" width="9" height="9"/>
+      <rect class="cls-4" x="1" y="1" width="7" height="7"/>
+    </g>
+    <g id="Rectangle_686" data-name="Rectangle 686" class="cls-2" transform="translate(692 380)">
+      <rect class="cls-3" width="9" height="9"/>
+      <rect class="cls-4" x="1" y="1" width="7" height="7"/>
+    </g>
+    <line id="Line_272" data-name="Line 272" class="cls-1" y2="7" transform="translate(684.5 373.5)"/>
+    <line id="Line_273" data-name="Line 273" class="cls-1" x2="6" transform="translate(686.5 384.5)"/>
+    <line id="Line_274" data-name="Line 274" class="cls-1" x2="6" transform="translate(675.5 384.5)"/>
+  </g>
+</svg>

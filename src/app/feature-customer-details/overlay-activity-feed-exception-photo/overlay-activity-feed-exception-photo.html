@@ -1,0 +1,44 @@
+<section class="overlay-container padding-2 overlay-activity-feed-exception-photo" id="overlay-activity-feed-exception-photo">
+    <div class="background"></div>
+    <div class="overlay" flowtype min-font="12" max-font="16" font-ratio="50">
+    	<!-- <div ng-class="showLoading"></div>
+    	<div ng-class="showLoader"></div>  -->
+        <!-- <div class="close-overlay"></div> -->
+
+        <!-- <div>Image Count: {{$root.exceptionDataImages.images.length}}</div>
+        <div>CurrentCarouselPage: {{$root.exceptionDataImages.currentCarouselPage}}</div>
+        <div>Service Street: {{getField(custData, "serviceStreet")}}</div> -->
+
+        <section class="content">
+            <div class="carousel-images page-{{$root.exceptionDataImages.currentCarouselPage}}" ng-class="{'no-carousel': $root.exceptionDataImages.images.length < 1}">
+                <ul class="images-list">
+                    <li class="image-container " ng-repeat="image in $root.exceptionDataImages.images" ng-class="" id="tile-image-{{image.id*1}}">
+                        <div class="photo-container">
+                            <img ng-src="{{image.location}}" style="height: 100%; width: 100%;" />
+                            <figcaption><p><span>Taken by {{$root.exceptionDataImages.driver_name[0] | nameLastFirstCorrection}} on {{image.date}}</p></span></figcaption>
+                            <button id="send-pic" ng-click="$root.exceptionDataImages.sendPhotoClick($root.exceptionDataImages.unsortedIndex)"><img src="img/upload1.svg" id="send-photo" >SHARE</button>
+                            <div class="image-hover" >
+                                <!-- <div class="hover-icon"></div> -->
+                                <span class="close-overlay" ng-click="$root.exceptionDataImages.handleExceptionPhotoClick()"></span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="carousel-controls pages-{{Math.ceil($root.exceptionDataImages.images.length / 1)}}" ng-show="$root.exceptionDataImages.images.length > 1">
+                <span class="page">
+                    <span ng-repeat="image in $root.exceptionDataImages.images" ng-if="$index%1 === 0" class="dot" ng-click="$root.exceptionDataImages.currentCarouselPage=($index/1)+1" ng-class="{'active': $root.exceptionDataImages.currentCarouselPage === ($index/1)+1}">
+                    </span>
+                </span>
+                <span class="left" ng-click="$root.exceptionDataImages.carouselPaging('left')" ng-show="$root.exceptionDataImages.currentCarouselPage*1 > 1">
+                  <img src="img/arrow.svg" id="send-photo">
+                </span>
+                <span class="right" ng-click="$root.exceptionDataImages.carouselPaging('right')" ng-show="$root.exceptionDataImages.currentCarouselPage < ($root.exceptionDataImages.images.length / 1)">
+                  <img src="img/arrow.svg" id="send-photo">
+                  </span>
+            </div>
+        </section>
+
+    </div>
+</section>

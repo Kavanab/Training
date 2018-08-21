@@ -1,0 +1,584 @@
+@font-face {
+    font-family: 'Foundry Sterling Book Italic';
+    src: url('../font/FOSTBOIT.eot');
+    /* IE9 Compat Modes */
+    src: url('../font/FOSTBOIT.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../font/FOSTBOIT.woff') format('woff'), /* Modern Browsers */
+    url('../font/FOSTBOIT.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../font/FOSTBOIT.svg#fc832ad112ffe0c3181db1d5d168fa76') format('svg');
+    /* Legacy iOS */
+    font-style: italic;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Foundry Sterling Bold';
+    src: url('../font/FOSTBOLD.eot');
+    /* IE9 Compat Modes */
+    src: url('../font/FOSTBOLD.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../font/FOSTBOLD.woff') format('woff'), /* Modern Browsers */
+    url('../font/FOSTBOLD.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../font/FOSTBOLD.svg#12595969908c676b8d35f3d84fdba4da') format('svg');
+    /* Legacy iOS */
+    font-style: normal;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Foundry Sterling Book';
+    src: url('../font/FOSTBOOK.eot');
+    /* IE9 Compat Modes */
+    src: url('../font/FOSTBOOK.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../font/FOSTBOOK.woff') format('woff'), /* Modern Browsers */
+    url('../font/FOSTBOOK.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../font/FOSTBOOK.svg#d909943afe62987d5d8fd092273ea3f5') format('svg');
+    /* Legacy iOS */
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Foundry Sterling Demi';
+    src: url('../font/FOSTDEMI.eot');
+    /* IE9 Compat Modes */
+    src: url('../font/FOSTDEMI.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../font/FOSTDEMI.woff') format('woff'), /* Modern Browsers */
+    url('../font/FOSTDEMI.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../font/FOSTDEMI.svg#a5b15aea9720cdda33305374618a5589') format('svg');
+    /* Legacy iOS */
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Foundry Sterling ExtraBold';
+    src: url('../font/FOSTEXBD.eot');
+    /* IE9 Compat Modes */
+    src: url('../font/FOSTEXBD.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../font/FOSTEXBD.woff') format('woff'), /* Modern Browsers */
+    url('../font/FOSTEXBD.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../font/FOSTEXBD.svg#e9efc041085657d4a387fabce23cb353') format('svg');
+    /* Legacy iOS */
+    font-style: normal;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Foundry Sterling Light';
+    src: url('../font/FOSTLGHT.eot');
+    /* IE9 Compat Modes */
+    src: url('../font/FOSTLGHT.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../font/FOSTLGHT.woff') format('woff'), /* Modern Browsers */
+    url('../font/FOSTLGHT.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../font/FOSTLGHT.svg#663cd384909959f34efade9aa0e69674') format('svg');
+    /* Legacy iOS */
+    font-style: normal;
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: 'Foundry Sterling Medium';
+    src: url('../font/FOSTMEDM.eot');
+    /* IE9 Compat Modes */
+    src: url('../font/FOSTMEDM.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../font/FOSTMEDM.woff') format('woff'), /* Modern Browsers */
+    url('../font/FOSTMEDM.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../font/FOSTMEDM.svg#cc46a3e5248a4e245d723baf588ce26a') format('svg');
+    /* Legacy iOS */
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "iconvault";
+    src: url("../font/iconvault_forecastfont.eot");
+    src: url("../font/iconvault_forecastfont.eot?#iefix") format("embedded-opentype"), url("../font/iconvault_forecastfont.woff") format("woff"), url("../font/iconvault_forecastfont.ttf") format("truetype"), url("../font/iconvault_forecastfont.svg#iconvault") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'wm-icons';
+    src: url('../font/wm.eot?59kzwt');
+    src: url('../font/wm.eot?59kzwt#iefix') format('embedded-opentype'), url('../font/wm.ttf?59kzwt') format('truetype'), url('../font/wm.woff?59kzwt') format('woff'), url('../font/wm.svg?59kzwt#wm') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.icon-wm-font {
+    font-family: 'wm-icons';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-wm-logo:before {
+    content: "\e904";
+}
+
+.icon-solid-waste:before {
+    content: "\6c";
+}
+
+.icon-water-bottle:before {
+    content: "\22";
+}
+
+.icon-wall-plug:before {
+    content: "\23";
+}
+
+.icon-plastic-cup:before {
+    content: "\36";
+}
+
+.icon-plants:before {
+    content: "\37";
+}
+
+.icon-pill:before {
+    content: "\38";
+}
+
+.icon-home:before {
+    content: "\4c";
+}
+
+.icon-hot-dog:before {
+    content: "\4b";
+}
+
+.icon-chemical-waste:before {
+    content: "\bb";
+}
+
+.icon-cfl-bulb:before {
+    content: "\cf";
+}
+
+.icon-cell-phone:before {
+    content: "\ce";
+}
+
+.icon-carrots:before {
+    content: "\60";
+}
+
+.icon-haz-waste:before {
+    content: "\4d";
+}
+
+.icon-pharma-waste:before {
+    content: "\39";
+}
+
+.icon-utensils:before {
+    content: "\24";
+}
+
+.icon-bulk-truck:before {
+    content: "\25";
+}
+
+.icon-person:before {
+    content: "\3a";
+}
+
+.icon-peas:before {
+    content: "\3b";
+}
+
+.icon-hard-hat:before {
+    content: "\4e";
+}
+
+.icon-soda-can:before {
+    content: "\62";
+}
+
+.icon-car-battery:before {
+    content: "\61";
+}
+
+.icon-calendar:before {
+    content: "\63";
+}
+
+.icon-golf-ball:before {
+    content: "\4f";
+}
+
+.icon-paper-cup:before {
+    content: "\3c";
+}
+
+.icon-tree:before {
+    content: "\26";
+}
+
+.icon-treatment:before {
+    content: "\27";
+}
+
+.icon-plate:before {
+    content: "\3d";
+}
+
+.icon-globe:before {
+    content: "\50";
+}
+
+.icon-bulldozer:before {
+    content: "\64";
+}
+
+.icon-glass-bottle:before {
+    content: "\51";
+}
+
+.icon-paint-can:before {
+    content: "\3e";
+}
+
+.icon-trash-truck:before {
+    content: "\28";
+}
+
+.icon-pack-rat:before {
+    content: "\3f";
+}
+
+.icon-curbside-trash:before {
+    content: "\29";
+}
+
+.icon-curbside-recycling:before {
+    content: "\e900";
+}
+
+.icon-flouro-bulb:before {
+    content: "\52";
+}
+
+.icon-skyscaper:before {
+    content: "\65";
+}
+
+.icon-building:before {
+    content: "\66";
+}
+
+.icon-box:before {
+    content: "\67";
+}
+
+.icon-factory:before {
+    content: "\53";
+}
+
+.icon-oil-field:before {
+    content: "\40";
+}
+
+.icon-transit:before {
+    content: "\2a";
+}
+
+.icon-tomato:before {
+    content: "\2b";
+}
+
+.icon-oil-barrel:before {
+    content: "\41";
+}
+
+.icon-battery:before {
+    content: "\68";
+}
+
+.icon-bagster:before {
+    content: "\69";
+}
+
+.icon-ewaste:before {
+    content: "\54";
+}
+
+.icon-notebook:before {
+    content: "\42";
+}
+
+.icon-tv:before {
+    content: "\2c";
+}
+
+.icon-syringe:before {
+    content: "\2d";
+}
+
+.icon-oil-energy:before {
+    content: "\55";
+}
+
+.icon-apple:before {
+    content: "\6a";
+}
+
+.icon-sort:before {
+    content: "\6b";
+}
+
+.icon-dumpster:before {
+    content: "\57";
+}
+
+.icon-recycling-dumpster:before {
+    content: "\e901";
+}
+
+.icon-rolloff-dumpster:before {
+    content: "\e902";
+}
+
+.icon-rolloff-recycling-dumpster:before {
+    content: "\e903";
+}
+
+.icon-education:before {
+    content: "\56";
+}
+
+.icon-newspaper:before {
+    content: "\43";
+}
+
+.icon-soil:before {
+    content: "\2f";
+}
+
+.icon-sun:before {
+    content: "\2e";
+}
+
+.icon-shipping:before {
+    content: "\30";
+}
+
+.icon-medical-waste:before {
+    content: "\45";
+}
+
+.icon-document:before {
+    content: "\58";
+}
+
+.icon-compactor-bin:before {
+    content: "\59";
+}
+
+.icon-luggage:before {
+    content: "\46";
+}
+
+.icon-liquid-waste:before {
+    content: "\47";
+}
+
+.icon-select:before {
+    content: "\31";
+}
+
+.icon-security-camera:before {
+    content: "\32";
+}
+
+.icon-recycle:before {
+    content: "\33";
+}
+
+.icon-recycle-bin:before {
+    content: "\34";
+}
+
+.icon-port-a-let:before {
+    content: "\35";
+}
+
+.icon-hummingbird:before {
+    content: "\4a";
+}
+
+.icon-leaf:before {
+    content: "\49";
+}
+
+.icon-light-bulb:before {
+    content: "\48";
+}
+
+.icon-clipboard:before {
+    content: "\5b";
+}
+
+.icon-coat-hanger:before {
+    content: "\5a";
+}
+
+.icon-cinder-block:before {
+    content: "\5c";
+}
+
+.icon-plastic:before {
+    content: "\44";
+}
+
+.icon-water-drop:before {
+    content: "\21";
+}
+
+.icon-think-green:before {
+    content: "\e601";
+}
+
+.icon-kettle-bell:before {
+    content: "\e602";
+}
+
+.icon-golf-tee:before {
+    content: "\e603";
+}
+
+.icon-play:before {
+    content: "\e604";
+}
+
+.icon-linkedin:before {
+    content: "\e605";
+}
+
+.icon-youtube:before {
+    content: "\e606";
+}
+
+.icon-twitter:before {
+    content: "\e607";
+}
+
+.icon-facebook:before {
+    content: "\e608";
+}
+
+.icon-zero-waste-station:before {
+    content: "\e60c";
+}
+
+.icon-bubble:before {
+    content: "\e905";
+}
+
+.icon-camera:before {
+    content: "\e906";
+}
+
+.icon-l-arrow:before {
+    content: "\e907";
+}
+
+.icon-r-arrow:before {
+    content: "\e908";
+}
+
+.icon-u-arrow:before {
+    content: "\e909";
+}
+
+.icon-d-arrow:before {
+    content: "\e90a";
+}
+
+.icon-expand:before {
+    content: "\e90b";
+}
+
+.icon-collapse:before {
+    content: "\e90c";
+}
+
+.icon-search:before {
+    content: "\e90d";
+}
+
+.icon-close:before {
+    content: "\e90e";
+}
+
+.icon-radio-off:before {
+    content: "\e90f";
+}
+
+.icon-radio-on:before {
+    content: "\e910";
+}
+
+.icon-check-off:before {
+    content: "\e911";
+}
+
+.icon-check-on:before {
+    content: "\e912";
+}
+.icon-trashbag:before {
+    content: "\e914";
+}
+.icon-trash-bag-picked-up:before {
+    content: "\e915";
+}
+.icon-trash-bag-missed:before {
+    content: "\e916";
+}
+.icon-generictrashcan:before {
+    content: "\e917";
+}
+
+// DO NOT COPY OVER THESE - THE ARE BRIDGE CLASSES FOR THE FONT
+.icon-trash-toter:before,
+.icon-toter:before,
+.icon-yard-waste-toter:before,
+.icon-cart:before{
+    @extend .icon-curbside-trash:before;
+}
+
+.icon-recycling-toter:before {
+    @extend .icon-curbside-recycling:before;
+}
+
+.icon-yard-waste-hauling:before{
+    @extend .icon-trashbag:before;
+}
+
+.icon-recycling-bin:before,
+.icon-bin:before{
+    @extend .icon-recycle-bin:before;
+}
+
+.icon-compactor-dumpster:before{
+    @extend .icon-compactor-bin:before;
+}
+.icon-open-top-dumpster:before{
+    @extend .icon-rolloff-dumpster:before;
+}
+
+.icon-customer-trash-can:before,
+.icon-hand-pickup:before{
+    @extend .icon-generictrashcan:before;
+}
+
+.icon-voice:before {
+    content: "\e913";
+}

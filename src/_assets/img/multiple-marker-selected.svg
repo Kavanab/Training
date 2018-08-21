@@ -1,0 +1,62 @@
+<svg id="Group_11" data-name="Group 11" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="1109.5 67.5 93 77">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #676767;
+      }
+
+      .cls-2 {
+        stroke: #fff;
+        stroke-width: 3px;
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+
+      .cls-4 {
+        fill: none;
+      }
+
+      .cls-5 {
+        filter: url(#Union_12);
+      }
+
+      .cls-6 {
+        filter: url(#Union_11);
+      }
+    </style>
+    <filter id="Union_11" x="1109.5" y="67.5" width="93" height="77" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="7.5" result="blur"/>
+      <feFlood flood-color="#7ab800"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Union_12" x="1109.5" y="67.5" width="93" height="77" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="7.5" result="blur-2"/>
+      <feFlood flood-color="#7ab800"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g class="cls-6" transform="matrix(1, 0, 0, 1, 0, 0)">
+    <path id="Union_11-2" data-name="Union 11" class="cls-1" d="M28,31.5a16.122,16.122,0,0,1-8,0A16,16,0,1,1,20,.5a16.124,16.124,0,0,1,8,0A16,16,0,1,1,28,31.5Z" transform="translate(1132 90)"/>
+  </g>
+  <g class="cls-5" transform="matrix(1, 0, 0, 1, 0, 0)">
+    <path id="Union_12-2" data-name="Union 12" class="cls-1" d="M28,31.5a16.122,16.122,0,0,1-8,0A16,16,0,1,1,20,.5a16.124,16.124,0,0,1,8,0A16,16,0,1,1,28,31.5Z" transform="translate(1132 90)"/>
+  </g>
+  <g id="Ellipse_64" data-name="Ellipse 64" class="cls-2" transform="translate(1132 90)">
+    <circle class="cls-3" cx="16" cy="16" r="16"/>
+    <circle class="cls-4" cx="16" cy="16" r="14.5"/>
+  </g>
+  <g id="Ellipse_65" data-name="Ellipse 65" class="cls-2" transform="translate(1140 90)">
+    <circle class="cls-3" cx="16" cy="16" r="16"/>
+    <circle class="cls-4" cx="16" cy="16" r="14.5"/>
+  </g>
+  <g id="Ellipse_66" data-name="Ellipse 66" class="cls-2" transform="translate(1148 90)">
+    <circle class="cls-3" cx="16" cy="16" r="16"/>
+    <circle class="cls-4" cx="16" cy="16" r="14.5"/>
+  </g>
+</svg>

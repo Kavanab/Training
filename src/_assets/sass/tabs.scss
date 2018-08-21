@@ -1,0 +1,178 @@
+.header-tabs {
+    margin: 0;
+    padding: 0;
+    @extend .clearfix;
+    height: 100%;
+    display: flex;
+    position: relative;
+    z-index: 1;
+    li {
+        margin: 0;
+        margin: 0 2vw 0 0;
+        list-style-type: none;
+        float: left;
+        height: 100%;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        position: relative;
+        // width: 33%;
+        // margin-right: 20px;
+        $borderWidth: 2px;
+        &:last-child {
+            // margin-right: 3px;
+            margin-right: 3px;
+        }
+        a {
+            color: $lgray;
+            text-decoration: none;
+            transition: color .3s ease-out;
+            &:hover {
+                color: $mgray
+            }
+        }
+        .indicator {
+            border-bottom: $borderWidth solid transparent;
+            width: 100%;
+            height: 0px;
+            display: block;
+            position: absolute;
+            bottom: -$borderWidth;//+1;
+            transition: border-color .3s ease-out;
+        }
+        &.active {
+            // transition: .3s ease-out;
+            a {
+                color: $gray;
+            }
+            .indicator {
+                border-color: $actionColor;
+            }
+        }
+    }
+}
+
+.tab-content {
+    position: relative;
+    @extend .clearfix;
+    .tab-pane {
+        opacity: 0;
+        width: 100%;
+        overflow: auto;
+        display: flex;
+        height: 1px;
+        flex-flow: column;
+        &.active {
+            opacity: 1;
+            transition: opacity .1s ease-in .1s;
+            top: 0;
+            z-index: 1;
+            height: 100%;
+        }
+        .data-list {
+            margin: 0 25px;
+            @extend .clearfix;
+            flex-grow: 1;
+            display: flex;
+            flex-flow: column;
+            .data-row {
+                border-top: 1px solid $feather;
+                max-height: 50px;
+                position: relative;
+                flex-flow: column;
+                display: flex;
+                justify-content: center;
+                flex: 1;
+                &:first-child {
+                    border: none;
+                }
+                &.two-column {
+                    .data-container {
+                        width: 50%;
+                    }
+                }
+                .data-container {
+                    height: 100%;
+                    position: absolute;
+                    width: 100%;
+                    top: 0;
+                    display: flex;
+                    justify-content: center;
+                    // > span {
+                    //     display: inline-block;
+                    // }
+                    .data-label {
+                        width: 18%;
+                        text-transform: uppercase;
+                        color: $lgray;
+                        font-family: "Foundry Sterling Bold";
+                        justify-content: center;
+                        display: flex;
+                        flex-flow: column;
+                    }
+                    .data {
+                        font-family: "Foundry Sterling Book";
+                        text-transform: capitalize;
+                        width: 82%;
+                        display: flex;
+                        flex-flow: column;
+                        justify-content: center;
+                    }
+                    .data-raw {
+                        font-family: "Foundry Sterling Book";
+                        // text-transform: capitalize;
+                        width: 82%;
+                        display: flex;
+                        flex-flow: column;
+                        justify-content: center;
+                    }
+                }
+            }
+            &.payment {
+                float: left;
+                width: 40%;
+                dt,
+                dd {
+                    width: 50%;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $breakpointLgwidth) {
+    // .header-tabs {
+    //     li {
+            // width: 33%;
+            // padding-right: 0;
+            // // font-size: 1.4rem;
+            // text-align: right;
+            // &:first-child {
+            //     text-align: left;
+            // }
+            // &:nth-child(2) {
+            //     padding-left: 30px;
+            // }
+            // &:last-child {
+            //     text-align: right;
+            // }
+    //     }
+    // }
+    .tab-content {
+        .tab-pane {
+            .data-list {
+                .data-row {
+                    .data-container {
+                        .data-label {
+                            width: 20%;
+                        }
+                        .data{
+                            width: 80%;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}

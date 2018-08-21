@@ -1,0 +1,207 @@
+<div ng-if="invoiceHistoryArray.length === 0 && isInvoiceHistoryLoading" class="loading_message">
+    <div class="loading">Loading
+        <span> .</span>
+        <span> .</span>
+        <span> .</span>
+    </div>
+</div>
+<div ng-if="invoiceHistoryArray.length !== 0" class="timline-container">
+    <div class="timeline-main">
+        <timeline>
+            <timeline-event ng-repeat="invoice in invoiceHistoryArray track by $index" side="right">
+                <timeline-badge class="success">
+                </timeline-badge>
+                <timeline-panel class="success">
+                    <timeline-heading>
+                        <div class="timeline-heading-container">
+                            <div class="timeline-invoices-icon">
+
+                            </div>
+                            <!-- ends timeline-invoices-icon class -->
+                            <div class="invoice-wrapper">
+                                <div class="invoice-date-timestamp">
+                                    <div class="card-date" title="{{invoice.id}}">{{invoice.date}}</div>
+                                    <div class="invoice-timestamp">
+                                        <div class="card-timestamp" ng-if="toggleTimeStamp" ng-click="toggleTimelineTimestamp()" title="{{invoice.howLongAgo}}">{{invoice.timeStamp}}</div>
+                                        <div class="card-timestamp" ng-if="!toggleTimeStamp" ng-click="toggleTimelineTimestamp()" title="{{invoice.timeStamp}}">{{invoice.howLongAgo}}</div>
+                                    </div>
+                                </div>
+                                <div class="card-description">
+                                    <div class="payment-status-label">
+                                        <div class="payment-status-left">
+                                            <div ng-class="invoice.statusInfo.leftStatusColor"></div>
+                                            <div class="status-label">{{invoice.statusInfo.leftStatusMessage}}</div>
+                                        </div>
+                                        <div class="payment-status-right">
+                                            <!-- A Very Important Colorful Indicator -->
+                                            <!-- <div ng-class="invoice.statusInfo.rightStatusColor"></div>
+                                            <div class="status-label">{{invoice.statusInfo.rightStatusMessage}}</div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="more-container">
+                                    <div class="more-less">
+                                        <div class="more-less" ng-if="invoiceHistoryMoreButtonFlag[invoice.uniqueID]" ng-click="showInvoiceDetails(invoice)">MORE</div>
+                                        <div class="more-less" ng-if="!invoiceHistoryMoreButtonFlag[invoice.uniqueID]" ng-click="hideInvoiceDetails(invoice)">LESS</div>
+                                    </div>
+                                    <div class="table-timestamp">
+                                        <div ng-if="isInvoiceHistoryDetailsLoading[invoice.uniqueID]" class="more-loading-position">
+                                            <!-- <div ng-class="loader" class="loader"></div> -->
+                                            <div class="loading">Loading
+                                                <span> .</span>
+                                                <span> .</span>
+                                                <span> .</span>
+                                            </div>
+                                        </div>
+                                        <div class="invoice-table" ng-if="!invoiceHistoryMoreButtonFlag[invoice.uniqueID] && !isInvoiceHistoryDetailsLoading[invoice.uniqueID]">
+                                            <div class="invoice-information">
+                                                <div class="col1">
+                                                    <div class="invoice-num">
+                                                        <span>INVOICE NUMBER</span>
+                                                        <span>{{invoice.id}}</span>
+                                                    </div>
+                                                    <div class="invoice-num">
+                                                        <span>INVOICE DATE</span>
+                                                        <span>{{invoice.date}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col2">
+                                                    <div class="invoice-num">
+                                                        <span>DUE</span>
+                                                        <!-- If DUE_DATE is a String -->
+                                                        <span ng-if="invoice.canToggleDueField">
+                                                            <div class="border-bottom-add" ng-if="toggleDueField" ng-click="onToggleDueFieldClick()">{{invoice.due_date | uppercase}}</div>
+                                                            <div class="border-bottom-add" ng-if="!toggleDueField" ng-click="onToggleDueFieldClick()">{{invoice_due_terms}}</div>
+                                                        </span>
+                                                        <!-- If DUE_DATE is a Real Date -->
+                                                        <span ng-if="!invoice.canToggleDueField">
+                                                            <div>{{invoice.due_date}}</div>
+                                                        </span>
+                                                    </div>
+                                                    <div class="invoice-num">
+                                                        <span>{{invoice.statusInfo.additionalLable}}</span>
+                                                        <span>{{invoice.statusInfo.additionalValue}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col3">
+                                                    <div ng-if="invoice.symbol !== 'CAD'">
+                                                        <div class="invoice-num">
+                                                            <span>INVOICE PDF</span>
+                                                            <span ng-click="showPDF(invoice.pdfInvoiceURL)" ng-if="invoice.pdfInvoiceURL !== undefined">
+                                                                <img src="/img/eye_icon.svg" />
+                                                            </span>
+                                                            <span ng-click="invoiceNotFoundOverlayOpen()" ng-if="invoice.pdfInvoiceURL === undefined">
+                                                                <img src="/img/eye_icon.svg" />
+                                                            </span>
+                                                        </div>
+                                                        <div class="invoice-num">
+                                                            <span>EMAIL INVOICE</span>
+                                                            <span>
+                                                                <div class="invoicePdf" ng-if="invoice.pdfInvoiceURL !== undefined">
+                                                                    <img ng-click="showEmailInvoice(invoice)" src="/img/upload-solid.svg" />
+                                                                </div>
+                                                                <div class="invoicePdf" ng-if="invoice.pdfInvoiceURL === undefined">
+                                                                    <img ng-click="emailNotFoundOverlay()" src="/img/upload-solid.svg" />
+                                                                </div>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="recurring-table" ng-if="invoiceDetailsArray[invoice.uniqueID].RC !== undefined">
+                                                <h3>Recurring Charges</h3>
+                                                <table class="table table-condensed table-hover">
+                                                    <thead>
+                                                        <th ng-repeat="heading in invoiceDetailsCoulmns" ng-style="{'background-color' : '#F1F1F1'}">{{heading}}</th>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="invoiceDetails in invoiceDetailsArray[invoice.uniqueID].RC" ng-style="{'background-color': $odd ? '#EBF3EA': '#F6FAF5' }">
+                                                            <td>{{invoiceDetails.date}}</td>
+                                                            <td title="{{invoiceDetails.service_code}}">{{invoiceDetails.service_description}}</td>
+                                                            <td>{{invoiceDetails.unit_price | currency}}</td>
+                                                            <td>{{invoiceDetails.quantity | number:'2'}}</td>
+                                                            <td>{{invoiceDetails.amount | currency}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="recurring-table" ng-if="invoiceDetailsArray[invoice.uniqueID].RC === undefined">
+                                                <h3>Recurring Charges</h3>
+                                                <table class="table table-condensed table-hover">
+                                                    <thead>
+                                                        <th ng-repeat="heading in invoiceDetailsCoulmns" ng-style="{'background-color' : '#F1F1F1'}">{{heading}}</th>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-style="{'background-color': $odd ? '#EBF3EA': '#F6FAF5' }">
+                                                            <td class="no_lineitems_message" colspan="{{invoiceDetailsCoulmns.length}}">NO LINE ITEMS FOUND FOR THIS INVOICE</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="onetime-table" ng-if="invoiceDetailsArray[invoice.uniqueID].OC !== undefined">
+                                                <h3>
+                                                    <span class="badge">1</span> One-time Charges
+                                                </h3>
+                                                <table class="table table-condensed table-hover">
+                                                    <thead>
+                                                        <th ng-repeat="heading in invoiceDetailsCoulmns" ng-style="{'background-color' : '#F1F1F1'}">{{heading}}</th>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="invoiceDetails in invoiceDetailsArray[invoice.uniqueID].OC" ng-style="{'background-color': $odd ? '#EBF3EA': '#F6FAF5' }">
+                                                            <td>{{invoiceDetails.date}}</td>
+                                                            <td title="{{invoiceDetails.service_code}}">{{invoiceDetails.service_description}}</td>
+                                                            <td>{{invoiceDetails.unit_price | currency}}</td>
+                                                            <td>{{invoiceDetails.quantity | number:'2'}}</td>
+                                                            <td>{{invoiceDetails.amount | currency}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="onetime-table" ng-if="invoiceDetailsArray[invoice.uniqueID].OC === undefined">
+                                                <h3>
+                                                    <span class="badge">1</span> One-time Charges
+                                                </h3>
+                                                <table class="table table-condensed table-hover">
+                                                    <thead>
+                                                        <th ng-repeat="heading in invoiceDetailsCoulmns" ng-style="{'background-color' : '#F1F1F1'}">{{heading}}</th>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-style="{'background-color': $odd ? '#EBF3EA': '#F6FAF5' }">
+                                                            <td class="no_lineitems_message" colspan="{{invoiceDetailsCoulmns.length}}">NO LINE ITEMS FOUND FOR THIS INVOICE</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="dollar timeline-amount">
+                                            <div>
+                                                <sup>{{invoice.symbol + ' $'}}</sup>
+                                                <span class="timeline-dollar">{{invoice.amount | currencySplit : 'dollar' }}</span>
+                                                <sup>{{invoice.amount | currencySplit : 'cents' }}</sup>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- ends popup-invoicePdf-emailinvoice class -->
+                            </div>
+                            <!-- ends invoice-wrapper -->
+                        </div>
+                        <!-- ends timeline-heading-container class -->
+                    </timeline-heading>
+
+                    <timeline-footer></timeline-footer>
+                </timeline-panel>
+            </timeline-event>
+        </timeline>
+    </div>
+</div>
+<div ng-if="(INVOICE_HISTORY_MONTHS_INCREMENTOR !== INVOICE_HISTORY_MAXIMUM_MONTHS) && (invoiceHistoryArray.length > 0 || !isInvoiceHistoryLoading)"
+    class="load_more_info">
+    Invoice History displayed for the past {{INVOICE_HISTORY_MONTHS_INCREMENTOR}} months. Click
+    <div class="here_btn" ng-click="getMoreInvoices()">HERE</div>
+    or scroll to retrieve more.
+</div>
+<div ng-if="INVOICE_HISTORY_MONTHS_INCREMENTOR === INVOICE_HISTORY_MAXIMUM_MONTHS" class="load_more_info">
+    Invoice History displayed for the past {{INVOICE_HISTORY_MONTHS_INCREMENTOR}} months.
+</div>

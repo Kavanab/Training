@@ -1,0 +1,63 @@
+<svg id="Group_13" data-name="Group 13" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="470.5 471.5 77 77">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #676767;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        filter: url(#Ellipse_5);
+      }
+
+      .cls-4 {
+        filter: url(#Ellipse_4-2);
+      }
+
+      .cls-5 {
+        filter: url(#Ellipse_4);
+      }
+    </style>
+    <filter id="Ellipse_4" x="470.5" y="471.5" width="77" height="77" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="7.5" result="blur"/>
+      <feFlood flood-color="#b80000"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Ellipse_4-2" x="470.5" y="471.5" width="77" height="77" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="7.5" result="blur-2"/>
+      <feFlood flood-color="#b80000"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Ellipse_5" x="470.5" y="471.5" width="77" height="77" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="7.5" result="blur-3"/>
+      <feFlood flood-color="#b80000"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g class="cls-5" transform="matrix(1, 0, 0, 1, 0, 0)">
+    <circle id="Ellipse_4-3" data-name="Ellipse 4" class="cls-1" cx="16" cy="16" r="16" transform="translate(493 494)"/>
+  </g>
+  <g id="Group_12" data-name="Group 12" transform="translate(-12 -1)">
+    <g id="Group_11" data-name="Group 11">
+      <g class="cls-4" transform="matrix(1, 0, 0, 1, 12, 1)">
+        <circle id="Ellipse_4-4" data-name="Ellipse 4" class="cls-1" cx="16" cy="16" r="16" transform="translate(493 494)"/>
+      </g>
+      <g class="cls-3" transform="matrix(1, 0, 0, 1, 12, 1)">
+        <circle id="Ellipse_5-2" data-name="Ellipse 5" class="cls-1" cx="16" cy="16" r="16" transform="translate(493 494)"/>
+      </g>
+      <g id="Group_8" data-name="Group 8" transform="translate(0.459 -0.393)">
+        <rect id="Rectangle_7" data-name="Rectangle 7" class="cls-2" width="4.906" height="20.705" transform="translate(526.182 502.393) rotate(45)"/>
+        <rect id="Rectangle_8" data-name="Rectangle 8" class="cls-2" width="4.906" height="20.705" transform="translate(511.541 505.863) rotate(-45)"/>
+      </g>
+    </g>
+  </g>
+</svg>

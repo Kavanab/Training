@@ -1,0 +1,63 @@
+<div class="tile services" flowtype min-font="10" max-font="18" font-ratio="45">
+    <header><span class="title">Services <span class="header-action" ng-show="services.active.all.length > 1"><a ng-click="showServiceDetails(service.id)">View All <span class="count"> ({{services.active.all.length}})</span></a></span></span>
+
+        <span class="bottom-line"></span>
+        <!-- <a ng-href="{{getCaagUrl(custData)}}" class="view-in-opus">View all ></a>-->
+    </header>
+    <section class="content" >
+        <div class="carousel-services page-{{currentCarouselPage}}" ng-class="{'no-carousel': services.active.services.length < 4}">
+            <ul class="services-list">
+                <li class="service-container " ng-repeat="service in services.active.services" ng-class="" id="tile-service-{{service.id*1}}">
+                <!-- | orderBy: 'id*1' -->
+                    <!--ng-show="service.auto_bill === 'Y'"-->
+                    <a href="" ng-click="showServiceDetails(service.id)" class="service {{service.serviceCssIconClass}}">
+                        <div class="service-info-text">
+                            <span class="icon-wm-font icon-{{service.serviceCssIconClass}}"></span>
+                            <div class="title">
+                                <span> <span ng-show="!service.isFee"><span class="count" ng-if="service.equipment.count > 1" >({{service.equipment.count}}) </span>{{service.prettyEquipmentSize}}<br/></span>{{service.prettyServiceName}}</span>
+                            <!-- <span ng-show="service.equipment.name !== 'null'">{{service.equipment | humanizeServiceEquipment_sizeOnly}}<br/>{{service.equipment.name | humanizeServiceType}}</span> -->
+                            </div>
+                            <div class="fee-amount" ng-show="service.isFee">{{service.pricing.extended_cost_amount | currency}}</div>
+                            <div class="frequency">
+
+                                <span class="times-per-week" ng-show="service.enterprise_catalog.sub_category.toLowerCase() === 'haul'">
+                                    <span ng-show="service.occurs !== 'On Call'">
+                                    {{(service.operations|filter:{day_of_week: 'MONDAY'}).length
+                                    + (service.operations|filter:{day_of_week: 'TUESDAY'}).length
+                                    + (service.operations|filter:{day_of_week: 'WEDNESDAY'}).length
+                                    + (service.operations|filter:{day_of_week: 'THURSDAY'}).length
+                                    + (service.operations|filter:{day_of_week: 'FRIDAY'}).length
+                                    + (service.operations|filter:{day_of_week: 'SATURDAY'}).length
+                                    + (service.operations|filter:{day_of_week: 'SUNDAY'}).length}}x </span>
+                                    {{service.occurs}}
+                                </span>
+                                <span ng-repeat="operation in filtered = (service.operations | filter:query) | orderBy: 'route_id' " ng-show="operation.day_of_week.toLowerCase() !== 'null'" class="day-of-week">
+
+
+                                <span ng-if="service.operations.length > 1">{{operation.day_of_week | abbreviateDayOfWeek}}<span ng-show="($index + 1) < filtered.length">, </span></span>
+                                <span ng-if="service.operations.length === 1">{{operation.day_of_week | lowercase }}</span>
+
+                                <!-- {{operation.day_of_week | lowercase}} <span ng-show="($index + 1) < filtered.length"> & </span> -->
+                                </span>
+                                <span ng-if="service.enterprise_catalog.description.indexOf('xtra') >= 0"> <span ng-if"service.auto_bill === 'N'">On Call </span>Extra Pickup</span>
+
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+        <div class="carousel-controls pages-{{Math.ceil(services.active.services.length / 3)}}" ng-show="services.active.services.length > 3">
+            <span class="page">
+                <span ng-repeat="service in services.active.services" ng-if="$index%3 === 0" class="dot" ng-click="$parent.$parent.currentCarouselPage=($index/3)+1" ng-class="{'active': $parent.$parent.currentCarouselPage === ($index/3)+1}">
+                </span>
+            </span>
+            <span class="left" ng-click="carouselPaging('left')" ng-show="currentCarouselPage*1 > 1"></span>
+            <span class="right" ng-click="carouselPaging('right')" ng-show="currentCarouselPage < (services.active.services.length / 3)"></span>
+        </div>
+        <div ng-show="noServicesReturned" class="no-tile-results {{ getField(custData, 'lineOfBusiness') | lowercase}}">
+            <span class="general">No services were found for this account.</span>
+            <!-- <span class="dev-demo">(<a ui-sref="app.search({id: '000045067492003'})">try this</a>)</span></div> -->
+    </section>
+    </div>

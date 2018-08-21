@@ -1,0 +1,86 @@
+<section class="overlay-container padding-2 overlay-contacts-edit-reason" id="overlay-contacts-edit-reason">
+    <div class="background"></div>
+    <div class="overlay" flowtype min-font="12" max-font="16" font-ratio="50">
+        <div class="close-overlay"></div>
+        <div ng-class="showLoading"></div>
+    	<div ng-class="showLoader"></div>
+        <h1>Reason For The Change</h1>
+
+		<form name="formContactsEditReason">
+
+			<div class="form-container">
+				<!-- <div class="data-list" ng-class="custDataMutable.choice == 'Other' ? 'comment' : 'non-comment'">
+					<div class="data-row">
+						<div class="data-container content">
+							<select ng-model="custDataMutable.choice" ng-options="x for x in custDataMutable.changeReasons"
+								ng-change="onCommentSelect()" >
+							</select>
+						</div>
+						<div class="data-container content" ng-show="custDataMutable.choice == 'Other'">
+							<textarea name="editComments" type="text" class="data-value" rows="5" cols="72" wrap="hard" required
+								placeholder="Please enter some comments here..." ng-maxlength="72"
+								ng-model="custDataMutable.comments">
+							</textarea>
+						</div>
+						<div class="data-container" ng-show="formContactsEditReason.editComments.$error.required && formContactsEditReason.editComments.$dirty && custDataMutable.choice == 'Other'">
+				            <div class="data-notification"	>
+								<p><i class="icon icon-warning-sign"></i>Please write some comments.</p>
+							</div>
+			            </div>
+			            <div class="data-container" ng-show="formContactsEditReason.editComments.$error.maxlength && formContactsEditReason.editComments.$dirty">
+			            	<div class="data-notification" >
+								<p><i class="icon icon-warning-sign"></i>Comment can not exceed 72 characters long.</p>
+							</div>
+			            </div>
+					</div>
+				</div> -->
+
+				<div class="data-list">
+					<div class="data-row">
+						<div class="data-container content">
+
+		        <div class="email-select-wrapper align-with-button" ng-class="{'list-showing': isListShowing}">
+		            <div class="input-wrapper">
+		                <input name="editComment" ng-model="custDataMutable.choice" ng-options=""  type="text"
+		                	class="" ng-keyup="onCommentSelectKeyUp($event)" placeholder="Type or select a reason" ng-maxlength="72">
+		                <span class="down-arrow-background"></span>
+		                <span ng-click="onCommentSelect()" ng-class="{'flip': inputArrowIsFlipped}" class="down-arrow"></span>
+		            </div>
+		            <div class="multiselect">
+		                <ul>
+		                    <li ng-click="onCommentSelect(reason)" ng-repeat="reason in custDataMutable.changeReasons" >{{reason}}</li>
+		                </ul>
+		            </div>
+		        </div>
+
+		        </div>
+
+        		<!-- <div class="data-container" ng-show="formContactsEditReason.editComment.$error.required && formContactsEditReason.editComment.$dirty">
+			           <div class="data-notification"	>
+							<p><i class="icon icon-warning-sign"></i>Please write a comment.</p>
+						</div>
+		            </div> -->
+		            <div class="data-container" ng-show="formContactsEditReason.editComment.$error.maxlength && formContactsEditReason.editComment.$dirty">
+		            	<div class="data-notification" >
+							<p><i class="icon icon-warning-sign"></i>Comment cannot exceed 72 characters long.</p>
+						</div>
+		            </div>
+
+				  </div>
+				  </div>
+				</div>
+	        </br></br>
+
+	        <div class="form-footer">
+	        	<input class="btn" type="button" value="Save"
+	        		ng-click="isContactEditCommentValid() && onContactEditSubmit()" />
+	        	<div class="data-notification" ng-show="custDataMutable.saveFailureFlag">
+	        		<p><i class="icon icon-warning-sign"></i>Save failed, please try later.</p>
+	        	</div>
+	        	<div class="data-notification" ng-show="!custDataMutable.validComments">
+	        		<p><i class="icon icon-warning-sign"></i>Please write a comment.</p>
+	        	</div>
+	        </div>
+        </form>
+    </div>
+</section>

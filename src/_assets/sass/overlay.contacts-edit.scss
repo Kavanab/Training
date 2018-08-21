@@ -1,0 +1,397 @@
+
+.overlay-contacts-edit {
+  .overlay {
+    overflow-y: scroll;
+    h1 {
+      font-family: "Foundry Sterling Book";
+      /* text-transform: uppercase; */
+      margin: 0 0 2vw 0;
+      color: $fore;
+      font-size: 1.7em;
+      text-align: center;
+    }
+    h2 {
+      font-family: "Foundry Sterling Bold";
+      text-transform: uppercase;
+      margin: 0 0 15px;
+      opacity: 0.8;
+      font-size: 1.05em;
+    }
+  input[type=text], input[type="email"]{
+      transition: all 0.20s ease-in-out;
+      outline: none;
+      padding: 5px 1px 5px 8px;
+      margin: 8px 1px 5px 0px;
+      border: 1px solid #EEE;
+      &:focus {
+        // box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+        border: 1px solid #BBB;
+      }
+    }
+    .form-footer {
+      text-align: center;
+      .btn{
+
+      }
+      // .button-save {
+      //   width: 15vw;
+      //   height: 2.2em;
+      //   font-family: "Foundry Sterling Bold";
+      //   text-transform: uppercase;
+      //   font-size: 1.2em;
+      //   padding: 3px 8px;
+      //   border-radius: 3px;
+      //   letter-spacing: -0.3px;
+      //   position: relative;
+      //   border: 1px solid white;
+      //   &.active {
+      //     color: white;
+      //     background-color: #3C8A2E;
+      //     border-color: #3C8A2E;
+      //   }
+      //   &.inactive {
+      //     color: #666;
+      //     background-color: #ccc;
+      //     border-color: #ccc;
+      //     cursor: not-allowed;
+      //   }
+      // }
+      .data-notification {
+        color: $red;
+      }
+    }
+    .form-container {
+      display: flex;
+      flex-direction: row;
+      margin: 0 0 0 0;
+      .form-column {
+        width: 50%;
+        margin: 0 10px 0 0;
+      }
+      > :first-child.form-column{
+        margin-right: 5%;
+      }
+    }
+    .data-list {
+      flex-grow: 1;
+      display: flex;
+      flex-flow: column;
+      .data-row {
+      }
+    }
+    .data-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      margin: 0 0;
+      .data-label {
+        width: 15%;
+        min-width: 5em;
+        text-transform: uppercase;
+        color: #c1c1c1;
+        font-family: "Foundry Sterling Bold";
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+      }
+      .data {
+        width: 84%;
+        font-family: "Foundry Sterling Book";
+        text-transform: capitalize;
+        padding: 5px;
+        margin: 7px 0px 7px 0px;
+        color: $mgray;
+      }
+      .data-input {
+        width: 84%;
+      }
+      .data-notification {
+        width: 84%;
+        color: $red;
+        margin: -3px 0 -3px 0;
+      }
+      .data-input.city {
+        width: 45%;
+        margin-right: 3px;
+      }
+      .data-input.state {
+        width: 14%;
+      }
+      .data-input.zip {
+        width: 23%;
+        /* min-width: 50px; */
+        margin-left: 3px;
+      }
+    }
+
+  }
+}
+
+.overlay-contacts-edit-confirm {
+  .overlay {
+    /* overflow-y: scroll; */
+    h1 {
+      font-family: "Foundry Sterling Book";
+      /* text-transform: uppercase; */
+      margin: 0 0 2vw 0;
+      color: $fore;
+      font-size: 1.7em;
+      text-align: center;
+    }
+    .form-container {
+      display: flex;
+      flex-direction: row;
+      margin: 0 0 0 0;
+      .form-column {
+        width: 100%;
+        margin: 0 0 0 0;
+      }
+    }
+    .data-list {
+      flex-grow: 1;
+      display: flex;
+      flex-flow: column;
+      height: 12em;
+      .data-row {
+        margin: 0.67em 0 0.67em 0;
+        text-align: center;
+      }
+    }
+    .data-container {
+      text-align: center;
+      position: relative;
+      height: auto;
+      margin-left: auto;
+      margin-right: auto;
+      /* border: 1px solid gray; */
+      &.acknowledgement {
+        width: 100%;
+        margin: 0 0 10px 0;
+        .data-value {
+          p {
+          	margin: 2px 0;
+          }
+        }
+      }
+      &.content {
+      	width: 300px;
+      	text-align: left;
+      	color: $mgray;
+      	.data-label {
+          font-family: "Foundry Sterling Bold";
+        }
+        .data-value {
+          font-family: "Foundry Sterling Book";
+        }
+      }
+    }
+    .form-footer {
+      text-align: center;
+      .btn{
+        width: 30%;
+        font-size: 1em !important;
+      	padding-left: 1em !important;
+        padding-right: 1em !important;
+        text-align: center;
+      }
+      .btn-rev {
+        width: 30%;
+        font-size: 1em !important;
+      	padding-left: 1em !important;
+        padding-right: 1em !important;
+        text-align: center;
+      }
+    }
+    .data-notification {
+      color: $red;
+    }
+  }
+
+}
+
+
+.overlay-contacts-edit-reason {
+  .overlay {
+    /* overflow-y: scroll; */
+    h1 {
+      font-family: "Foundry Sterling Book";
+      /* text-transform: uppercase; */
+      margin: 0 0 2vw 0;
+      color: $fore;
+      font-size: 1.7em;
+      text-align: center;
+    }
+    .form-container {
+      display: flex;
+      flex-direction: row;
+      margin: 0 0 0 0;
+      justify-content: center;
+      /* margin: 11vh; */
+      .email-select-wrapper .input-wrapper {
+          width: 35vw;
+      }
+    }
+    .data-list {
+      flex-grow: 1;
+      display: flex;
+      flex-flow: column;
+      height: 12em;
+      .data-row {
+        position: absolute;
+        display: inline-block;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    .data-container {
+      text-align: center;
+      position: relative;
+      height: auto;
+      margin-left: auto;
+      margin-right: auto;
+      /* border: 1px solid gray; */
+      &.content {
+      	width: 100%;
+      	color: $mgray;
+      	font-family: "Foundry Sterling Book";
+      	text-align: left;
+      	.data-label {
+        }
+        .data-value {
+          margin-top: 20px;
+        }
+      }
+    }
+    .loading {
+      z-index: 600;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: white;
+      border-radius: 8px;
+      opacity: 1;
+      transition: opacity .2s linear, z-index .2s linear;
+    }
+    .loader {
+      z-index: 700;
+      border-bottom: 4px solid rgba(0,0,0, .1);
+      border-left: 4px solid rgba(0,0,0, .1);
+      border-right: 4px solid rgba(0,0,0, .1);
+      border-top: 4px solid rgba(60, 138, 46, .8);
+      border-radius: 100%;
+      height: 80px;
+      width: 80px;
+      -webkit-animation: rot .5s infinite linear;
+      -moz-animation: rot .5s infinite linear;
+      animation: rot .5s infinite linear;
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -40px 0 0 -40px;
+      transition: opacity .2s linear, z-index .2s linear;
+    }
+    .form-footer {
+      text-align: center;
+      .btn{
+      }
+    }
+    .data-notification {
+      color: $red;
+    }
+  }
+
+}
+
+.overlay-contacts-edit-result {
+  .overlay {
+    /* overflow-y: scroll; */
+    /* width: 30vw; */
+    h1 {
+      font-family: "Foundry Sterling Book";
+      /* text-transform: uppercase; */
+      margin: 0 0 2vw 0;
+      color: $fore;
+      font-size: 1.7em;
+      text-align: center;
+    }
+    .data-list {
+      flex-grow: 1;
+      display: flex;
+      flex-flow: column;
+      /* margin: 7em 0 8em 0; */
+	  height: 16em;
+      .data-row {
+        width: 75%;
+        position: absolute;
+        /* height: auto;
+        margin-left: auto;
+        margin-right: auto; */
+        display: inline-block;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    .data-container {
+      display: flex;
+      flex-direction: row;
+      color: $mgray;
+      font-family: "Foundry Sterling Book";
+      /* border: 1px solid gray; */
+      .data-label {
+        width: 11%;
+        .check-mark {
+		  height: 3.6em;
+        }
+      }
+      .data-value {
+        width: 89%;
+        font-size: 1.2em;
+        text-align: left;
+      }
+    }
+//    .response-container {
+//      text-align: center;
+//      margin: 3vw auto;
+//      .response-message {
+//        font-family: "Foundry Sterling Book";
+//        margin-top: 0;
+//        margin-bottom: 20px;
+//        font-size: 1.8em;
+//      }
+//      .check_mark {
+//        height: 3em;
+//      }
+//      .response-icon.success {
+//        display: inline-block;
+//        font-size: 28px;
+//        width: 40px;
+//        height: 40px;
+//        border-radius: 40px;
+//        text-align: center;
+//        color: white;
+//        background-color: #3C8A2E;
+//        border: 1px solid #3C8A2E;
+//      }
+//      .response-icon.failure {
+//        display: inline-block;
+//        font-size: 28px;
+//        width: 40px;
+//        height: 40px;
+//        border-radius: 40px;
+//        text-align: center;
+//        color: white;
+//        background-color: red;
+//        border: 1px solid red;
+//      }
+//    }
+    .data-notification {
+      color: $red;
+    }
+  }
+}
