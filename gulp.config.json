@@ -1,0 +1,24 @@
+{
+  "src": {
+    "root":     "./src",
+    "lib":      "./src/_assets/lib",
+    "font":     "./src/_assets/font",
+    "lib":      "./src/_assets/lib",
+    "js":       "./src/app",
+    "sass":     "./src/_assets/sass",
+    "img":      "./src/_assets/img",
+    "partial":  "./src/_assets/partial",
+    "data":     "./src/_assets/data"
+  },
+  "dist": {
+      "root":     "./dist",
+      "lib":      "./dist/lib",
+      "font":     "./dist/font",
+      "css":      "./dist/css",
+      "js":       "./dist/js",
+      "img":      "./dist/img",
+      "partial":  "./dist/partial",
+      "data":     "./dist/data"
+
+  }
+}

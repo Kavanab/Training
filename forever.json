@@ -1,0 +1,10 @@
+//this is intended to be used when spinning up the app on production VM Alvpapp028 and Alvpapp029
+{
+    "uid": "searchapp",
+    "append": true,
+    "script": "web.js",
+    "sourceDir": "/_git/customer-search/",
+    "LOGFILE": "/_git/customer-search/logs/forever.log",
+    "OUTFILE": "/_git/customer-search/logs/webserver.log",
+    "ERRFILE": "/_git/customer-search/logs/webserver_error.log"
+}
